@@ -1,0 +1,129 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="../../Content/CSS/backstage.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+<div id="wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			<h1><a href="#">Paperslips</a></h1>
+			<p>By nodethirtythree and Free CSS Templates</p>
+		</div>
+		<div id="menu">
+			<ul>
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#">My Work</a></li>
+				<li><a href="#">Photo Gallery</a></li>
+				<li><a href="#">About Me</a></li>
+				<li><a href="#">Cool Links</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="page" class="container">
+		<div id="content">
+			<div class="photo"> <a href="#"><img src="images/homepage02.jpg" width="442" height="84" alt="" /></a>
+				<p class="caption"><strong>Random Macro Photo</strong> provided by <a href="http://pdphoto.org/">PDPhoto.org</a></p>
+			</div>
+			<div class="post">
+				<div class="title">
+					<h2>Welcome to Paperslips</h2>
+					<p>Posted by <a href="#">enks</a> 4 hours 8 minutes ago</p>
+				</div>
+				<div class="entry">
+					<p>Hi there. This is <strong>Paperslips</strong>, a free template by <a href="http://www.nodethirtythree.com/">nodethirtythree</a> and <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>. It’s released under the <a href="http://creativecommons.org/licenses/by/2.5/">Creative Commons Attribution</a> license, so use it however you like, just keep the link back to our sites. Check out my other work at <a href="http://www.nodethirtythree.com/">my site</a> or follow me on <a href="http://twitter.com/nodethirtythree">Twitter</a>. Have fun.</p>
+				</div>
+				<div class="meta">
+					<p><a href="#" class="more">Read More</a> <a href="#" class="comments">Comments (15)</a></p>
+				</div>
+			</div>
+			<div class="post">
+				<div class="title">
+					<h2>Lorem ipsum dolor sit amet</h2>
+					<p>Posted by <a href="#">enks</a> 16 hours 23 minutes ago</p>
+				</div>
+				<div class="entry">
+					<p>Volutpat at varius sed sollicitudin et, arcu. Vivamus viverra. Nullam turpis. Aenean felis. Quisque eros. Cras lobortis <a href="#">commodo metus</a>. Vestibulum vel purus. Vestibulum sed etiam. Lorem ipsum sit amet dolore. Nulla facilisi.</p>
+				</div>
+				<div class="meta">
+					<p><a href="#" class="more">Read More</a> <a href="#" class="comments">Comments (42)</a></p>
+				</div>
+			</div>
+		</div>
+		<div id="sidebar">
+			<div class="section1">
+				<h2>About</h2>
+				<p>Volutpat at varius sed sollicitudin et, arcu. Vivamus viverra. Nullam turpis. Vestibulum sed etiam. Lorem ipsum sit amet dolore. Nulla facilisi. Sed tortor. Aenean felis.</p>
+			</div>
+			<div class="section2">
+				<ul>
+					<li>
+						<h2>Aliquam</h2>
+						<ul>
+							<li><a href="#">Volutpat at varius sed</a></li>
+							<li><a href="#">Sollicitudin et arcu</a></li>
+							<li><a href="#">Vivamus viverra</a></li>
+							<li><a href="#">Nullam sed turpis</a></li>
+							<li><a href="#">Lorem ipsum sit amet</a></li>
+							<li><a href="#">Sed tortor aenean</a></li>
+						</ul>
+					</li>
+					<li>
+						<h2>Veroeros</h2>
+						<ul>
+							<li><a href="#">Vestibulum sed etiam</a></li>
+							<li><a href="#">Volutpat at varius sed</a></li>
+							<li><a href="#">Sollicitudin et arcu</a></li>
+							<li><a href="#">Vivamus viverra</a></li>
+							<li><a href="#">Nullam sed turpis</a></li>
+							<li><a href="#">Dolore nulla facilisi</a></li>
+							<li><a href="#">Sed tortor aenean</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="section3">
+				<ul>
+					<li>
+						<h2>Facilisi</h2>
+						<ul>
+							<li><a href="#">Vestibulum sed etiam</a></li>
+							<li><a href="#">Vivamus viverra</a></li>
+							<li><a href="#">Nullam sed turpis</a></li>
+							<li><a href="#">Volutpat at varius sed</a></li>
+							<li><a href="#">Dolore nulla facilisi</a></li>
+							<li><a href="#">Sed tortor aenean</a></li>
+						</ul>
+					</li>
+					<li>
+						<h2>Nullam</h2>
+						<ul>
+							<li><a href="#">Volutpat at varius</a></li>
+							<li><a href="#">Sollicitudin et arcu</a></li>
+							<li><a href="#">Vestibulum sed etiam</a></li>
+							<li><a href="#">Vivamus viverra</a></li>
+							<li><a href="#">Nullam sed turpis</a></li>
+							<li><a href="#">Lorem ipsum sit ameti</a></li>
+							<li><a href="#">Dolore nulla facilisi</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="clearfix">&nbsp;</div>
+	</div>
+	<div id="footer" class="container">
+		<p>(c) 2009 Sitename.com. Design by <a href="http://www.nodethirtythree.com/">nodethirtythree</a> and <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
+	</div>
+</div>
+</body>
+</html>
+
