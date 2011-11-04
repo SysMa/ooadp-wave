@@ -5,12 +5,51 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <link rel="stylesheet" href="../../Content/CSS/main.css" />
+    <!--[if IE 7]><link rel="stylesheet" href="styles/ie7.css" /><![endif]-->    
+    
+    <!-- DO NOT USE THESE FILES. they are compiled for fast http access -->
+    <!-- if you’re looking for source, download or read documentation -->
+    <script src="../../Scripts/jquery-1.4.1-and-plugins.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/main.js" type="text/javascript"></script>
+
+ 
+
 </head>
+
+
 <body>
-    <div>
-        <asp:ContentPlaceHolder ID="MainContent" runat="server">
-        
+    <div id="wrapper">
+      <div id="site">
+
+        <div id="title">
+          <h1>W A V E<span></span></h1>
+          <p>Join us AND jump into the ocean of fun!</p>
+        </div>
+
+        <asp:ContentPlaceHolder ID="Login" runat="server">
         </asp:ContentPlaceHolder>
+
+        <asp:ContentPlaceHolder ID="Main" runat="server">
+        </asp:ContentPlaceHolder>
+
+      </div>
     </div>
+    
+    <p class="footer">
+      <span>Powered by <a href="http://jquery.com/">jQuery</a> – Made by SE from SJTU</span>
+    </p>
+    
+	<script type="text/javascript">
+	    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script><script src="../../Scripts/ga.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	    try {
+	        var pageTracker = _gat._getTracker("UA-1121012-6");
+	        pageTracker._trackPageview();
+	    } catch (err) { }
+	</script>
+ 
 </body>
 </html>
