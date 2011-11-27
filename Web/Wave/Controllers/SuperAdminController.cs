@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Wave.Models;
 
 namespace Wave.Controllers
 {
@@ -10,10 +11,11 @@ namespace Wave.Controllers
     {
         //
         // GET: /SuperAdmin/
+        private WaveWebEntities _db = new WaveWebEntities();
 
         public ActionResult Index()
         {
-            return View();
+            return View(_db.Admin.ToList());
         }
 
         //
@@ -35,46 +37,67 @@ namespace Wave.Controllers
         //
         // POST: /SuperAdmin/Create
 
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Create(Admin adminToCreate)
         {
+ 
+            if (!ModelState.IsValid)
+                return View();
+
             try
             {
-                // TODO: Add insert logic here
-
+                _db.AddToAdmin(adminToCreate);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            catch
-            {
+            } catch {
                 return View();
             }
+            
+ 
         }
         
         //
         // GET: /SuperAdmin/Edit/5
  
-        public ActionResult Edit(int id)
+        public ActionResult Edit(String id)
         {
-            return View();
+            var adminToEdit = (from m in _db.Admin 
+                              where m.adminname == id
+                              select m).First();
+
+           return View(adminToEdit);
         }
 
         //
         // POST: /SuperAdmin/Edit/5
 
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [AcceptVerbs(HttpVerbs.Post)]
+ 
+        public ActionResult Edit(Admin adminToEdit)
         {
+ 
+            var originalAdmin = (from m in _db.Admin
+                                 where m.adminname == adminToEdit.adminname
+                                 select m).First();
+ 
+            if (!ModelState.IsValid)
+                return View(originalAdmin);
+
             try
             {
-                // TODO: Add update logic here
- 
+                _db.ApplyCurrentValues<Admin>(originalAdmin.EntityKey.EntitySetName, adminToEdit);
+                //_db.ApplyPropertyChanges(originalMovie.EntityKey.EntitySetName, movieToEdit);
+
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
-        }
+           
+ 
+        } 
 
         //
         // GET: /SuperAdmin/Delete/5
@@ -100,6 +123,11 @@ namespace Wave.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult ChangePwd()
+        {
+            return View();
         }
     }
 }
