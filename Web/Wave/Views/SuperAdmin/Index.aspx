@@ -49,7 +49,6 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
-    <%: Html.ActionLink("Change Password", "ChangePwd") %>
     <br />
     <%: Html.ActionLink("Change Password", "ChangePwd") %>
 </asp:Content>
