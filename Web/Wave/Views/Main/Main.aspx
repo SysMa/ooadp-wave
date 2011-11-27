@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Wave
+    Wave
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
@@ -10,7 +10,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
 
-            <!-- this isn’t part of the plugin, just a control for demo -->
+        <!-- this isn’t part of the plugin, just a control for demo -->
         <ul class="splitter">
             <li>
                 <ul>
