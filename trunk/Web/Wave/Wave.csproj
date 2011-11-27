@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ManagedFusion">
+      <HintPath>..\Resources\ManagedFusion.dll</HintPath>
+    </Reference>
+    <Reference Include="ManagedFusion.Web">
+      <HintPath>..\Resources\ManagedFusion.Web.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -200,6 +206,7 @@
     <Content Include="Scripts\jquery-1.4.1-and-plugins.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Views\Main\Main.aspx" />
+    <Content Include="Views\Shared\Message.ascx" />
     <Content Include="Views\SuperAdmin\ChanngePwd.aspx" />
     <Content Include="Views\SuperAdmin\Create.aspx" />
     <Content Include="Views\SuperAdmin\Edit.aspx" />

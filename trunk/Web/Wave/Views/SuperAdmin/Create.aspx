@@ -6,39 +6,39 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
 
+    <div style="color:Red;font-size:x-large"><% Html.RenderPartial("~/Views/Shared/Message.ascx"); %></div>
+
 	<% using (Html.BeginForm()) {%>
 		<%: Html.ValidationSummary(true) %>
 
 		<fieldset>
-			<legend></legend>
-			
-			<div class="editor-label">
-				Administrator Name:
-			</div>
-			<div class="editor-field">
-				<%: Html.TextBoxFor(model => model.adminname) %>
-				<%: Html.ValidationMessageFor(model => model.adminname) %>
-			</div>
-			
-			<div class="editor-label">
-				Administrator Password:
-			</div>
-			<div class="editor-field">
-				<%: Html.PasswordFor(model => model.apasswd) %>
-				<%: Html.ValidationMessageFor(model => model.apasswd) %>
-			</div>
-
-			<div class="editor-label">
-				Administrator Email:
-			</div>
-			<div class="editor-field">
-				<%: Html.TextBoxFor(model => model.aemail) %>
-				<%: Html.ValidationMessageFor(model => model.aemail) %>
-			</div>
-			
-			<p>
-				<input type="submit" value="Create" />
-			</p>
+			<table>
+                <tr>
+                    <td align="right">Administrator Name:</td>
+                    <td>
+                        <%: Html.TextBoxFor(model => model.adminname, new Dictionary<string, object>() {{"maxlength", "20"}})%>
+				        <%: Html.ValidationMessageFor(model => model.adminname) %>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Administrator Password:</td>
+                    <td>
+                        <%: Html.PasswordFor(model => model.apasswd, new Dictionary<string, object>() { { "maxlength", "20" } })%>
+				        <%: Html.ValidationMessageFor(model => model.apasswd) %>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Administrator Email:</td>
+                    <td>
+                        <%: Html.TextBoxFor(model => model.aemail, new Dictionary<string, object>() {{"maxlength", "50"}}) %>
+				        <%: Html.ValidationMessageFor(model => model.aemail) %>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"><input type="submit" value="Create" /></td>
+                    <td><input type="reset" value="Reset" /></td>
+                </tr>
+            </table>
 		</fieldset>
 
 	<% } %>

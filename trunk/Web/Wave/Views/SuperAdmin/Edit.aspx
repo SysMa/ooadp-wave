@@ -6,29 +6,32 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
 
+    <div style="color:Red;font-size:x-large"><% Html.RenderPartial("~/Views/Shared/Message.ascx"); %></div>
+
     <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
         
         <fieldset>
-            <legend></legend>
-            
-            <div class="editor-label">
-                Administrator Name: <%: Html.DisplayTextFor(model => model.adminname)%>
-                <%: Html.TextBoxFor(model => model.adminname, new Dictionary<string, object>(){{ "style", "visibility:hidden;" }})%>
-                <%: Html.TextBoxFor(model => model.apasswd, new Dictionary<string, object>(){{ "style", "visibility:hidden;" }})%>
-            </div>
-            
-            <div class="editor-label">
-                Administrator Email:
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.aemail) %>
-                <%: Html.ValidationMessageFor(model => model.aemail) %>
-            </div>
-            
-            <p>
-                <input type="submit" value="Save" />
-            </p>
+            <table>
+                <tr>
+                    <td align="right">Administrator Name:</td>
+                    <td>
+                        <%: Html.DisplayTextFor(model => model.adminname)%>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Administrator Email:</td>
+                    <td>
+                        <%: Html.TextBoxFor(model => model.aemail, new Dictionary<string, object>() { { "maxlength", "50" } })%>
+				        <%: Html.ValidationMessageFor(model => model.aemail) %>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="2"><input type="submit" value="Save" /></td>
+                </tr>
+            </table>
+            <%: Html.TextBoxFor(model => model.adminname, new Dictionary<string, object>(){{ "style", "visibility:hidden;" }})%>
+            <%: Html.TextBoxFor(model => model.apasswd, new Dictionary<string, object>(){{ "style", "visibility:hidden;" }})%>
         </fieldset>
 
     <% } %>

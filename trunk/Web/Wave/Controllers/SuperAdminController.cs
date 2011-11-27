@@ -19,14 +19,6 @@ namespace Wave.Controllers
         }
 
         //
-        // GET: /SuperAdmin/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
         // GET: /SuperAdmin/Create
 
         public ActionResult Create()
@@ -50,6 +42,7 @@ namespace Wave.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             } catch {
+                TempData["ErrorMessage"] = "Create failed! ";
                 return View();
             }
             
@@ -82,20 +75,16 @@ namespace Wave.Controllers
             if (!ModelState.IsValid)
                 return View(originalAdmin);
 
-            //adminToEdit.apasswd = "oooooooooo";
             try
             {
                 _db.ApplyCurrentValues<Admin>(originalAdmin.EntityKey.EntitySetName, adminToEdit);
-                //_db.ApplyPropertyChanges(originalMovie.EntityKey.EntitySetName, movieToEdit);
-
-                _db.ApplyCurrentValues<Admin>(originalAdmin.EntityKey.EntitySetName, adminToEdit);
-
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                TempData["ErrorMessage"] = "Edit failed! ";
+                return View(originalAdmin);
             }
            
  
@@ -111,7 +100,7 @@ namespace Wave.Controllers
                                  select m).First();
 
             if (!ModelState.IsValid)
-                return View(originalAdmin);
+                return View();
 
             try
             {
@@ -121,35 +110,10 @@ namespace Wave.Controllers
             }
             catch
             {
-                return RedirectToAction("Index");
+                TempData["ErrorMessage"] = "Delete failed! ";
+                return View();
             }
             
-        }
-
-        //
-        // POST: /SuperAdmin/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(String id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-                var originalAdmin = (from m in _db.Admin
-                                     where m.adminname == id
-                                     select m).First();
-
-                if (!ModelState.IsValid)
-                    return View(originalAdmin);
-                _db.DeleteObject(originalAdmin);
-                _db.SaveChanges();
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return RedirectToAction("Index");
-            }
         }
 
         public ActionResult ChangePwd()
