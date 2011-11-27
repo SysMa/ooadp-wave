@@ -200,12 +200,14 @@
     <Content Include="Scripts\jquery-1.4.1-and-plugins.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Views\Main\Main.aspx" />
+    <Content Include="Views\SuperAdmin\ChanngePwd.aspx" />
     <Content Include="Views\SuperAdmin\Create.aspx" />
     <Content Include="Views\SuperAdmin\Edit.aspx" />
     <Content Include="Views\SuperAdmin\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>

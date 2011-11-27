@@ -82,8 +82,12 @@ namespace Wave.Controllers
             if (!ModelState.IsValid)
                 return View(originalAdmin);
 
+            //adminToEdit.apasswd = "oooooooooo";
             try
             {
+                _db.ApplyCurrentValues<Admin>(originalAdmin.EntityKey.EntitySetName, adminToEdit);
+                //_db.ApplyPropertyChanges(originalMovie.EntityKey.EntitySetName, movieToEdit);
+
                 _db.ApplyCurrentValues<Admin>(originalAdmin.EntityKey.EntitySetName, adminToEdit);
 
                 _db.SaveChanges();
