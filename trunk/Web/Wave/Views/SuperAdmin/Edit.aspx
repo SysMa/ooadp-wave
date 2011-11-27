@@ -15,15 +15,15 @@
             <legend></legend>
             
             <div class="editor-label">
-                Administrator Name: 
-                <%: Html.TextBoxFor(model => model.adminname) %>
-                <%: Html.DisplayTextFor(model => model.adminname) %>              
+                Administrator Name: <%: Html.DisplayTextFor(model => model.adminname)%>
+                <%: Html.TextBoxFor(model => model.adminname, new Dictionary<string, object>(){{ "style", "visibility:hidden;" }})%>
+                <%: Html.TextBoxFor(model => model.apasswd, new Dictionary<string, object>(){{ "style", "visibility:hidden;" }})%>
             </div>
             
             <div class="editor-label">
                 Administrator Email:
             </div>
-            <div >
+            <div class="editor-field">
                 <%: Html.TextBoxFor(model => model.aemail) %>
                 <%: Html.ValidationMessageFor(model => model.aemail) %>
             </div>

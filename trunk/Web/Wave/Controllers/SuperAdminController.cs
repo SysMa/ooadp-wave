@@ -85,7 +85,6 @@ namespace Wave.Controllers
             try
             {
                 _db.ApplyCurrentValues<Admin>(originalAdmin.EntityKey.EntitySetName, adminToEdit);
-                //_db.ApplyPropertyChanges(originalMovie.EntityKey.EntitySetName, movieToEdit);
 
                 _db.SaveChanges();
                 return RedirectToAction("Index");
