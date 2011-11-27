@@ -15,7 +15,9 @@
             <legend></legend>
             
             <div class="editor-label">
-                Administrator Name: <%: Html.DisplayTextFor(model => model.adminname) %>              
+                Administrator Name: 
+                <%: Html.TextBoxFor(model => model.adminname) %>
+                <%: Html.DisplayTextFor(model => model.adminname) %>              
             </div>
             
             <div class="editor-label">
