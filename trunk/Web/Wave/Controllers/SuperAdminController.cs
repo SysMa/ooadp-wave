@@ -72,7 +72,6 @@ namespace Wave.Controllers
         // POST: /SuperAdmin/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
- 
         public ActionResult Edit(Admin adminToEdit)
         {
  
@@ -102,26 +101,51 @@ namespace Wave.Controllers
         //
         // GET: /SuperAdmin/Delete/5
  
-        public ActionResult Delete(int id)
+        public ActionResult Delete(String id)
         {
-            return View();
+            var originalAdmin = (from m in _db.Admin
+                                 where m.adminname == id
+                                 select m).First();
+
+            if (!ModelState.IsValid)
+                return View(originalAdmin);
+
+            try
+            {
+                _db.DeleteObject(originalAdmin);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
+            
         }
 
         //
         // POST: /SuperAdmin/Delete/5
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(String id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
- 
+                var originalAdmin = (from m in _db.Admin
+                                     where m.adminname == id
+                                     select m).First();
+
+                if (!ModelState.IsValid)
+                    return View(originalAdmin);
+                _db.DeleteObject(originalAdmin);
+                _db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
 
