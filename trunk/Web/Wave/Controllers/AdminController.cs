@@ -10,6 +10,7 @@ namespace Wave.Controllers
     {
         //
         // GET: /Admin/
+        private Wave.Models.WaveWebEntities _db = new Models.WaveWebEntities();
 
         public ActionResult Index()
         {

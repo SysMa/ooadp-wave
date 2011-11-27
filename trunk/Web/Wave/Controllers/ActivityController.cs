@@ -10,10 +10,11 @@ namespace Wave.Controllers
     {
         //
         // GET: /Activity/
+        private Wave.Models.WaveWebEntities _db = new Models.WaveWebEntities();
 
         public ActionResult Index()
         {
-            return View();
+            return View(_db.Activity.ToList());
         }
 
         //
