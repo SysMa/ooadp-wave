@@ -34,11 +34,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ManagedFusion">
-      <HintPath>..\Resources\ManagedFusion.dll</HintPath>
+    <Reference Include="ManagedFusion, Version=1.0.3425.35492, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\ManagedFusion.dll</HintPath>
     </Reference>
-    <Reference Include="ManagedFusion.Web">
-      <HintPath>..\Resources\ManagedFusion.Web.dll</HintPath>
+    <Reference Include="ManagedFusion.Web, Version=1.0.3425.35492, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\ManagedFusion.Web.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
