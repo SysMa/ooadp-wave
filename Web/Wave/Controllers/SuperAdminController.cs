@@ -15,6 +15,10 @@ namespace Wave.Controllers
 
         public ActionResult Index()
         {
+            if (Session["type"] == null || Session["account"] == null || (int)Session["type"] != 0)
+            {
+                return RedirectToAction("Main", "Main");
+            }
             return View(_db.Admin.ToList());
         }
 
@@ -23,6 +27,10 @@ namespace Wave.Controllers
 
         public ActionResult Create()
         {
+            if (Session["type"] == null || Session["account"] == null || (int)Session["type"] != 0)
+            {
+                return RedirectToAction("Main", "Main");
+            }
             return View();
         } 
 
@@ -51,11 +59,16 @@ namespace Wave.Controllers
  
         public ActionResult Edit(String id)
         {
+            if (Session["type"] == null || Session["account"] == null || (int)Session["type"] != 0)
+            {
+                return RedirectToAction("Main", "Main");
+            }
+
             var adminToEdit = (from m in _db.Admin 
                               where m.adminname == id
                               select m).First();
 
-           return View(adminToEdit);
+            return View(adminToEdit);
         }
 
         //
@@ -90,6 +103,11 @@ namespace Wave.Controllers
  
         public ActionResult Delete(String id)
         {
+            if (Session["type"] == null || Session["account"] == null || (int)Session["type"] != 0)
+            {
+                return RedirectToAction("Main", "Main");
+            }
+
             var originalAdmin = (from m in _db.Admin
                                  where m.adminname == id
                                  select m).First();
@@ -115,6 +133,10 @@ namespace Wave.Controllers
         // POST: /SuperAdmin/ChangePwd/6
         public ActionResult ChangePwd()
         {
+            if (Session["type"] == null || Session["account"] == null || (int)Session["type"] != 0)
+            {
+                return RedirectToAction("Main", "Main");
+            }
             return View();
         }
 
@@ -158,6 +180,12 @@ namespace Wave.Controllers
                     return View();
                 }
             }         
-        } 
+        }
+
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            return RedirectToAction("Main", "Main");
+        }
     }
 }
