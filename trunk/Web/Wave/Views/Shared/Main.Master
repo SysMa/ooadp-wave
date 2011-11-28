@@ -12,9 +12,6 @@
     <!-- if you’re looking for source, download or read documentation -->
     <script src="../../Scripts/jquery-1.4.1-and-plugins.min.js" type="text/javascript"></script>
     <script src="../../Scripts/main.js" type="text/javascript"></script>
-
- 
-
 </head>
 
 
@@ -23,8 +20,8 @@
       <div id="site">
 
         <div id="title">
-          <h1>W A V E<span></span></h1>
-          <p>Join us AND jump into the ocean of fun!</p>
+          <p style="font-size:72px;color:#46c5ec" >W A V E</p>
+          <p style="font-size:x-large;color:#46c5ec">Join us and jump into the ocean of FUN!</p>
         </div>
 
         <asp:ContentPlaceHolder ID="Login" runat="server">

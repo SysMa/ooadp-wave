@@ -32,7 +32,6 @@ namespace Wave.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(Admin adminToCreate)
         {
- 
             if (!ModelState.IsValid)
                 return View();
 
@@ -45,8 +44,6 @@ namespace Wave.Controllers
                 TempData["ErrorMessage"] = "Create failed! ";
                 return View();
             }
-            
- 
         }
         
         //
@@ -86,8 +83,6 @@ namespace Wave.Controllers
                 TempData["ErrorMessage"] = "Edit failed! ";
                 return View(originalAdmin);
             }
-           
- 
         } 
 
         //
@@ -116,9 +111,53 @@ namespace Wave.Controllers
             
         }
 
+        //
+        // POST: /SuperAdmin/ChangePwd/6
         public ActionResult ChangePwd()
         {
             return View();
         }
+
+        //
+        // POST: /SuperAdmin/ChangePwd/6
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult ChangePwd(ChangePwdModel passwordToChange)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            string superAdmin = Session["account"].ToString();
+            var account = (from m in _db.SuperAdmin
+                                 where m.supname == superAdmin
+                                 select m).First();
+
+            if (account.spasswd != passwordToChange.original)
+            {
+                TempData["ErrorMessage"] = "Wrong original password! ";
+                return View();
+            }
+            else if (passwordToChange.password != passwordToChange.confirmPwd)
+            {
+                TempData["ErrorMessage"] = "Wrong new password! ";
+                return View();
+            }
+            else
+            {
+                account.spasswd = passwordToChange.password;
+
+                try
+                {
+                    _db.ApplyCurrentValues<SuperAdmin>(account.EntityKey.EntitySetName, account);
+                    _db.SaveChanges();
+                    TempData["SuccessMessage"] = "Password has changed.";
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    TempData["ErrorMessage"] = "Database unreachable! ";
+                    return View();
+                }
+            }         
+        } 
     }
 }

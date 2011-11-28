@@ -19,7 +19,7 @@ namespace Wave
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "SuperAdmin", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "Main", action = "Main", id = UrlParameter.Optional } // Parameter defaults
             );
 
         }

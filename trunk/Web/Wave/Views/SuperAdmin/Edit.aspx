@@ -23,7 +23,7 @@
                     <td align="right">Administrator Email:</td>
                     <td>
                         <%: Html.TextBoxFor(model => model.aemail, new Dictionary<string, object>() { { "maxlength", "50" } })%>
-				        <%: Html.ValidationMessageFor(model => model.aemail) %>
+                        <%: Html.ValidationMessageFor(model => model.aemail) %>
                     </td>
                 </tr>
                 <tr>

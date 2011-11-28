@@ -87,6 +87,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChangePwdModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -209,7 +211,7 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Views\Main\Main.aspx" />
     <Content Include="Views\Shared\Message.ascx" />
-    <Content Include="Views\SuperAdmin\ChanngePwd.aspx" />
+    <Content Include="Views\SuperAdmin\ChangePwd.aspx" />
     <Content Include="Views\SuperAdmin\Create.aspx" />
     <Content Include="Views\SuperAdmin\Edit.aspx" />
     <Content Include="Views\SuperAdmin\Index.aspx" />
