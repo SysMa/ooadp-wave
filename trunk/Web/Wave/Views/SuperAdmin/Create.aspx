@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
 
-	<div style="color:Red;font-size:x-large"><% Html.RenderPartial("~/Views/Shared/Message.ascx"); %></div>
+	<% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
 
 	<% using (Html.BeginForm()) {%>
 		<%: Html.ValidationSummary(true) %>
