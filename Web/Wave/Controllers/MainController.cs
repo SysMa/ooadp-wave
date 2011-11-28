@@ -166,13 +166,28 @@ namespace Wave.Controllers
 
             try
             {
+                var users = (from m in _db.Users
+                                where m.username == userToCreate.username
+                                select m);
+
+                if (users.Count() != 0)
+                {
+                    TempData["ErrorMessage"] = "User name exists! ";
+                    return View();
+                }
+                if (userToCreate.upasswd != Request.Form["ConfirmPassword"])
+                {
+                    TempData["ErrorMessage"] = "Registration failed! Your passwords must match, please re-enter and try again.";
+                    return View();
+                }
                 _db.AddToUsers(userToCreate);
                 _db.SaveChanges();
+                TempData["SuccessMessage"] = "Registration succeeds!";
                 return RedirectToAction("Main");
             }
             catch
             {
-                TempData["ErrorMessage"] = "Register failed! ";
+                TempData["ErrorMessage"] = "Database failed! ";
                 return View();
             }
         }
