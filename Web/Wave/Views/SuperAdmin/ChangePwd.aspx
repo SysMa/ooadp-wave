@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
 
     <br />
-    <div style="color:Red;font-size:x-large"><% Html.RenderPartial("~/Views/Shared/Message.ascx"); %></div>
+    <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
     <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
         
@@ -50,6 +50,5 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
-    <h1>Welcome, <%= Session["account"] %></h1>
 </asp:Content>
 

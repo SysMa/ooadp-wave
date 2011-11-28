@@ -5,8 +5,8 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
+<% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
 <center>
-<div style="color:Red;font-size:x-large"><% Html.RenderPartial("~/Views/Shared/Message.ascx"); %></div>
     <form method="post" action="<%= Url.Action("Login", "Main") %>" >
         <br />
         <label>Account</label>

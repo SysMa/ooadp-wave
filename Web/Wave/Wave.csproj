@@ -107,6 +107,7 @@
     <Content Include="Content\CSS\help.css" />
     <Content Include="Content\CSS\lecture.css" />
     <Content Include="Content\CSS\main.css" />
+    <Content Include="Content\CSS\modules.css" />
     <Content Include="Content\CSS\music_film.css" />
     <Content Include="Content\CSS\others_others.css" />
     <Content Include="Content\CSS\pag_others.css" />
@@ -142,6 +143,10 @@
     <Content Include="Content\Images\lecture\img02.jpg" />
     <Content Include="Content\Images\main\buttons.png" />
     <Content Include="Content\Images\main\splitter.png" />
+    <Content Include="Content\Images\message\error.png" />
+    <Content Include="Content\Images\message\info.png" />
+    <Content Include="Content\Images\message\success.png" />
+    <Content Include="Content\Images\message\warning.png" />
     <Content Include="Content\Images\music_film\img01.gif" />
     <Content Include="Content\Images\music_film\img02.jpg" />
     <Content Include="Content\Images\music_film\img03.jpg" />

@@ -6,6 +6,7 @@
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
     <link rel="stylesheet" href="../../Content/CSS/main.css" />
+    <link rel="stylesheet" href="../../Content/CSS/modules.css" />
     <!--[if IE 7]><link rel="stylesheet" href="styles/ie7.css" /><![endif]-->    
     
     <!-- DO NOT USE THESE FILES. they are compiled for fast http access -->
