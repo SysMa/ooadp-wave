@@ -45,6 +45,14 @@ namespace Wave.Controllers
 
             try
             {
+                var admin = (from m in _db.Admin
+                                     where m.adminname == adminToCreate.adminname
+                                     select m);
+                if (admin.Count() != 0)
+                {
+                    TempData["ErrorMessage"] = "Administrator name has existed! ";
+                    return View();
+                }
                 _db.AddToAdmin(adminToCreate);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
@@ -77,11 +85,9 @@ namespace Wave.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(Admin adminToEdit)
         {
- 
             var originalAdmin = (from m in _db.Admin
                                  where m.adminname == adminToEdit.adminname
                                  select m).First();
- 
             if (!ModelState.IsValid)
                 return View(originalAdmin);
 

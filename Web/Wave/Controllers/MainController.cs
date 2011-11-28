@@ -146,5 +146,35 @@ namespace Wave.Controllers
                 return RedirectToAction("Main");
             }
         }
+
+        //
+        // GET: /SuperAdmin/Create
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        //
+        // POST: /SuperAdmin/Create
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Register(Users userToCreate)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            try
+            {
+                _db.AddToUsers(userToCreate);
+                _db.SaveChanges();
+                return RedirectToAction("Main");
+            }
+            catch
+            {
+                TempData["ErrorMessage"] = "Register failed! ";
+                return View();
+            }
+        }
     }
 }
