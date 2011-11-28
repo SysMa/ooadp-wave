@@ -1,11 +1,37 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<Wave.Models.LoginModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Wave
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
-    To do: a form for login.
+<center>
+<div style="color:Red;font-size:x-large"><% Html.RenderPartial("~/Views/Shared/Message.ascx"); %></div>
+    <form method="post" action="<%= Url.Action("Login", "Main") %>" >
+        <br />
+        <label>Account</label>
+        <%= Html.TextBoxFor(model => model.account, new { size = 10 })%>
+            
+        <label>Password</label>
+        <%= Html.PasswordFor(model => model.password, new { size = 10 })%>
+
+        <label>Type</label>
+        <%
+            List<SelectListItem> list = new List<SelectListItem> {
+            new SelectListItem { Text = "SuperAdmin", Value = "0"},
+            new SelectListItem { Text = "Admin", Value = "1" },
+            new SelectListItem { Text = "Organization", Value = "2" },
+            new SelectListItem { Text = "User", Value = "3" ,Selected = true}};
+        %>
+        <%= Html.DropDownListFor(model => model.type, list) %>
+
+        <br /><br />
+        <%= Html.ActionLink("Forgot Password", "ForgotPassword") %> | 
+        <%= Html.ActionLink("Join Now", "Register") %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <button type="submit" id="user-login-button" >Log In</button>
+    </form>
+
+</center>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
