@@ -53,6 +53,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
 <br />
     <label style="font-size:x-large" >Welcome, <%= Session["account"] %></label>&nbsp&nbsp&nbsp
-    <%: Html.ActionLink("Change Password", "ChangePwd") %>
+    <%: Html.ActionLink("Change Password", "ChangePwd") %> |
+    <%: Html.ActionLink("Log Out", "LogOut") %>
 </asp:Content>
 
