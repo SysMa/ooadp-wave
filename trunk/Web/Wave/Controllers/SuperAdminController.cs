@@ -50,7 +50,7 @@ namespace Wave.Controllers
                                      select m);
                 if (admin.Count() != 0)
                 {
-                    TempData["ErrorMessage"] = "Administrator name has existed! ";
+                    TempData["ErrorMessage"] = "Administrator name exists! ";
                     return View();
                 }
                 _db.AddToAdmin(adminToCreate);

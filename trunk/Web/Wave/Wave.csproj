@@ -215,6 +215,7 @@
     <Content Include="Scripts\jquery-1.4.1-and-plugins.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Views\Main\Main.aspx" />
+    <Content Include="Views\Main\Register.aspx" />
     <Content Include="Views\Shared\Message.ascx" />
     <Content Include="Views\SuperAdmin\ChangePwd.aspx" />
     <Content Include="Views\SuperAdmin\Create.aspx" />
