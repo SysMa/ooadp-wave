@@ -9,13 +9,14 @@ namespace Wave.Controllers
 {
     public class SuperAdminController : Controller
     {
+        private WaveWebEntities _db = new WaveWebEntities();
+
         //
         // GET: /SuperAdmin/
-        private WaveWebEntities _db = new WaveWebEntities();
 
         public ActionResult Index()
         {
-            if (Session["type"] == null || Session["account"] == null || (int)Session["type"] != 0)
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 0)
             {
                 return RedirectToAction("Main", "Main");
             }
@@ -27,7 +28,7 @@ namespace Wave.Controllers
 
         public ActionResult Create()
         {
-            if (Session["type"] == null || Session["account"] == null || (int)Session["type"] != 0)
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 0)
             {
                 return RedirectToAction("Main", "Main");
             }
@@ -50,14 +51,16 @@ namespace Wave.Controllers
                                      select m);
                 if (admin.Count() != 0)
                 {
-                    TempData["ErrorMessage"] = "Administrator name exists! ";
+                    TempData["ErrorMessage"] = "Administrator name exists, please retype it and try again! ";
                     return View();
                 }
                 _db.AddToAdmin(adminToCreate);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
-            } catch {
-                TempData["ErrorMessage"] = "Create failed! ";
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Admin creation has failed because: " + exception.Message;
                 return View();
             }
         }
@@ -67,7 +70,7 @@ namespace Wave.Controllers
  
         public ActionResult Edit(String id)
         {
-            if (Session["type"] == null || Session["account"] == null || (int)Session["type"] != 0)
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 0)
             {
                 return RedirectToAction("Main", "Main");
             }
@@ -97,19 +100,19 @@ namespace Wave.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception exception)
             {
-                TempData["ErrorMessage"] = "Edit failed! ";
+                TempData["ErrorMessage"] = "Admin change has failed because: " + exception.Message;
                 return View(originalAdmin);
             }
         } 
 
         //
         // GET: /SuperAdmin/Delete/5
- 
+
         public ActionResult Delete(String id)
         {
-            if (Session["type"] == null || Session["account"] == null || (int)Session["type"] != 0)
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 0)
             {
                 return RedirectToAction("Main", "Main");
             }
@@ -127,19 +130,19 @@ namespace Wave.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception exception)
             {
-                TempData["ErrorMessage"] = "Delete failed! ";
+                TempData["ErrorMessage"] = "Deletion has failed because: " + exception.Message;
                 return View();
             }
             
         }
 
         //
-        // POST: /SuperAdmin/ChangePwd/6
+        // GET: /SuperAdmin/ChangePwd/
         public ActionResult ChangePwd()
         {
-            if (Session["type"] == null || Session["account"] == null || (int)Session["type"] != 0)
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 0)
             {
                 return RedirectToAction("Main", "Main");
             }
@@ -147,26 +150,26 @@ namespace Wave.Controllers
         }
 
         //
-        // POST: /SuperAdmin/ChangePwd/6
+        // POST: /SuperAdmin/ChangePwd/
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult ChangePwd(ChangePwdModel passwordToChange)
         {
             if (!ModelState.IsValid)
                 return View();
-            string superAdmin = Session["account"].ToString();
+            string superAdmin = Session["waveAccount"].ToString();
             var account = (from m in _db.SuperAdmin
                                  where m.supname == superAdmin
                                  select m).First();
 
             if (account.spasswd != passwordToChange.original)
             {
-                TempData["ErrorMessage"] = "Wrong original password! ";
+                TempData["ErrorMessage"] = "Your original passwords do not match, please retype it and try again. ";
                 return View();
             }
             else if (passwordToChange.password != passwordToChange.confirmPwd)
             {
-                TempData["ErrorMessage"] = "Wrong new password! ";
+                TempData["ErrorMessage"] = "Your new passwords do not match, please retype them and try again. ";
                 return View();
             }
             else
@@ -177,12 +180,12 @@ namespace Wave.Controllers
                 {
                     _db.ApplyCurrentValues<SuperAdmin>(account.EntityKey.EntitySetName, account);
                     _db.SaveChanges();
-                    TempData["SuccessMessage"] = "Password has changed.";
+                    TempData["SuccessMessage"] = "Your password has been sucessfully changed.";
                     return RedirectToAction("Index");
                 }
-                catch
+                catch (Exception exception)
                 {
-                    TempData["ErrorMessage"] = "Database unreachable! ";
+                    TempData["ErrorMessage"] = "Password change has failed because: " + exception.Message;
                     return View();
                 }
             }         

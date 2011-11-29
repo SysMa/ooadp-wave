@@ -43,7 +43,8 @@
                 <tr>
 					<td align="right">Phone:</td>
 					<td>
-						<%: Html.TextBoxFor(model => model.uphone, new Dictionary<string, object>() { { "maxlength", "15" } })%>
+						<%: Html.TextBoxFor(model => model.uphone, 
+                            new Dictionary<string, object>() { { "maxlength", "15" } })%>
                         <%: Html.ValidationMessageFor(model => model.uphone) %>
 					</td>
 				</tr>
