@@ -29,8 +29,8 @@
                     <td align="center" colspan="2"><input type="submit" value="Save" /></td>
                 </tr>
             </table>
-            <%: Html.TextBoxFor(model => model.adminname, new Dictionary<string, object>(){{ "style", "visibility:hidden;" }})%>
-            <%: Html.TextBoxFor(model => model.apasswd, new Dictionary<string, object>(){{ "style", "visibility:hidden;" }})%>
+            <%: Html.HiddenFor(model => model.adminname)%>
+            <%: Html.HiddenFor(model => model.apasswd)%>
         </fieldset>
 
     <% } %>
