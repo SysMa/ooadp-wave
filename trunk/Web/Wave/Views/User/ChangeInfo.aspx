@@ -20,7 +20,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan = "2" align="center"><asp:ImageButton /></td>
+                    <td align="right">Avater:</td>
+                    <td>
+                        
+                    </td>
                 </tr>
                 <tr>
                     <td align="right">Email:</td>
@@ -40,8 +43,8 @@
                     <td><input type="reset" value="Reset" /></td>
                 </tr>
             </table>
-            <%: Html.TextBoxFor(model => model.username, new Dictionary<string, object>(){{ "style", "visibility:hidden;" }})%>
-            <%: Html.TextBoxFor(model => model.upasswd, new Dictionary<string, object>(){{ "style", "visibility:hidden;" }})%>
+            <%: Html.HiddenFor(model => model.username)%>
+            <%: Html.HiddenFor(model => model.upasswd)%>
           
         </fieldset>
 
