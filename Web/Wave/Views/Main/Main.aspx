@@ -6,32 +6,45 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
 <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
+
+<% if (Session["waveAccount"] != null && (int)Session["waveType"] == 3)
+   { %>
+   <label style="font-size:x-large" >Welcome, <%= Session["waveAccount"] %></label>&nbsp&nbsp&nbsp
+   <%: Html.ActionLink("My Activities", "ViewMyActivity", "User") %> |
+   <%: Html.ActionLink("Modify Infomation", "ChangeInfo", "User") %> |
+   <%: Html.ActionLink("Change Password", "ChangePwd", "User") %> |
+   <%: Html.ActionLink("Log Out", "LogOut", "User") %>
+<%}
+   else
+   { %>
+
 <center>
     <form method="post" action="<%= Url.Action("Login", "Main") %>" >
         <br />
         <label>Account</label>
         <%= Html.TextBoxFor(model => model.account, new { size = 10 })%>
-            
+        
         <label>Password</label>
         <%= Html.PasswordFor(model => model.password, new { size = 10 })%>
 
         <label>Type</label>
         <%
-            List<SelectListItem> list = new List<SelectListItem> {
+    List<SelectListItem> list = new List<SelectListItem> {
             new SelectListItem { Text = "SuperAdmin", Value = "0"},
             new SelectListItem { Text = "Admin", Value = "1" },
             new SelectListItem { Text = "Organization", Value = "2" },
             new SelectListItem { Text = "User", Value = "3" ,Selected = true}};
         %>
-        <%= Html.DropDownListFor(model => model.type, list) %>
+        <%= Html.DropDownListFor(model => model.type, list)%>
 
         <br /><br />
-        <%= Html.ActionLink("Forgot Password", "ForgotPassword") %> | 
-        <%= Html.ActionLink("Join Now", "Register") %> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <%= Html.ActionLink("Forgot Password", "ForgotPassword")%> | 
+        <%= Html.ActionLink("Join Now", "Register")%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <button type="submit" id="user-login-button" >Log In</button>
     </form>
 
 </center>
+<%} %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">

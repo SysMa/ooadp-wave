@@ -221,6 +221,8 @@
     <Content Include="Views\SuperAdmin\Create.aspx" />
     <Content Include="Views\SuperAdmin\Edit.aspx" />
     <Content Include="Views\SuperAdmin\Index.aspx" />
+    <Content Include="Views\User\ChangeInfo.aspx" />
+    <Content Include="Views\User\ChangePwd.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -250,7 +252,6 @@
     <Folder Include="Views\Activity\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Org\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Main.Master" />

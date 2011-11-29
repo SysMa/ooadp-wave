@@ -44,7 +44,7 @@
 	<% } %>
 
 	<div>
-		<%: Html.ActionLink("Back to List", "Index") %>
+		<%: Html.ActionLink("Back", "Index") %>
 	</div>
 
 </asp:Content>

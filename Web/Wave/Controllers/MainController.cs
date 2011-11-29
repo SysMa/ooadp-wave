@@ -46,8 +46,8 @@ namespace Wave.Controllers
                                 }
                                 else
                                 {
-                                    Session["account"] = toCheck.account;
-                                    Session["type"] = toCheck.type;
+                                    Session["waveAccount"] = toCheck.account;
+                                    Session["waveType"] = toCheck.type;
                                     //return View("../SuperAdmin/Index", _db.Admin.ToList());
                                     return RedirectToAction("Index", "SuperAdmin");
                                 }
@@ -73,8 +73,8 @@ namespace Wave.Controllers
                                 }
                                 else
                                 {
-                                    Session["account"] = toCheck.account;
-                                    Session["type"] = toCheck.type;
+                                    Session["waveAccount"] = toCheck.account;
+                                    Session["waveType"] = toCheck.type;
                                     //return View("../SuperAdmin/Index", _db.Admin.ToList());
                                     return RedirectToAction("Index", "Admin");
                                 }
@@ -100,8 +100,8 @@ namespace Wave.Controllers
                                 }
                                 else
                                 {
-                                    Session["account"] = toCheck.account;
-                                    Session["type"] = toCheck.type;
+                                    Session["waveAccount"] = toCheck.account;
+                                    Session["waveType"] = toCheck.type;
                                     //return View("../SuperAdmin/Index", _db.Admin.ToList());
                                     return RedirectToAction("Index", "Org");
                                 }
@@ -127,10 +127,10 @@ namespace Wave.Controllers
                                 }
                                 else
                                 {
-                                    Session["account"] = toCheck.account;
-                                    Session["type"] = toCheck.type;
+                                    Session["waveAccount"] = toCheck.account;
+                                    Session["waveType"] = toCheck.type;
                                     //return View("../SuperAdmin/Index", _db.Admin.ToList());
-                                    return RedirectToAction("Index", "User");
+                                    return RedirectToAction("Main");
                                 }
                             }
                         }
@@ -140,9 +140,9 @@ namespace Wave.Controllers
                         break;
                 }
             }
-            catch
+            catch (Exception exception)
             {
-                TempData["ErrorMessage"] = "Database failed! ";
+                TempData["ErrorMessage"] = "Login has failed because: " + exception.Message;
                 return RedirectToAction("Main");
             }
         }
@@ -182,12 +182,12 @@ namespace Wave.Controllers
                 }
                 _db.AddToUsers(userToCreate);
                 _db.SaveChanges();
-                TempData["SuccessMessage"] = "Registration succeeds!";
+                TempData["SuccessMessage"] = "Registration succeeds! Your can log in using the new username and password.";
                 return RedirectToAction("Main");
             }
-            catch
+            catch (Exception exception)
             {
-                TempData["ErrorMessage"] = "Database failed! ";
+                TempData["ErrorMessage"] = "Registration has failed because: " + exception.Message;
                 return View();
             }
         }
