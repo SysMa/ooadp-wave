@@ -11,14 +11,14 @@
     <table>
         <tr>
             <th></th>
-            <th>
+            <th align="center">
                 Admin Name
             </th>
-            <th>
-                Admin State
+            <th align="center">
+                State
             </th>
-            <th>
-                Admin Email
+            <th align="center">
+                Email
             </th>
         </tr>
 
@@ -52,7 +52,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
 <br />
-    <label style="font-size:x-large" >Welcome, <%= Session["waveAccount"] %></label>&nbsp&nbsp&nbsp
+    <label style="font-size:large" >Welcome, Super administrator: <%= Session["waveAccount"] %></label>&nbsp&nbsp&nbsp
     <%: Html.ActionLink("Change Password", "ChangePwd") %> |
     <%: Html.ActionLink("Log Out", "LogOut") %>
 </asp:Content>

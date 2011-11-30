@@ -14,7 +14,11 @@ namespace Wave.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 1)
+            {
+                return RedirectToAction("Main", "Main");
+            }
+            return View(_db.Users.ToList());
         }
 
         //
