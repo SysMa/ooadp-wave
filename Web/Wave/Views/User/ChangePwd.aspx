@@ -17,21 +17,21 @@
                     <td align="right">Original Password:</td>
                     <td>
                         <%: Html.PasswordFor(model => model.original, new Dictionary<string, object>() { { "maxlength", "20" } })%>
-                        <%: Html.ValidationMessageFor(model => model.original) %>
+                        <span style="color:Red"><%: Html.ValidationMessageFor(model => model.original)%></span>
                     </td>
                 </tr>
                 <tr>
                     <td align="right">New Password:</td>
                     <td>
                         <%: Html.PasswordFor(model => model.password, new Dictionary<string, object>() { { "maxlength", "20" } })%>
-                        <%: Html.ValidationMessageFor(model => model.password) %>
+                        <span style="color:Red"><%: Html.ValidationMessageFor(model => model.password) %></span> 
                     </td>
                 </tr>
                 <tr>
                     <td align="right">Confirm Password:</td>
                     <td>
                         <%: Html.PasswordFor(model => model.confirmPwd, new Dictionary<string, object>() { { "maxlength", "20" } })%>
-                        <%: Html.ValidationMessageFor(model => model.confirmPwd) %>
+                        <span style="color:Red"><%: Html.ValidationMessageFor(model => model.confirmPwd) %></span>
                     </td>
                 </tr>
                 <tr>

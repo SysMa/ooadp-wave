@@ -214,6 +214,7 @@
     <Content Include="Scripts\ga.js" />
     <Content Include="Scripts\jquery-1.4.1-and-plugins.min.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Views\Admin\Index.aspx" />
     <Content Include="Views\Main\Main.aspx" />
     <Content Include="Views\Main\Register.aspx" />
     <Content Include="Views\Shared\Message.ascx" />
@@ -250,7 +251,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Activity\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Org\" />
   </ItemGroup>
   <ItemGroup>
