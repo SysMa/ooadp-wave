@@ -54,13 +54,18 @@ namespace Wave.Controllers
                     TempData["ErrorMessage"] = "Administrator name exists, please retype it and try again! ";
                     return View();
                 }
+                if (adminToCreate.apasswd != Request.Form["ConfirmPassword"])
+                {
+                    TempData["ErrorMessage"] = "Administrator creation failed! Passwords must match, please re-enter and try again.";
+                    return View();
+                }
                 _db.AddToAdmin(adminToCreate);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch (Exception exception)
             {
-                TempData["ErrorMessage"] = "Admin creation has failed because: " + exception.Message;
+                TempData["ErrorMessage"] = "Administrator creation has failed because: " + exception.Message;
                 return View();
             }
         }
