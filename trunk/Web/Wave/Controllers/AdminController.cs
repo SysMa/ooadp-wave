@@ -320,7 +320,7 @@ namespace Wave.Controllers
             {
                 _db.ApplyCurrentValues<Org>(originalOrg.EntityKey.EntitySetName, orgToEdit);
                 _db.SaveChanges();
-                return RedirectToAction("OrgDetail", new { id = orgToEdit.orgname });
+                return RedirectToAction("OrgDetails", new { id = orgToEdit.orgname });
             }
             catch (Exception exception)
             {

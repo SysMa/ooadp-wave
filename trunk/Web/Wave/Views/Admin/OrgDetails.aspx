@@ -39,7 +39,7 @@
     </fieldset>
     <p>
 
-        <%: Html.ActionLink("Edit", "Edit", new { id=Model.orgname }) %> |
+        <%: Html.ActionLink("Edit", "EditOrg", new { id=Model.orgname }) %> |
         <%: Html.ActionLink("Back", "Orgs") %>
     </p>
 

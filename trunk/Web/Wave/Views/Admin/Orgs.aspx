@@ -8,10 +8,18 @@
 
     <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
 
-    <center class="splitter">
-        <%: Html.ActionLink("Users", "Index") %> | 
-        <%: Html.ActionLink("Organizations", "Orgs") %>
-    </center>
+    <ul class="splitter">
+        <li>
+            <ul>
+                <li class="segment-1 ">
+                    <a href="/Admin/Index">&nbsp&nbsp&nbsp&nbsp&nbspUsers&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                </li>
+                <li class="segment-0 selected-0">
+                    <a href="/Admin/Orgs">&nbspOrganizations&nbsp</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
 
     <table>
         <tr>
