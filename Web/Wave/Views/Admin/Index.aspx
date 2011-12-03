@@ -12,9 +12,10 @@
         <li>
             <ul>
                 <li class="segment-1 selected-1">
-                    <%: Html.ActionLink("Users", "Index") %>      
+                    <a href="/Admin/Index">&nbsp&nbsp&nbsp&nbsp&nbspUsers&nbsp&nbsp&nbsp&nbsp&nbsp</a>
                 </li>
-                <li class="segment-0"><%: Html.ActionLink("Organizations", "Orgs") %></a>
+                <li class="segment-0">
+                    <a href="/Admin/Orgs">&nbspOrganizations&nbsp</a>
                 </li>
             </ul>
         </li>

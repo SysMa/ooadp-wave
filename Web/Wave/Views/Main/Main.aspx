@@ -48,6 +48,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
+    <script src="../../Scripts/main.js" type="text/javascript"></script>
 
         <!-- this isn’t part of the plugin, just a control for demo -->
         <ul class="splitter">
