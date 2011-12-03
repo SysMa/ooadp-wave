@@ -21,14 +21,20 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="right">Administrator Password:</td>
+					<td align="right">Password:</td>
 					<td>
 						<%: Html.PasswordFor(model => model.apasswd, new Dictionary<string, object>() { { "maxlength", "20" } })%>
 						<%: Html.ValidationMessageFor(model => model.apasswd) %>
 					</td>
 				</tr>
+                <tr>
+					<td align="right">Confirm Password:</td>
+					<td>
+						<%: Html.Password("ConfirmPassword", "", new Dictionary<string, object>() { { "maxlength", "20" } })%>
+					</td>
+				</tr>
 				<tr>
-					<td align="right">Administrator Email:</td>
+					<td align="right">Email:</td>
 					<td>
 						<%: Html.TextBoxFor(model => model.aemail, new Dictionary<string, object>() {{"maxlength", "50"}}) %>
 						<%: Html.ValidationMessageFor(model => model.aemail) %>

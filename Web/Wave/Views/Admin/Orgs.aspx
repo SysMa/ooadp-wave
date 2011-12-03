@@ -1,32 +1,25 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Wave.Models.Users>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Wave.Models.Org>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Manage users
+	Manage Organizations
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
 
     <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
 
-    <ul class="splitter">
-        <li>
-            <ul>
-                <li class="segment-1 selected-1">
-                    <%: Html.ActionLink("Users", "Index") %>      
-                </li>
-                <li class="segment-0"><%: Html.ActionLink("Organizations", "Orgs") %></a>
-                </li>
-            </ul>
-        </li>
-    </ul>
+    <center class="splitter">
+        <%: Html.ActionLink("Users", "Index") %> | 
+        <%: Html.ActionLink("Organizations", "Orgs") %>
+    </center>
 
     <table>
         <tr>
             <th></th>
-            <th align="center">
-                User Name
+            <th>
+                Organization Name
             </th>
-            <th align="center">
+            <th>
                 State
             </th>
         </tr>
@@ -35,15 +28,15 @@
     
         <tr>
             <td>
-                <%: Html.ActionLink("Edit", "EditUser", new { id=item.username }) %> |
-                <%: Html.ActionLink("Details", "UserDetails", new { id = item.username })%> |
-                <%: Html.ActionLink("Delete", "DeleteUser", new { id=item.username })%>
+                <%: Html.ActionLink("Edit", "EditOrg", new { id=item.orgname }) %> |
+                <%: Html.ActionLink("Details", "OrgDetails", new { id=item.orgname })%> |
+                <%: Html.ActionLink("Delete", "DeleteOrg", new { id=item.orgname })%>
             </td>
             <td>
-                <%: item.username %>
+                <%: item.orgname %>
             </td>
             <td>
-                <%: item.ustate %>
+                <%: item.ostate %>
             </td>
         </tr>
     
@@ -52,7 +45,7 @@
     </table>
 
     <p>
-        <%: Html.ActionLink("Create New User", "CreateUser")%>
+        <%: Html.ActionLink("Create New Organization", "CreateOrg") %>
     </p>
 
 </asp:Content>

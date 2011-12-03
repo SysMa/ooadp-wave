@@ -24,6 +24,17 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="WaveWebEntities-Deployment" Order="1">
+          <Destination Path="" />
+          <Object Type="dbFullSql">
+            <PreSource Path="Data Source=.\SQLEXPRESS%3bAttachDbFilename=|DataDirectory|\WaveWeb.mdf%3bIntegrated Security=True%3bApplication Name=EntityFramework%3bUser Instance=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" />
+            <Source Path="obj\Debug\AutoScripts\WaveWebEntities-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +43,17 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="WaveWebEntities-Deployment" Order="1">
+          <Destination Path="" />
+          <Object Type="dbFullSql" Enabled="False">
+            <PreSource Path="Data Source=.\SQLEXPRESS%3bAttachDbFilename=|DataDirectory|\WaveWeb.mdf%3bIntegrated Security=True%3bApplication Name=EntityFramework%3bUser Instance=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" />
+            <Source Path="obj\Release\AutoScripts\WaveWebEntities-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ManagedFusion, Version=1.0.3425.35492, Culture=neutral, processorArchitecture=MSIL">
@@ -214,7 +236,16 @@
     <Content Include="Scripts\ga.js" />
     <Content Include="Scripts\jquery-1.4.1-and-plugins.min.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Views\Admin\CreateOrg.aspx" />
+    <Content Include="Views\Admin\CreateUser.aspx" />
+    <Content Include="Views\Admin\DeleteOrg.aspx" />
+    <Content Include="Views\Admin\DeleteUser.aspx" />
+    <Content Include="Views\Admin\EditOrg.aspx" />
+    <Content Include="Views\Admin\EditUser.aspx" />
     <Content Include="Views\Admin\Index.aspx" />
+    <Content Include="Views\Admin\OrgDetails.aspx" />
+    <Content Include="Views\Admin\Orgs.aspx" />
+    <Content Include="Views\Admin\UserDetails.aspx" />
     <Content Include="Views\Main\Main.aspx" />
     <Content Include="Views\Main\Register.aspx" />
     <Content Include="Views\Shared\Message.ascx" />
@@ -326,7 +357,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1337</DevelopmentServerPort>
+          <DevelopmentServerPort>51206</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
