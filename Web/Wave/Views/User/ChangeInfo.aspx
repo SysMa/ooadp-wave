@@ -23,7 +23,7 @@
                 <tr>
                     <td align="right">Avater:</td>
                     <td>
-                        <%=Html.Image("img1", ResolveUrl("~/Content/Images/help/img01.jpg"), "XBox Console")%> %>
+                        <%=Html.Image("img1", ResolveUrl("~/Content/Images/help/img01.jpg"), "XBox Console")%>
                     </td>
                 </tr>
                 <tr>
