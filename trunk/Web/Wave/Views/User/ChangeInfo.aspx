@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<Wave.Models.Users>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Modify Infomation
+    Modify Infomation
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
@@ -22,7 +22,7 @@
                 <tr>
                     <td align="right">Avater:</td>
                     <td>
-                        
+                        <asp:Image ID="Image1" runat="server" Width="80" Height="80"/>
                     </td>
                 </tr>
                 <tr>
@@ -58,6 +58,6 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
     <br />
-	<br />
+    <br />
 </asp:Content>
 

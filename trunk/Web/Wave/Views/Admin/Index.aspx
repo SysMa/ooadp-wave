@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Wave.Models.Users>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Manage users
+    Manage users
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
@@ -65,5 +65,6 @@
     <%: Html.ActionLink("Modify Infomation", "ChangeInfo") %> |
     <%: Html.ActionLink("Change Password", "ChangePwd") %> |
     <%: Html.ActionLink("Log Out", "LogOut") %>
+    <%: Html.ActionLink("Upload Pic", "Upload") %>
 </asp:Content>
 
