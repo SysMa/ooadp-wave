@@ -281,6 +281,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Images\pics\" />
     <Folder Include="Views\Activity\" />
     <Folder Include="Views\Org\" />
   </ItemGroup>
