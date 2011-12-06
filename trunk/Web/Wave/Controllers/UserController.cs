@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Wave.Models;
+using System.Drawing;
+using System.IO;
 
 namespace Wave.Controllers
 {
@@ -86,12 +88,13 @@ namespace Wave.Controllers
                 var account = (from m in _db.Users
                                where m.username == user
                                select m).First();
+                
                 return View(account);
             }
             catch (Exception exception)
             {
                 TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
-                return View();
+                return RedirectToAction("Main", "Main");
             }
         }
 

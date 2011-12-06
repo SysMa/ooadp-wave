@@ -933,30 +933,6 @@ namespace Wave.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Byte[] oimage
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_oimage);
-            }
-            set
-            {
-                OnoimageChanging(value);
-                ReportPropertyChanging("oimage");
-                _oimage = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("oimage");
-                OnoimageChanged();
-            }
-        }
-        private global::System.Byte[] _oimage;
-        partial void OnoimageChanging(global::System.Byte[] value);
-        partial void OnoimageChanged();
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String oaddress
         {
             get
@@ -1553,30 +1529,6 @@ namespace Wave.Models
         private global::System.Double _uscore;
         partial void OnuscoreChanging(global::System.Double value);
         partial void OnuscoreChanged();
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.Byte[] uimage
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_uimage);
-            }
-            set
-            {
-                OnuimageChanging(value);
-                ReportPropertyChanging("uimage");
-                _uimage = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("uimage");
-                OnuimageChanged();
-            }
-        }
-        private global::System.Byte[] _uimage;
-        partial void OnuimageChanging(global::System.Byte[] value);
-        partial void OnuimageChanged();
 
         #endregion
     

@@ -10,7 +10,7 @@
 
     <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
-        
+ 
         <fieldset>
             <table>
                 <tr>
@@ -22,8 +22,9 @@
                 <tr>
                     <td align="right">Avater:</td>
                     <td>
-                        <asp:Image ID="Image1" runat="server" Width="80" Height="80"/>
-                    </td>
+                        <asp:Image runat="server" ImageUrl="~/Content/Images/noavater_small.jpg" />
+
+                    	</td>
                 </tr>
                 <tr>
                     <td align="right">Email:</td>
