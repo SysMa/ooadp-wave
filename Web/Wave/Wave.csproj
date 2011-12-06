@@ -177,6 +177,8 @@
     <Content Include="Content\Images\music_film\img06.jpg" />
     <Content Include="Content\Images\music_film\img07.jpg" />
     <Content Include="Content\Images\music_film\img08.jpg" />
+    <Content Include="Content\Images\noavater.gif" />
+    <Content Include="Content\Images\noavater_small.jpg" />
     <Content Include="Content\Images\others_others\img01.jpg" />
     <Content Include="Content\Images\others_others\img02.jpg" />
     <Content Include="Content\Images\others_others\img03.jpg" />

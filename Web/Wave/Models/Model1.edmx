@@ -263,7 +263,6 @@
           <Property Name="oemail" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="ophone" Type="Decimal" Precision="15" Scale="0" />
           <Property Name="oscore" Type="Double" />
-          <Property Name="oimage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="oaddress" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Activity" Relationship="WaveWebModel.FK_Activity_Activity" FromRole="Org" ToRole="Activity" />
           <NavigationProperty Name="Org1" Relationship="WaveWebModel.FK_Org_Org" FromRole="Org" ToRole="Org1" />
@@ -298,7 +297,6 @@
           <Property Name="uemail" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="uphone" Type="Decimal" Precision="15" Scale="0" />
           <Property Name="uscore" Type="Double" Nullable="false" />
-          <Property Name="uimage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="TakeActivity" Relationship="WaveWebModel.FK_TakeActivity_Users" FromRole="Users" ToRole="TakeActivity" />
         </EntityType>
         <Association Name="FK_Activity_Activity">
@@ -390,7 +388,6 @@
             <ScalarProperty Name="oemail" ColumnName="oemail" />
             <ScalarProperty Name="ophone" ColumnName="ophone" />
             <ScalarProperty Name="oscore" ColumnName="oscore" />
-            <ScalarProperty Name="oimage" ColumnName="oimage" />
             <ScalarProperty Name="oaddress" ColumnName="oaddress" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="SuperAdmin"><EntityTypeMapping TypeName="WaveWebModel.SuperAdmin"><MappingFragment StoreEntitySet="SuperAdmin">
@@ -410,7 +407,6 @@
             <ScalarProperty Name="uemail" ColumnName="uemail" />
             <ScalarProperty Name="uphone" ColumnName="uphone" />
             <ScalarProperty Name="uscore" ColumnName="uscore" />
-            <ScalarProperty Name="uimage" ColumnName="uimage" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <AssociationSetMapping Name="ReviewActivity" TypeName="WaveWebModel.ReviewActivity" StoreEntitySet="ReviewActivity">
             <EndProperty Name="Activity">
@@ -443,13 +439,13 @@
       <Diagram Name="Model1">
         <EntityTypeShape EntityType="WaveWebModel.Activity" Width="1.5" PointX="3" PointY="3.125" Height="3.2970182291666661" IsExpanded="true" />
         <EntityTypeShape EntityType="WaveWebModel.Admin" Width="1.5" PointX="5.25" PointY="3.875" Height="1.8694466145833335" IsExpanded="true" />
-        <EntityTypeShape EntityType="WaveWebModel.Org" Width="1.5" PointX="0.75" PointY="3.25" Height="2.9401253255208335" IsExpanded="true" />
+        <EntityTypeShape EntityType="WaveWebModel.Org" Width="1.5" PointX="0.75" PointY="3.25" Height="2.9251310221354156" IsExpanded="true" />
         <EntityTypeShape EntityType="WaveWebModel.SuperAdmin" Width="1.5" PointX="5.75" PointY="7.125" Height="1.3341072591145808" IsExpanded="true" />
         <EntityTypeShape EntityType="WaveWebModel.TakeActivity" Width="1.5" PointX="5.25" PointY="0.75" Height="2.0478930664062496" IsExpanded="true" />
-        <EntityTypeShape EntityType="WaveWebModel.Users" Width="1.5" PointX="3" PointY="7.875" Height="2.4047859700520817" IsExpanded="true" />
+        <EntityTypeShape EntityType="WaveWebModel.Users" Width="1.5" PointX="3" PointY="7.875" Height="2.3520719401041656" IsExpanded="true" />
         <AssociationConnector Association="WaveWebModel.FK_Activity_Activity" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="4.7200626627604167" />
-          <ConnectorPoint PointX="3" PointY="4.7200626627604167" />
+          <ConnectorPoint PointX="2.25" PointY="4.7125655110677078" />
+          <ConnectorPoint PointX="3" PointY="4.7125655110677078" />
         </AssociationConnector>
         <AssociationConnector Association="WaveWebModel.FK_TakeActivity_Activity" ManuallyRouted="false">
           <ConnectorPoint PointX="3.75" PointY="3.125" />
@@ -457,22 +453,22 @@
           <ConnectorPoint PointX="5.25" PointY="1.7739465332031248" />
         </AssociationConnector>
         <AssociationConnector Association="WaveWebModel.FK_Org_Org" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.2819230769230767" PointY="6.1901253255208335" />
-          <ConnectorPoint PointX="1.2819230769230767" PointY="6.4401253255208335" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="6.4401253255208335" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="6.1901253255208335" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="6.1751310221354156" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="6.4251310221354156" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="6.4251310221354156" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="6.1751310221354156" />
         </AssociationConnector>
         <AssociationConnector Association="WaveWebModel.FK_TakeActivity_Users" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="7.875" />
           <ConnectorPoint PointX="4.875" PointY="7.5" />
-          <ConnectorPoint PointX="4.875" PointY="2.3171717998046879" />
-          <ConnectorPoint PointX="5.25" PointY="2.3171717998046879" />
+          <ConnectorPoint PointX="4.875" PointY="2.245448989910193" />
+          <ConnectorPoint PointX="5.25" PointY="2.245448989910193" />
         </AssociationConnector>
         <AssociationConnector Association="WaveWebModel.ReviewActivity" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="4.8097233072916667" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="4.8097233072916659" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="4.8097233072916667" />
-          <ConnectorPoint PointX="5.25" PointY="4.8097233072916667" />
+          <ConnectorPoint PointX="4.5" PointY="4.8600162760416667" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="4.8600162760416659" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="4.8600162760416667" />
+          <ConnectorPoint PointX="5.25" PointY="4.8600162760416667" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
