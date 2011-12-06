@@ -109,6 +109,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ImageHelper.cs" />
     <Compile Include="Models\ChangePwdModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Model1.Designer.cs">

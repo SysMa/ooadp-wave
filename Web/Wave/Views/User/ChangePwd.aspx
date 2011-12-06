@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<Wave.Models.ChangePwdModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Change Password
+    Change Password
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
@@ -51,6 +51,6 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
     <br />
-	<br />
+    <br />
 </asp:Content>
 

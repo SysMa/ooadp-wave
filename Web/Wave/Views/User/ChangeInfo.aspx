@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<Wave.Models.Users>" %>
+<%@ Import Namespace="Wave.Helpers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Modify Infomation
@@ -22,9 +23,8 @@
                 <tr>
                     <td align="right">Avater:</td>
                     <td>
-                        <asp:Image runat="server" ImageUrl="~/Content/Images/noavater_small.jpg" />
-
-                    	</td>
+                        <%=Html.Image("img1", ResolveUrl("~/Content/Images/help/img01.jpg"), "XBox Console")%> %>
+                    </td>
                 </tr>
                 <tr>
                     <td align="right">Email:</td>

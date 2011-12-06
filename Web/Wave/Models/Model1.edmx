@@ -448,9 +448,11 @@
           <ConnectorPoint PointX="3" PointY="4.7125655110677078" />
         </AssociationConnector>
         <AssociationConnector Association="WaveWebModel.FK_TakeActivity_Activity" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.75" PointY="3.125" />
-          <ConnectorPoint PointX="3.75" PointY="1.7739465332031248" />
-          <ConnectorPoint PointX="5.25" PointY="1.7739465332031248" />
+          <ConnectorPoint PointX="3.25" PointY="2.075" />
+          <ConnectorPoint PointX="3.8854166666666665" PointY="2.0749999999999997" />
+          <ConnectorPoint PointX="4.052083333333333" PointY="2.075" />
+          <ConnectorPoint PointX="6" PointY="2.075" />
+          <ConnectorPoint PointX="6" PointY="1.15" />
         </AssociationConnector>
         <AssociationConnector Association="WaveWebModel.FK_Org_Org" ManuallyRouted="false">
           <ConnectorPoint PointX="1.2819230769230767" PointY="6.1751310221354156" />
