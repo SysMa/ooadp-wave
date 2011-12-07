@@ -10,7 +10,7 @@
 
     <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
 
-    <% using (Html.BeginForm("ChangeInfo", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    <% using (Html.BeginForm("ChangeInfo", "User", FormMethod.Post, new { enctype = "multipart/form-data", id = "form" }))
        {%>
         <%: Html.ValidationSummary(true)%>
  
@@ -29,9 +29,10 @@
                             <%= Html.Image("avater_pic", ResolveUrl((String)ViewData["avater_path"]),
                                 "Not Found", new { style = "width:100px;height:100px" })%>
                         </div>
-				        <input id="avater_path" name="avater_path" type="file" multiple onchange="showAvater(this, 'avater');" style="display:none" />
-                        <input type="hidden" name="hidden_path" id="hidden_path" />
-                        <button onclick="$('avater_path').click();$('hidden_path').value=$('avater_path').value">Select Avater</button>
+                        <span id="uploadImg">
+                            <input type="button" value="Select Avater" style="width: 100px" />
+                            <input id="avater_path" name="avater_path" type="file" multiple onchange="showAvater(this, 'avater');" size="1" />
+                        </span>  
                     </td>
                 </tr>
                 <tr>

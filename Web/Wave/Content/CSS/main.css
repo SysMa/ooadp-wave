@@ -655,3 +655,18 @@ q {
 ol.faq { 
 	margin-right: 0;
 }
+
+#uploadImg 
+{
+    overflow:hidden;
+}
+#avater_path
+{
+    z-index:100; 
+    font-size:20px;
+    opacity:0;
+    filter:alpha(opacity=0);
+    width:125px; 
+    position:relative; 
+    margin-left:-105px;
+}
