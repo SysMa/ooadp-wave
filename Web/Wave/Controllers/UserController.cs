@@ -124,10 +124,20 @@ namespace Wave.Controllers
             {
                 _db.ApplyCurrentValues<Users>(originalUser.EntityKey.EntitySetName, userToEdit);
                 _db.SaveChanges();
-               
-                if (Request.Files["avater_path"].FileName != "")
+
+                String path = Request["hidden_path"];
+                //if (Request.Files["avater_path"].FileName != "")
+                //{
+                //    Request.Files["avater_path"].SaveAs(Server.MapPath("~/Content/Images/pics/User_" + userToEdit.username + ".jpg"));
+                //}
+                if (path != null && path != "")
                 {
-                    Request.Files["avater_path"].SaveAs(Server.MapPath("~/Content/Images/pics/User_" + userToEdit.username + ".jpg"));
+                    String temp = Server.MapPath("~/Content/Images/pics/User_" + userToEdit.username + ".jpg");
+                    if (System.IO.File.Exists(temp))
+                    {
+                        System.IO.File.Delete(temp);
+                    }
+                    System.IO.File.Copy(path, temp);
                 }
                 TempData["SuccessMessage"] = "Infomation has been changed.";
                 return RedirectToAction("Main", "Main");

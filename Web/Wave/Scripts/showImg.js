@@ -20,7 +20,7 @@ function displayImage(container, dataURL) {
     var img = document.createElement('img');
     img.src = dataURL;
     img.setAttribute("id", "avater_pic");
-    img.setAttribute("style", "width:60px;height:60px");
+    img.setAttribute("style", "width:100px;height:100px");
     container.appendChild(img);
 }
 function handleFiles(files, label) {
