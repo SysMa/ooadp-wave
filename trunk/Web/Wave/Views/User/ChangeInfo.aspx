@@ -42,7 +42,7 @@
         {
             return document.getElementById(o);
         }
-        function CheckImgCss(o,img)
+        function checkImgCss(o,img)
         {
             if (!/\.((jpg)|(bmp)|(gif)|(png))$/ig.test(o.value))
             {
@@ -53,11 +53,44 @@
                 if ($("avater_pic") !== null) {
                     $(img).removeChild($("avater_pic"));
                 }
-                
                 $(img).filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src=o.value;
             }
         }
-    </script>
+        function displayImage(container, dataURL) {
+            if ($("avater_pic") !== null) {
+                container.removeChild($("avater_pic"));
+            }
+			var img = document.createElement('img');
+			img.src = dataURL;
+			img.setAttribute("id", "avater_pic");
+			img.setAttribute("style", "width:60px;height:60px");
+			container.appendChild(img);
+		}
+		function handleFiles(files, label){
+			for (var i = 0; i < files.length; i++) {  
+				var file = files[i];  
+				var imageType = /image.*/;  
+				  
+				if (!file.type.match(imageType)) {  
+				  continue;  
+				}  
+
+				var reader = new FileReader();  
+				reader.onload = function(e){
+				    displayImage($(label), e.target.result);
+				}
+				reader.readAsDataURL(file);  
+			}
+        }
+        function showAvater(o, label) {
+            if (navigator.userAgent.indexOf("MSIE") > 0) {
+                checkImgCss(o, label);
+            }
+            else {
+                handleFiles(o.files, label);
+            }
+        }
+	</script>
 
     <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
 
@@ -80,8 +113,7 @@
                             <%= Html.Image("avater_pic", ResolveUrl((String)ViewData["avater_path"]),
                                 "Not Found", new { style = "width:60px;height:60px" })%>
                         </div>
-                        <input type="file" name="avater_path" id="avater_path" onchange="CheckImgCss(this, 'avater');" />
-                        
+				        <input id="avater_path" name="avater_path" type="file" multiple onchange="showAvater(this, 'avater');" value="" />
 
                     <%--<td>
                     <form id="form1" runat="server">
