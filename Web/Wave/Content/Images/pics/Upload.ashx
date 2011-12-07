@@ -23,7 +23,7 @@ public class Upload : IHttpHandler {
             string filename = postedFile.FileName;
             
             // name the file and folder Using Session
-            filename = "01.jpg";
+            filename = "User_lhb.jpg";
             postedFile.SaveAs(savepath + @"\" + filename);
             context.Response.Write(tempPath + "/" + filename);
             context.Response.StatusCode = 200;

@@ -23,6 +23,7 @@ namespace Wave.Controllers
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 1)
             {
+                Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
             return View(_db.Users.ToList());
@@ -35,6 +36,7 @@ namespace Wave.Controllers
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 1)
             {
+                Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
 
@@ -59,6 +61,7 @@ namespace Wave.Controllers
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 1)
             {
+                Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
             return View();
@@ -108,6 +111,7 @@ namespace Wave.Controllers
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 1)
             {
+                Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
             try
@@ -156,6 +160,7 @@ namespace Wave.Controllers
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 1)
             {
+                Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
 
@@ -203,6 +208,7 @@ namespace Wave.Controllers
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 1)
             {
+                Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
             return View(_db.Org.ToList());
@@ -215,6 +221,7 @@ namespace Wave.Controllers
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 1)
             {
+                Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
 
@@ -239,6 +246,7 @@ namespace Wave.Controllers
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 1)
             {
+                Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
             return View();
@@ -288,6 +296,7 @@ namespace Wave.Controllers
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 1)
             {
+                Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
             try
@@ -336,6 +345,7 @@ namespace Wave.Controllers
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 1)
             {
+                Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
 
