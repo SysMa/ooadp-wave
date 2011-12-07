@@ -288,11 +288,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pics\" />
     <Folder Include="uploads\" />
     <Folder Include="Views\Activity\" />
     <Folder Include="Views\Org\" />
-    <Folder Include="Views\User\Pics\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Main.Master" />

@@ -6,7 +6,16 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
-    <script src="../../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+<%--<<<<<<< .mine
+    <script type="text/javascript">
+        function select() {
+            var a = document.getElementById("avater_path");
+            a.click();
+            var b = document.getElementById("select");
+        }
+    </script>
+=======--%>
+<%--    <script src="../../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
     <script src="../../Scripts/jquery.uploadify.js" type="text/javascript"></script>
 
     <script type = "text/javascript">
@@ -14,24 +23,47 @@
     function () {
         $("#<%=FileUpload.ClientID%>").fileUpload({
             'uploader': '../../Scripts/uploader.swf',
-            'buttonText': 'Browse Files',
+            'buttonText': 'Select Avater',
             'script': '../../Content/Images/pics/Upload.ashx',
-            'folder': '/Pics',
+            'folder': '/Content/temp',
             'fileDesc': 'Image Files',
             'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
             'multi': false,
             'auto': true,
             'onComplete': function (event, queueID, fileObj, response, data) {
-                document.getElementById("show").src = '../../Content/Images/pics/';
+                document.getElementById("avater_pic").src = '../../Content/Images/pics/User_<%=Session["waveAccount"] %>.jpg';
             }
         });
     });
-    </script> 
+    </script>--%>
+
+    <script type="text/javascript">
+        function $(o)
+        {
+            return document.getElementById(o);
+        }
+        function CheckImgCss(o,img)
+        {
+            if (!/\.((jpg)|(bmp)|(gif)|(png))$/ig.test(o.value))
+            {
+                alert('只能上传jpg,bmp,gif,png格式图片!');
+                o.outerHTML = o.outerHTML;
+            }
+            else {
+                if ($("avater_pic") !== null) {
+                    $(img).removeChild($("avater_pic"));
+                }
+                
+                $(img).filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src=o.value;
+            }
+        }
+    </script>
 
     <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
 
-    <% using (Html.BeginForm()) {%>
-        <%: Html.ValidationSummary(true) %>
+    <% using (Html.BeginForm("ChangeInfo", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+       {%>
+        <%: Html.ValidationSummary(true)%>
  
         <fieldset>
             <table>
@@ -44,13 +76,21 @@
                 <tr>
                     <td align="right">Avater:</td>
                     <td>
+                        <div id="avater" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=,sizingMethod=scale);width:60px;height:60px;">
+                            <%= Html.Image("avater_pic", ResolveUrl((String)ViewData["avater_path"]),
+                                "Not Found", new { style = "width:60px;height:60px" })%>
+                        </div>
+                        <input type="file" name="avater_path" id="avater_path" onchange="CheckImgCss(this, 'avater');" />
+                        
+
+                    <%--<td>
                     <form id="form1" runat="server">
                         <div>
-                            <img id="show" src="../../Content/Images/party/img01.jpg" alt="woow" />
-                            <br />
+                            <%= Html.Image("avater_pic", ResolveUrl((String)ViewData["avater_path"]),
+                                "Not Found", new { style = "width:60px;height:60px" })%>
                             <asp:FileUpload ID="FileUpload" runat="server" />
                         </div>
-                    </form>
+                    </form>--%>
                     </td>
                 </tr>
                 <tr>
@@ -62,7 +102,7 @@
                 <tr>
                     <td align="right">Phone:</td>
                     <td>
-                        <%: Html.TextBoxFor(model => model.uphone, 
+                        <%: Html.TextBoxFor(model => model.uphone,
                             new Dictionary<string, object>() { { "maxlength", "15" } })%>
                     </td>
                 </tr>

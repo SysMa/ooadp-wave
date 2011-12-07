@@ -25,6 +25,7 @@ namespace Wave.Controllers
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 3)
             {
+                Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
             return View();
@@ -79,6 +80,7 @@ namespace Wave.Controllers
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 3)
             {
+                Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
 
@@ -88,7 +90,15 @@ namespace Wave.Controllers
                 var account = (from m in _db.Users
                                where m.username == user
                                select m).First();
-                
+                String path = Server.MapPath("~/Content/Images/pics/User_" + account.username + ".jpg");
+                if (System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/pics/User_" + account.username + ".jpg";
+                }
+                else
+                {
+                    ViewData["avater_path"] = "~/Content/Images/noavater.gif";
+                }
                 return View(account);
             }
             catch (Exception exception)
@@ -114,11 +124,25 @@ namespace Wave.Controllers
             {
                 _db.ApplyCurrentValues<Users>(originalUser.EntityKey.EntitySetName, userToEdit);
                 _db.SaveChanges();
+               
+                if (Request.Files["avater_path"].FileName != "")
+                {
+                    Request.Files["avater_path"].SaveAs(Server.MapPath("~/Content/Images/pics/User_" + userToEdit.username + ".jpg"));
+                }
                 TempData["SuccessMessage"] = "Infomation has been changed.";
                 return RedirectToAction("Main", "Main");
             }
             catch (Exception exception)
             {
+                String path = Server.MapPath("~/Content/Images/pics/User_" + originalUser.username);
+                if (System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/pics/User_" + originalUser.username;
+                }
+                else
+                {
+                    ViewData["avater_path"] = "~/Content/Images/noavater.gif";
+                }
                 TempData["ErrorMessage"] = "User change has failed because: " + exception.Message;
                 return View(originalUser);
             }
@@ -131,6 +155,7 @@ namespace Wave.Controllers
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 3)
             {
+                Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
             return View();
