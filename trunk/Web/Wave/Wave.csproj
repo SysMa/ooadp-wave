@@ -140,6 +140,7 @@
     <Content Include="Content\CSS\slidertron.css" />
     <Content Include="Content\CSS\social_others.css" />
     <Content Include="Content\CSS\sports.css" />
+    <Content Include="Content\CSS\uploadify.css" />
     <Content Include="Content\CSS\volunteer.css" />
     <Content Include="Content\CSS\wanted.css" />
     <Content Include="Content\CSS\wanted_slidertron.css" />
@@ -148,6 +149,7 @@
     <Content Include="Content\Images\arts\arts_img03.jpg" />
     <Content Include="Content\Images\arts\arts_img04.jpg" />
     <Content Include="Content\Images\arts\arts_img05.jpg" />
+    <Content Include="Content\Images\cancel.png" />
     <Content Include="Content\Images\donate\donate_img01.jpg" />
     <Content Include="Content\Images\donate\donate_img02.jpg" />
     <Content Include="Content\Images\donate\donate_img03.jpg" />
@@ -238,7 +240,9 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\ga.js" />
     <Content Include="Scripts\jquery-1.4.1-and-plugins.min.js" />
+    <Content Include="Scripts\jquery.uploadify.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\uploader.swf" />
     <Content Include="Views\Admin\CreateOrg.aspx" />
     <Content Include="Views\Admin\CreateUser.aspx" />
     <Content Include="Views\Admin\DeleteOrg.aspx" />
@@ -284,9 +288,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Images\pics\" />
+    <Folder Include="Pics\" />
+    <Folder Include="uploads\" />
     <Folder Include="Views\Activity\" />
     <Folder Include="Views\Org\" />
+    <Folder Include="Views\User\Pics\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Main.Master" />
@@ -345,6 +351,10 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\uploader.fla" />
+    <Content Include="Content\Images\pics\Upload.ashx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
