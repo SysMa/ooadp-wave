@@ -244,6 +244,8 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\showImg.js" />
     <Content Include="Scripts\uploader.swf" />
+    <Content Include="Views\Admin\ChangeInfo.aspx" />
+    <Content Include="Views\Admin\ChangePwd.aspx" />
     <Content Include="Views\Admin\CreateOrg.aspx" />
     <Content Include="Views\Admin\CreateUser.aspx" />
     <Content Include="Views\Admin\DeleteOrg.aspx" />

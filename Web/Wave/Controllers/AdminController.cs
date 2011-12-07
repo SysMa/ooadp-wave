@@ -13,6 +13,105 @@ namespace Wave.Controllers
         // GET: /Admin/
         private Wave.Models.WaveWebEntities _db = new Models.WaveWebEntities();
 
+        //
+        // GET: /Admin/ChangeInfo/5
+
+        public ActionResult ChangeInfo()
+        {
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 1)
+            {
+                Session.Clear();
+                return RedirectToAction("Main", "Main");
+            }
+            String id = Session["waveAccount"].ToString();
+
+            var adminToEdit = (from m in _db.Admin
+                               where m.adminname == id
+                               select m).First();
+
+            return View(adminToEdit);
+        }
+
+        //
+        // POST: /Admin/ChangeInfo/5
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult ChangeInfo(Admin adminToEdit)
+        {
+            var originalAdmin = (from m in _db.Admin
+                                 where m.adminname == adminToEdit.adminname
+                                 select m).First();
+            if (!ModelState.IsValid)
+                return View(originalAdmin);
+
+            try
+            {
+                _db.ApplyCurrentValues<Admin>(originalAdmin.EntityKey.EntitySetName, adminToEdit);
+                _db.SaveChanges();
+                TempData["SuccessMessage"] = "Infomation has been changed.";
+                return RedirectToAction("Index");
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Information change has failed because: " + exception.Message;
+                return View(originalAdmin);
+            }
+        }
+
+        //
+        // GET: /Admin/ChangePwd/
+        public ActionResult ChangePwd()
+        {
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 1)
+            {
+                Session.Clear();
+                return RedirectToAction("Main", "Main");
+            }
+            return View();
+        }
+
+        //
+        // POST: /Admin/ChangePwd/
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult ChangePwd(ChangePwdModel passwordToChange)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            string user = Session["waveAccount"].ToString();
+            var account = (from m in _db.Admin
+                           where m.adminname == user
+                           select m).First();
+
+            if (account.apasswd != passwordToChange.original)
+            {
+                TempData["ErrorMessage"] = "Your original passwords do not match, please retype it and try again. ";
+                return View();
+            }
+            else if (passwordToChange.password != passwordToChange.confirmPwd)
+            {
+                TempData["ErrorMessage"] = "Your new passwords do not match, please retype them and try again. ";
+                return View();
+            }
+            else
+            {
+                account.apasswd = passwordToChange.password;
+
+                try
+                {
+                    _db.ApplyCurrentValues<Admin>(account.EntityKey.EntitySetName, account);
+                    _db.SaveChanges();
+                    TempData["SuccessMessage"] = "Your password has been sucessfully changed.";
+                    return RedirectToAction("Index");
+                }
+                catch (Exception exception)
+                {
+                    TempData["ErrorMessage"] = "Password change has failed because: " + exception.Message;
+                    return View();
+                }
+            }
+        }
+
         public ActionResult LogOut()
         {
             Session.Clear();
@@ -45,6 +144,15 @@ namespace Wave.Controllers
                 var account = (from m in _db.Users
                                where m.username == id
                                select m).First();
+                String path = Server.MapPath("~/Content/Images/pics/User_" + account.username);
+                if (System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/pics/User_" + account.username;
+                }
+                else
+                {
+                    ViewData["avater_path"] = "~/Content/Images/noavater.gif";
+                }
                 return View(account);
             }
             catch (Exception exception)
@@ -119,6 +227,15 @@ namespace Wave.Controllers
                 var account = (from m in _db.Users
                                where m.username == id
                                select m).First();
+                String path = Server.MapPath("~/Content/Images/pics/User_" + account.username);
+                if (System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/pics/User_" + account.username;
+                }
+                else
+                {
+                    ViewData["avater_path"] = "~/Content/Images/noavater.gif";
+                }
                 return View(account);
             }
             catch (Exception exception)
