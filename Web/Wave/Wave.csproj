@@ -242,6 +242,7 @@
     <Content Include="Scripts\jquery-1.4.1-and-plugins.min.js" />
     <Content Include="Scripts\jquery.uploadify.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\showImg.js" />
     <Content Include="Scripts\uploader.swf" />
     <Content Include="Views\Admin\CreateOrg.aspx" />
     <Content Include="Views\Admin\CreateUser.aspx" />
