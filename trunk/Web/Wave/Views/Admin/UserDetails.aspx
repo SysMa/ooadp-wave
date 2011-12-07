@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<Wave.Models.Users>" %>
+<%@ Import Namespace="Wave.Helpers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	User Details
@@ -14,6 +15,13 @@
 				<td align="right" style="width: 268px">User Name:</td>
 				<td><%: Model.username %></td>
 			</tr>
+            <tr>
+                <td align="right">Avater:</td>
+                <td>
+                    <%= Html.Image("avater_pic", ResolveUrl((String)ViewData["avater_path"]),
+                        "Not Found", new { style = "width:100px;height:100px" })%>
+                </td>
+            </tr>
             <tr>
 				<td align="right" style="width: 268px">State:</td>
 				<td><%: Model.ustate %></td>

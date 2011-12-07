@@ -65,6 +65,5 @@
     <%: Html.ActionLink("Modify Infomation", "ChangeInfo") %> |
     <%: Html.ActionLink("Change Password", "ChangePwd") %> |
     <%: Html.ActionLink("Log Out", "LogOut") %>
-    <%: Html.ActionLink("Upload Pic", "Upload") %>
 </asp:Content>
 

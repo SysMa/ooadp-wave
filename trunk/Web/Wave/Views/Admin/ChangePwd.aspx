@@ -1,12 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<Wave.Models.ChangePwdModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Change Password
+	Change Password
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
 
     <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
+
     <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
         
@@ -43,13 +44,11 @@
     <% } %>
 
     <div>
-        <%: Html.ActionLink("Back", "Main", "Main") %>
+        <%: Html.ActionLink("Back to List", "Index") %>
     </div>
 
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
-    <br />
-    <br />
 </asp:Content>
 
