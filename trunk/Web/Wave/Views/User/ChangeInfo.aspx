@@ -25,11 +25,13 @@
                 <tr>
                     <td align="right">Avater:</td>
                     <td>
-                        <div id="avater" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=,sizingMethod=scale);width:60px;height:60px;">
+                        <div id="avater" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=,sizingMethod=scale);width:100px;height:100px;">
                             <%= Html.Image("avater_pic", ResolveUrl((String)ViewData["avater_path"]),
-                                "Not Found", new { style = "width:60px;height:60px" })%>
+                                "Not Found", new { style = "width:100px;height:100px" })%>
                         </div>
-				        <input id="avater_path" name="avater_path" type="file" multiple onchange="showAvater(this, 'avater');" value="" />
+				        <input id="avater_path" name="avater_path" type="file" multiple onchange="showAvater(this, 'avater');" style="display:none" />
+                        <input type="hidden" name="hidden_path" id="hidden_path" />
+                        <button onclick="$('avater_path').click();$('hidden_path').value=$('avater_path').value">Select Avater</button>
                     </td>
                 </tr>
                 <tr>
