@@ -2,10 +2,11 @@
 <%@ Import Namespace="Wave.Helpers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
+	View My Activity
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
+    <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
     <script src="../../Scripts/main.js" type="text/javascript"></script>
     <ul class="splitter">
         <li>
@@ -25,7 +26,7 @@
         Wave.Models.Activity[] stopedActs = ViewData["stoped_acts"] as Wave.Models.Activity[];
         if (holdingActs.Length == 0 && stopedActs.Length == 0)
        { %>
-        <center style="font-size:large">You haven't hold or apply any activities yet!</center>
+    <center style="font-size:large">Sorry, you haven't took part in any activities yet!</center>
     <%}
        else
        { %>
@@ -72,14 +73,14 @@
             </ul>
         </div>
     <%} %>
+    <div>
+        <%: Html.ActionLink("Back", "Main", "Main") %>
+    </div>
+
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
-    <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
-    <label style="font-size:large" >Welcome, Organization: <%= Session["waveAccount"] %></label>&nbsp&nbsp&nbsp
-    <%: Html.ActionLink("Apply Activities", "ApplyActivities") %> |
-    <%: Html.ActionLink("Modify Infomation", "ChangeInfo") %> |
-    <%: Html.ActionLink("Change Password", "ChangePwd") %> |
-    <%: Html.ActionLink("Log Out", "LogOut") %>
+    <br />
+    <br />
 </asp:Content>
 

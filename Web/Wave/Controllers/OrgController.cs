@@ -21,7 +21,28 @@ namespace Wave.Controllers
                 Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
-            return View(_db.Activity.ToList());
+            string user = Session["waveAccount"].ToString();
+            try
+            {
+                var account = (from m in _db.Org
+                               where m.orgname == user
+                               select m).First();
+                ViewData["applied_acts"] = (from m in account.Activity
+                                            where m.actstate == 0
+                                            select m).ToArray();
+                ViewData["holding_acts"] = (from m in account.Activity
+                                            where m.actstate == 1
+                                            select m).ToArray();
+                ViewData["stoped_acts"] = (from m in account.Activity
+                                           where m.actstate == 2
+                                           select m).ToArray();
+                return View();
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
+                return RedirectToAction("Index");
+            }
         }
 
         public ActionResult LogOut()

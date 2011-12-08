@@ -16,7 +16,7 @@ namespace Wave.Controllers
         public ActionResult LogOut()
         {
             Session.Clear();
-            return RedirectToAction("Main", "Main");
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         //
@@ -159,7 +159,31 @@ namespace Wave.Controllers
                 Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
-            return View();
+
+            string user = Session["waveAccount"].ToString();
+            try
+            {
+                var account = (from m in _db.Users
+                               where m.username == user
+                               select m).First();
+
+                var activities = (from m in _db.Activity
+                                  join t in account.TakeActivity
+                                  on m.actid equals t.actid
+                                  select m);
+                ViewData["holding_acts"] = (from m in activities
+                                            where m.actstate == 1
+                                            select m).ToArray();
+                ViewData["stoped_acts"] = (from m in activities
+                                            where m.actstate == 2
+                                            select m).ToArray();
+                return View();
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
+                return RedirectToAction("Main", "Main");
+            }
         }
     }
 }

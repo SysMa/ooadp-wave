@@ -50,65 +50,63 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
     <script src="../../Scripts/main.js" type="text/javascript"></script>
-        <ul class="splitter">
-            <li>
-                <ul>
-                    <li class="segment-1 selected-1">
-                        <a href="#" data-value="all">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ALL&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
-                    </li>
-                    <li class="segment-0"><a href="#" data-value="act">&nbsp Activities&nbsp</a>
-                    </li>
-                    <li class="segment-2"><a href="#" data-value="org">Organizations</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-
-        <div class="demo">
-            <ul id="list" class="image-grid" style="height: 591px; ">
-                <%  int i = 0, j = 0;
-                    Wave.Models.Activity[] actList = ViewData["actList"] as Wave.Models.Activity[];
-                    Wave.Models.Org[] orgList = ViewData["orgList"] as Wave.Models.Org[];
-                    for (;; i++)
-                    {
-                        if (i < actList.Length)
-                        {
-                            j++;
-                            String path = "~/Content/Images/pics/Activity_" + actList[i].actname + ".jpg";
-                            if (!System.IO.File.Exists(Server.MapPath(path)))
-                            {
-                                path = "~/Content/Images/noavater.gif";
-                            }%>
-                            <li data-id="id-<%= j %>" class="act">
-                                <%= Html.Image("activity_pic" + i, ResolveUrl(path),
-                                    "No Pic", new { style = "width:128px;height:128px" })%>
-                                <strong>
-                                    <%: Html.ActionLink(actList[i].actname, "ActivityDetails", new { id = actList[i].actid })%>
-                                </strong>
-                            </li>
-                        <%}
-                        if (i < orgList.Length)
-                        {
-                            j++;
-                            String path = "~/Content/Images/pics/Org_" + orgList[i].orgname + ".jpg";
-                            if (!System.IO.File.Exists(Server.MapPath(path)))
-                            {
-                                path = "~/Content/Images/noavater.gif";
-                            }%>
-                            <li data-id="id-<%= j %>" class="org">
-                                <%= Html.Image("org_pic" + i, ResolveUrl(path),
-                                    "No Pic", new { style = "width:128px;height:128px" })%>
-                                <strong>
-                                    <%: Html.ActionLink(orgList[i].orgname, "OrgDetails", new { id = orgList[i].orgname })%>
-                                </strong>
-                            </li>
-                        <%}
-                        if (i >= actList.Length && i >= orgList.Length)
-                        {
-                            break;
-                        }
-                    } %>
+    <ul class="splitter">
+        <li>
+            <ul>
+                <li class="segment-1 selected-1">
+                    <a href="#" data-value="all">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ALL&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+                </li>
+                <li class="segment-0"><a href="#" data-value="act">&nbsp Activities&nbsp</a>
+                </li>
+                <li class="segment-2"><a href="#" data-value="org">Organizations</a>
+                </li>
             </ul>
-        </div>
+        </li>
+    </ul>
+
+    <div class="demo">
+        <ul id="list" class="image-grid" style="height: 591px; ">
+            <%  int i = 0, j = 0;
+                Wave.Models.Activity[] actList = ViewData["actList"] as Wave.Models.Activity[];
+                Wave.Models.Org[] orgList = ViewData["orgList"] as Wave.Models.Org[];
+                for (;; i++)
+                {
+                    if (i < actList.Length)
+                    {
+                        j++;
+                        String path = "~/Content/Images/pics/Activity_" + actList[i].actid + ".jpg";
+                        if (!System.IO.File.Exists(Server.MapPath(path)))
+                        {
+                            path = "~/Content/Images/noavater.gif";
+                        }%>
+                        <li data-id="id-<%= j %>" class="act">
+                            <a href="/Activity/ActivityDetails/<%=actList[i].actid %>">
+                                <%= Html.Image("activity_pic" + i, ResolveUrl(path),
+                                "No Pic", new { style = "width:128px;height:128px" })%></a>
+                            <strong><%=actList[i].actname%></strong>
+                        </li>
+                    <%}
+                    if (i < orgList.Length)
+                    {
+                        j++;
+                        String path = "~/Content/Images/pics/Org_" + orgList[i].orgname + ".jpg";
+                        if (!System.IO.File.Exists(Server.MapPath(path)))
+                        {
+                            path = "~/Content/Images/noavater.gif";
+                        }%>
+                        <li data-id="id-<%= j %>" class="org">
+                            <a href="/Main/OrgDetails/<%=orgList[i].orgname %>">
+                                <%= Html.Image("org_pic" + i, ResolveUrl(path),
+                                "No Pic", new { style = "width:128px;height:128px" })%></a>
+                            <strong><%=orgList[i].orgname%></strong>
+                        </li>
+                    <%}
+                    if (i >= actList.Length && i >= orgList.Length)
+                    {
+                        break;
+                    }
+                } %>
+        </ul>
+    </div>
 
 </asp:Content>

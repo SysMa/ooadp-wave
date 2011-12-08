@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<Wave.Models.LoginModel>" %>
 <%@ Import Namespace="Wave.Helpers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
+	View Activities
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
@@ -25,7 +25,7 @@
         Wave.Models.Activity[] stopedActs = ViewData["stoped_acts"] as Wave.Models.Activity[];
         if (holdingActs.Length == 0 && stopedActs.Length == 0)
        { %>
-        <center style="font-size:large">You haven't hold or apply any activities yet!</center>
+        <center style="font-size:large">The organization haven't hold any activities yet!</center>
     <%}
        else
        { %>
@@ -72,14 +72,53 @@
             </ul>
         </div>
     <%} %>
+
+    <p>
+        <%: Html.ActionLink("Back to main", "Main") %>
+    </p>
+
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
-    <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
-    <label style="font-size:large" >Welcome, Organization: <%= Session["waveAccount"] %></label>&nbsp&nbsp&nbsp
-    <%: Html.ActionLink("Apply Activities", "ApplyActivities") %> |
-    <%: Html.ActionLink("Modify Infomation", "ChangeInfo") %> |
-    <%: Html.ActionLink("Change Password", "ChangePwd") %> |
-    <%: Html.ActionLink("Log Out", "LogOut") %>
+<% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
+
+<% if (Session["waveAccount"] != null && (int)Session["waveType"] == 3)
+   { %>
+   <label style="font-size:x-large" >Welcome, <%= Session["waveAccount"] %></label>&nbsp&nbsp&nbsp
+   <%: Html.ActionLink("My Activities", "ViewMyActivity", "User") %> |
+   <%: Html.ActionLink("Modify Infomation", "ChangeInfo", "User") %> |
+   <%: Html.ActionLink("Change Password", "ChangePwd", "User") %> |
+   <%: Html.ActionLink("Log Out", "LogOut", "User") %>
+<%}
+   else
+   { %>
+
+<center>
+    <form method="post" action="<%= Url.Action("Login", "Main") %>" >
+        <br />
+        <label>Account</label>
+        <%= Html.TextBoxFor(model => model.account, new { size = 10 })%>
+        
+        <label>Password</label>
+        <%= Html.PasswordFor(model => model.password, new { size = 10 })%>
+
+        <label>Type</label>
+        <%
+    List<SelectListItem> list = new List<SelectListItem> {
+            new SelectListItem { Text = "SuperAdmin", Value = "0"},
+            new SelectListItem { Text = "Admin", Value = "1" },
+            new SelectListItem { Text = "Organization", Value = "2" },
+            new SelectListItem { Text = "User", Value = "3" ,Selected = true}};
+        %>
+        <%= Html.DropDownListFor(model => model.type, list)%>
+
+        <br /><br />
+        <%= Html.ActionLink("Forgot Password", "ForgotPassword")%> | 
+        <%= Html.ActionLink("Join Now", "Register")%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <button type="submit" id="user-login-button" >Log In</button>
+    </form>
+
+</center>
+<%} %>
 </asp:Content>
 

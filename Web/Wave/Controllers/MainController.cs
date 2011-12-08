@@ -17,7 +17,10 @@ namespace Wave.Controllers
 
         public ActionResult Main()
         {
-            ViewData["actList"] = _db.Activity.ToArray();
+            var activities = (from m in _db.Activity
+                              where m.actstate == 1
+                              select m);
+            ViewData["actList"] = activities.ToArray();
             ViewData["orgList"] = _db.Org.ToArray();
             return View();
         }
@@ -130,7 +133,7 @@ namespace Wave.Controllers
                                 {
                                     Session["waveAccount"] = toCheck.account;
                                     Session["waveType"] = toCheck.type;
-                                    return RedirectToAction("Main");
+                                    return Redirect(Request.UrlReferrer.ToString());
                                 }
                             }
                         }
@@ -189,6 +192,58 @@ namespace Wave.Controllers
             {
                 TempData["ErrorMessage"] = "Registration has failed because: " + exception.Message;
                 return View();
+            }
+        }
+
+        //
+        // GET: /Main/OrgDetails/5
+
+        public ActionResult OrgDetails(string id)
+        {
+            try
+            {
+                var org = (from m in _db.Org
+                           where m.orgname == id
+                           select m).First();
+                String path = Server.MapPath("~/Content/Images/pics/Org_" + org.orgname + ".jpg");
+                if (System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/pics/Org_" + org.orgname + ".jpg";
+                }
+                else
+                {
+                    ViewData["avater_path"] = "~/Content/Images/noavater.gif";
+                }
+                ViewData["org"] = org;
+                return View();
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
+                return RedirectToAction("Main");
+            }
+        }
+
+        public ActionResult ViewActivities(string id)
+        {
+            try
+            {
+                var org = (from m in _db.Org
+                           where m.orgname == id
+                           select m).First();
+
+                ViewData["holding_acts"] = (from m in org.Activity
+                                            where m.actstate == 1
+                                            select m).ToArray();
+                ViewData["stoped_acts"] = (from m in org.Activity
+                                           where m.actstate == 2
+                                           select m).ToArray();
+                return View();
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
+                return RedirectToAction("Main");
             }
         }
     }
