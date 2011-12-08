@@ -6,8 +6,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
 
-    <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
-
     <ul class="splitter">
         <li>
             <ul>
@@ -59,7 +57,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
-    <br />
+    <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
     <label style="font-size:large" >Welcome, Administrator: <%= Session["waveAccount"] %></label>&nbsp&nbsp&nbsp
     <%: Html.ActionLink("Review Activities", "ReviewActivities") %> |
     <%: Html.ActionLink("Modify Infomation", "ChangeInfo") %> |

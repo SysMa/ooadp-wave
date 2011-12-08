@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<Wave.Models.Org>" %>
+<%@ Import Namespace="Wave.Helpers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Edit Organization
@@ -19,6 +20,13 @@
 						<%: Html.DisplayTextFor(model => model.orgname)%>
 					</td>
 				</tr>
+                <tr>
+                    <td align="right">Avater:</td>
+                    <td>
+                        <%= Html.Image("avater_pic", ResolveUrl((String)ViewData["avater_path"]),
+                            "Not Found", new { style = "width:100px;height:100px" })%>
+                    </td>
+                </tr>
 				<tr>
 					<td align="right">Email:</td>
 					<td>

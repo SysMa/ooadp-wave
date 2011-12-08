@@ -145,11 +145,7 @@ namespace Wave.Controllers
                                where m.username == id
                                select m).First();
                 String path = Server.MapPath("~/Content/Images/pics/User_" + account.username);
-                if (System.IO.File.Exists(path))
-                {
-                    ViewData["avater_path"] = "~/Content/Images/pics/User_" + account.username;
-                }
-                else
+                if (!System.IO.File.Exists(path))
                 {
                     ViewData["avater_path"] = "~/Content/Images/noavater.gif";
                 }
@@ -228,11 +224,7 @@ namespace Wave.Controllers
                                where m.username == id
                                select m).First();
                 String path = Server.MapPath("~/Content/Images/pics/User_" + account.username);
-                if (System.IO.File.Exists(path))
-                {
-                    ViewData["avater_path"] = "~/Content/Images/pics/User_" + account.username;
-                }
-                else
+                if (!System.IO.File.Exists(path))
                 {
                     ViewData["avater_path"] = "~/Content/Images/noavater.gif";
                 }
@@ -286,6 +278,11 @@ namespace Wave.Controllers
                 var account = (from m in _db.Users
                                where m.username == id
                                select m).First();
+                String path = Server.MapPath("~/Content/Images/pics/User_" + account.username);
+                if (!System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/noavater.gif";
+                }
                 return View(account);
             }
             catch (Exception exception)
@@ -347,6 +344,11 @@ namespace Wave.Controllers
                 var org = (from m in _db.Org
                            where m.orgname == id
                            select m).First();
+                String path = Server.MapPath("~/Content/Images/pics/Org_" + org.orgname);
+                if (!System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/noavater.gif";
+                }
                 return View(org);
             }
             catch (Exception exception)
@@ -421,6 +423,11 @@ namespace Wave.Controllers
                 var account = (from m in _db.Org
                                where m.orgname == id
                                select m).First();
+                String path = Server.MapPath("~/Content/Images/pics/Org_" + account.orgname);
+                if (!System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/noavater.gif";
+                }
                 return View(account);
             }
             catch (Exception exception)
@@ -471,6 +478,11 @@ namespace Wave.Controllers
                 var account = (from m in _db.Org
                                where m.orgname == id
                                select m).First();
+                String path = Server.MapPath("~/Content/Images/pics/Org_" + account.orgname);
+                if (!System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/noavater.gif";
+                }
                 return View(account);
             }
             catch (Exception exception)

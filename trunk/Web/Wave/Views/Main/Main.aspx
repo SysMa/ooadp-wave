@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<Wave.Models.LoginModel>" %>
+<%@ Import Namespace="Wave.Helpers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Wave
@@ -49,77 +50,61 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
     <script src="../../Scripts/main.js" type="text/javascript"></script>
-
-        <!-- this isn’t part of the plugin, just a control for demo -->
         <ul class="splitter">
             <li>
                 <ul>
                     <li class="segment-1 selected-1">
                         <a href="#" data-value="all">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ALL&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
                     </li>
-                    <li class="segment-0"><a href="#" data-value="app">&nbsp Activities&nbsp</a>
+                    <li class="segment-0"><a href="#" data-value="act">&nbsp Activities&nbsp</a>
                     </li>
-                    <li class="segment-2"><a href="#" data-value="util">Organizations</a>
+                    <li class="segment-2"><a href="#" data-value="org">Organizations</a>
                     </li>
                 </ul>
             </li>
         </ul>
 
         <div class="demo">
-          <!-- read the documentation to understand what’s going on here -->
-          <ul id="list" class="image-grid" style="height: 591px; "><li data-id="id-1" class="util">
-              <img src="./jQuery Quicksand plugin_files/activity-monitor.png" width="128" height="128" alt="">
-              <strong>Activity Monitor</strong>
-              <span>348 KB</span>
-            </li><li data-id="id-2" class="app">
-              <img src="./jQuery Quicksand plugin_files/address-book.png" width="128" height="128" alt="">
-              <strong>Address Book</strong><span>1904 KB</span>
-            </li><li data-id="id-3" class="app">
-              <img src="./jQuery Quicksand plugin_files/finder.png" width="128" height="128" alt="">
-              <strong>Finder</strong>
-              <span>1337 KB</span>
-            </li><li data-id="id-4" class="app">
-              <img src="./jQuery Quicksand plugin_files/front-row.png" width="128" height="128" alt="">
-              <strong>Front Row</strong>
-              <span>401 KB</span>
-            </li><li data-id="id-5" class="app">
-              <img src="./jQuery Quicksand plugin_files/google-pokemon.png" width="128" height="128" alt="">
-              <strong>Google Pokémon</strong>
-              <span>12875 KB</span>
-            </li><li data-id="id-6" class="app">
-              <img src="./jQuery Quicksand plugin_files/ical.png" width="128" height="128" alt="">
-              <strong>iCal</strong>
-              <span>5273 KB</span>
-            </li><li data-id="id-7" class="app">
-              <img src="./jQuery Quicksand plugin_files/ichat.png" width="128" height="128" alt="">
-              <strong>iChat</strong>
-              <span>5437 KB</span>
-            </li><li data-id="id-8" class="app">
-              <img src="./jQuery Quicksand plugin_files/interface-builder.png" width="128" height="128" alt="">
-              <strong>Interface Builder</strong>
-              <span>2764 KB</span>
-            </li><li data-id="id-9" class="app">
-              <img src="./jQuery Quicksand plugin_files/ituna.png" width="128" height="128" alt="">
-              <strong>iTuna</strong>
-              <span>17612 KB</span>
-            </li><li data-id="id-10" class="util">
-              <img src="./jQuery Quicksand plugin_files/keychain-access.png" width="128" height="128" alt="">
-              <strong>Keychain Access</strong>
-              <span>972 KB</span>
-            </li><li data-id="id-11" class="util">
-              <img src="./jQuery Quicksand plugin_files/network-utility.png" width="128" height="128" alt="">
-              <strong>Network Utility</strong>
-              <span>245 KB</span>
-            </li><li data-id="id-12" class="util">
-              <img src="./jQuery Quicksand plugin_files/sync.png" width="128" height="128" alt="">
-              <strong>Sync</strong>
-              <span>3788 KB</span>
-            </li><li data-id="id-13" class="app">
-              <img src="./jQuery Quicksand plugin_files/textedit.png" width="128" height="128" alt="">
-              <strong>TextEdit</strong>
-              <span>1669 KB</span>
-            </li>
-          </ul>
+            <ul id="list" class="image-grid" style="height: 591px; ">
+                <%  int i = 0, j = 0;
+                    Wave.Models.Activity[] actList = ViewData["actList"] as Wave.Models.Activity[];
+                    Wave.Models.Org[] orgList = ViewData["orgList"] as Wave.Models.Org[];
+                    for (; i < 10; i++)
+                    {
+                        if (i < actList.Length)
+                        {
+                            j++;
+                            String path = "~/Content/Images/pics/Activity_" + actList[i].actname + ".jpg";
+                            if (!System.IO.File.Exists(path))
+                            {
+                                path = "~/Content/Images/noavater.gif";
+                            }%>
+                            <li data-id="id-<%= j %>" class="act">
+                                <%= Html.Image("activity_pic" + i, ResolveUrl(path),
+                                    "No Pic", new { style = "width:128px;height:128px" })%>
+                                <strong>
+                                    <%: Html.ActionLink(actList[i].actname, "ActivityDetails", new { id = actList[i].actid })%>
+                                </strong>
+                            </li>
+                        <%}
+                        if (i < orgList.Length)
+                        {
+                            j++;
+                            String path = "~/Content/Images/pics/Org_" + orgList[i].orgname + ".jpg";
+                            if (!System.IO.File.Exists(path))
+                            {
+                                path = "~/Content/Images/noavater.gif";
+                            }%>
+                            <li data-id="id-<%= j %>" class="org">
+                                <%= Html.Image("org_pic" + i, ResolveUrl(path),
+                                    "No Pic", new { style = "width:128px;height:128px" })%>
+                                <strong>
+                                    <%: Html.ActionLink(orgList[i].orgname, "OrgDetails", new { id = orgList[i].orgname })%>
+                                </strong>
+                            </li>
+                        <%}
+                    } %>
+            </ul>
         </div>
 
 </asp:Content>
