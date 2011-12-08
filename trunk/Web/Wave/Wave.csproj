@@ -258,6 +258,8 @@
     <Content Include="Views\Admin\UserDetails.aspx" />
     <Content Include="Views\Main\Main.aspx" />
     <Content Include="Views\Main\Register.aspx" />
+    <Content Include="Views\Org\ChangeInfo.aspx" />
+    <Content Include="Views\Org\ChangePwd.aspx" />
     <Content Include="Views\Org\Index.aspx" />
     <Content Include="Views\Shared\Message.ascx" />
     <Content Include="Views\SuperAdmin\ChangePwd.aspx" />

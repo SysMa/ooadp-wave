@@ -69,13 +69,13 @@
                 <%  int i = 0, j = 0;
                     Wave.Models.Activity[] actList = ViewData["actList"] as Wave.Models.Activity[];
                     Wave.Models.Org[] orgList = ViewData["orgList"] as Wave.Models.Org[];
-                    for (; i < 10; i++)
+                    for (;; i++)
                     {
                         if (i < actList.Length)
                         {
                             j++;
                             String path = "~/Content/Images/pics/Activity_" + actList[i].actname + ".jpg";
-                            if (!System.IO.File.Exists(path))
+                            if (!System.IO.File.Exists(Server.MapPath(path)))
                             {
                                 path = "~/Content/Images/noavater.gif";
                             }%>
@@ -91,7 +91,7 @@
                         {
                             j++;
                             String path = "~/Content/Images/pics/Org_" + orgList[i].orgname + ".jpg";
-                            if (!System.IO.File.Exists(path))
+                            if (!System.IO.File.Exists(Server.MapPath(path)))
                             {
                                 path = "~/Content/Images/noavater.gif";
                             }%>
@@ -103,6 +103,10 @@
                                 </strong>
                             </li>
                         <%}
+                        if (i >= actList.Length && i >= orgList.Length)
+                        {
+                            break;
+                        }
                     } %>
             </ul>
         </div>

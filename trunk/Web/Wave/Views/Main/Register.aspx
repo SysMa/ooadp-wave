@@ -58,7 +58,7 @@
     <% } %>
 
     <div>
-        <%: Html.ActionLink("Return", "Main") %>
+        <%: Html.ActionLink("Back", "Main") %>
     </div>
 
 </asp:Content>

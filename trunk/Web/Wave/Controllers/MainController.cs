@@ -10,9 +10,10 @@ namespace Wave.Controllers
 {
     public class MainController : Controller
     {
+        private WaveWebEntities _db = new WaveWebEntities();
+
         //
         // GET: /Default1/
-        private WaveWebEntities _db = new WaveWebEntities();
 
         public ActionResult Main()
         {
@@ -51,7 +52,6 @@ namespace Wave.Controllers
                                 {
                                     Session["waveAccount"] = toCheck.account;
                                     Session["waveType"] = toCheck.type;
-                                    //return View("../SuperAdmin/Index", _db.Admin.ToList());
                                     return RedirectToAction("Index", "SuperAdmin");
                                 }
                             }
@@ -78,7 +78,6 @@ namespace Wave.Controllers
                                 {
                                     Session["waveAccount"] = toCheck.account;
                                     Session["waveType"] = toCheck.type;
-                                    //return View("../SuperAdmin/Index", _db.Admin.ToList());
                                     return RedirectToAction("Index", "Admin");
                                 }
                             }
@@ -105,7 +104,6 @@ namespace Wave.Controllers
                                 {
                                     Session["waveAccount"] = toCheck.account;
                                     Session["waveType"] = toCheck.type;
-                                    //return View("../SuperAdmin/Index", _db.Admin.ToList());
                                     return RedirectToAction("Index", "Org");
                                 }
                             }
@@ -132,7 +130,6 @@ namespace Wave.Controllers
                                 {
                                     Session["waveAccount"] = toCheck.account;
                                     Session["waveType"] = toCheck.type;
-                                    //return View("../SuperAdmin/Index", _db.Admin.ToList());
                                     return RedirectToAction("Main");
                                 }
                             }

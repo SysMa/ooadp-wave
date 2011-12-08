@@ -12,7 +12,7 @@
                 foreach (var item in Model) {
                     i++;
                     String path = "~/Content/Images/pics/Activity_" + item.actname + ".jpg";
-                    if (!System.IO.File.Exists(path))
+                    if (!System.IO.File.Exists(Server.MapPath(path)))
                     {
                         path = "~/Content/Images/noavater.gif";
                     }%>
