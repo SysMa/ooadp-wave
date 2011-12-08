@@ -16,6 +16,8 @@ namespace Wave.Controllers
 
         public ActionResult Main()
         {
+            ViewData["actList"] = _db.Activity.ToArray();
+            ViewData["orgList"] = _db.Org.ToArray();
             return View();
         }
 

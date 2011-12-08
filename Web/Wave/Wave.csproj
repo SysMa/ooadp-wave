@@ -258,6 +258,7 @@
     <Content Include="Views\Admin\UserDetails.aspx" />
     <Content Include="Views\Main\Main.aspx" />
     <Content Include="Views\Main\Register.aspx" />
+    <Content Include="Views\Org\Index.aspx" />
     <Content Include="Views\Shared\Message.ascx" />
     <Content Include="Views\SuperAdmin\ChangePwd.aspx" />
     <Content Include="Views\SuperAdmin\Create.aspx" />
@@ -293,7 +294,6 @@
   <ItemGroup>
     <Folder Include="uploads\" />
     <Folder Include="Views\Activity\" />
-    <Folder Include="Views\Org\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Main.Master" />
