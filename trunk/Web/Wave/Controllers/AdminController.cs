@@ -112,6 +112,27 @@ namespace Wave.Controllers
             }
         }
 
+        public ActionResult ReviewActivities()
+        {
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 1)
+            {
+                Session.Clear();
+                return RedirectToAction("Main", "Main");
+            }
+            try
+            {
+                var activities = (from m in _db.Activity
+                                  where m.actstate == 0
+                                  select m);
+                return View(activities.ToList());
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
+                return RedirectToAction("Index");
+            }
+        }
+
         public ActionResult LogOut()
         {
             Session.Clear();
@@ -144,8 +165,12 @@ namespace Wave.Controllers
                 var account = (from m in _db.Users
                                where m.username == id
                                select m).First();
-                String path = Server.MapPath("~/Content/Images/pics/User_" + account.username);
-                if (!System.IO.File.Exists(path))
+                String path = Server.MapPath("~/Content/Images/pics/User_" + account.username + ".jpg");
+                if (System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/pics/User_" + account.username + ".jpg";
+                }
+                else
                 {
                     ViewData["avater_path"] = "~/Content/Images/noavater.gif";
                 }
@@ -223,8 +248,12 @@ namespace Wave.Controllers
                 var account = (from m in _db.Users
                                where m.username == id
                                select m).First();
-                String path = Server.MapPath("~/Content/Images/pics/User_" + account.username);
-                if (!System.IO.File.Exists(path))
+                String path = Server.MapPath("~/Content/Images/pics/User_" + account.username + ".jpg");
+                if (System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/pics/User_" + account.username + ".jpg";
+                }
+                else
                 {
                     ViewData["avater_path"] = "~/Content/Images/noavater.gif";
                 }
@@ -278,8 +307,12 @@ namespace Wave.Controllers
                 var account = (from m in _db.Users
                                where m.username == id
                                select m).First();
-                String path = Server.MapPath("~/Content/Images/pics/User_" + account.username);
-                if (!System.IO.File.Exists(path))
+                String path = Server.MapPath("~/Content/Images/pics/User_" + account.username + ".jpg");
+                if (System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/pics/User_" + account.username + ".jpg";
+                }
+                else
                 {
                     ViewData["avater_path"] = "~/Content/Images/noavater.gif";
                 }
@@ -344,8 +377,12 @@ namespace Wave.Controllers
                 var org = (from m in _db.Org
                            where m.orgname == id
                            select m).First();
-                String path = Server.MapPath("~/Content/Images/pics/Org_" + org.orgname);
-                if (!System.IO.File.Exists(path))
+                String path = Server.MapPath("~/Content/Images/pics/Org_" + org.orgname + ".jpg");
+                if (System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/pics/Org_" + org.orgname + ".jpg";
+                }
+                else
                 {
                     ViewData["avater_path"] = "~/Content/Images/noavater.gif";
                 }
@@ -423,8 +460,12 @@ namespace Wave.Controllers
                 var account = (from m in _db.Org
                                where m.orgname == id
                                select m).First();
-                String path = Server.MapPath("~/Content/Images/pics/Org_" + account.orgname);
-                if (!System.IO.File.Exists(path))
+                String path = Server.MapPath("~/Content/Images/pics/Org_" + account.orgname + ".jpg");
+                if (System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/pics/Org_" + account.orgname + ".jpg";
+                }
+                else
                 {
                     ViewData["avater_path"] = "~/Content/Images/noavater.gif";
                 }
@@ -478,8 +519,12 @@ namespace Wave.Controllers
                 var account = (from m in _db.Org
                                where m.orgname == id
                                select m).First();
-                String path = Server.MapPath("~/Content/Images/pics/Org_" + account.orgname);
-                if (!System.IO.File.Exists(path))
+                String path = Server.MapPath("~/Content/Images/pics/Org_" + account.orgname + ".jpg");
+                if (System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/pics/Org_" + account.orgname + ".jpg";
+                }
+                else
                 {
                     ViewData["avater_path"] = "~/Content/Images/noavater.gif";
                 }

@@ -255,12 +255,15 @@
     <Content Include="Views\Admin\Index.aspx" />
     <Content Include="Views\Admin\OrgDetails.aspx" />
     <Content Include="Views\Admin\Orgs.aspx" />
+    <Content Include="Views\Admin\ReviewActivities.aspx" />
     <Content Include="Views\Admin\UserDetails.aspx" />
     <Content Include="Views\Main\Main.aspx" />
     <Content Include="Views\Main\Register.aspx" />
+    <Content Include="Views\Main\ViewActivities.aspx" />
     <Content Include="Views\Org\ChangeInfo.aspx" />
     <Content Include="Views\Org\ChangePwd.aspx" />
     <Content Include="Views\Org\Index.aspx" />
+    <Content Include="Views\Main\OrgDetails.aspx" />
     <Content Include="Views\Shared\Message.ascx" />
     <Content Include="Views\SuperAdmin\ChangePwd.aspx" />
     <Content Include="Views\SuperAdmin\Create.aspx" />
@@ -268,6 +271,7 @@
     <Content Include="Views\SuperAdmin\Index.aspx" />
     <Content Include="Views\User\ChangeInfo.aspx" />
     <Content Include="Views\User\ChangePwd.aspx" />
+    <Content Include="Views\User\ViewMyActivity.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -294,7 +298,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="uploads\" />
     <Folder Include="Views\Activity\" />
   </ItemGroup>
   <ItemGroup>
