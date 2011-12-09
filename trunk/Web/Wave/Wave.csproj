@@ -124,121 +124,24 @@
     <Content Include="App_Data\WaveWeb_log.ldf">
       <DependentUpon>WaveWeb.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\CSS\arts.css" />
-    <Content Include="Content\CSS\donate.css" />
-    <Content Include="Content\CSS\en_others.css" />
-    <Content Include="Content\CSS\help.css" />
     <Content Include="Content\CSS\jquery-ui-1.8.16.custom.css" />
     <Content Include="Content\CSS\jquery.ui.datepicker.css" />
-    <Content Include="Content\CSS\lecture.css" />
     <Content Include="Content\CSS\main.css" />
     <Content Include="Content\CSS\modules.css" />
-    <Content Include="Content\CSS\music_film.css" />
-    <Content Include="Content\CSS\others_others.css" />
-    <Content Include="Content\CSS\pag_others.css" />
-    <Content Include="Content\CSS\party.css" />
-    <Content Include="Content\CSS\practise.css" />
-    <Content Include="Content\CSS\research_others.css" />
-    <Content Include="Content\CSS\slidertron.css" />
-    <Content Include="Content\CSS\social_others.css" />
-    <Content Include="Content\CSS\sports.css" />
     <Content Include="Content\CSS\uploadify.css" />
-    <Content Include="Content\CSS\volunteer.css" />
-    <Content Include="Content\CSS\wanted.css" />
-    <Content Include="Content\CSS\wanted_slidertron.css" />
-    <Content Include="Content\Images\arts\arts_img01.jpg" />
-    <Content Include="Content\Images\arts\arts_img02.jpg" />
-    <Content Include="Content\Images\arts\arts_img03.jpg" />
-    <Content Include="Content\Images\arts\arts_img04.jpg" />
-    <Content Include="Content\Images\arts\arts_img05.jpg" />
     <Content Include="Content\Images\cancel.png" />
-    <Content Include="Content\Images\donate\donate_img01.jpg" />
-    <Content Include="Content\Images\donate\donate_img02.jpg" />
-    <Content Include="Content\Images\donate\donate_img03.jpg" />
-    <Content Include="Content\Images\donate\donate_img04.jpg" />
-    <Content Include="Content\Images\en_others\en_others_img01.gif" />
-    <Content Include="Content\Images\en_others\en_others_img03.jpg" />
-    <Content Include="Content\Images\en_others\en_others_img04.gif" />
-    <Content Include="Content\Images\en_others\en_others_img05.gif" />
-    <Content Include="Content\Images\help\img01.jpg" />
-    <Content Include="Content\Images\help\img02.jpg" />
-    <Content Include="Content\Images\help\img03.jpg" />
-    <Content Include="Content\Images\help\img04.jpg" />
-    <Content Include="Content\Images\help\img05.jpg" />
-    <Content Include="Content\Images\help\img06.jpg" />
-    <Content Include="Content\Images\lecture\img01.jpg" />
-    <Content Include="Content\Images\lecture\img02.jpg" />
     <Content Include="Content\Images\main\buttons.png" />
     <Content Include="Content\Images\main\splitter.png" />
     <Content Include="Content\Images\message\error.png" />
     <Content Include="Content\Images\message\info.png" />
     <Content Include="Content\Images\message\success.png" />
     <Content Include="Content\Images\message\warning.png" />
-    <Content Include="Content\Images\music_film\img01.gif" />
-    <Content Include="Content\Images\music_film\img02.jpg" />
-    <Content Include="Content\Images\music_film\img03.jpg" />
-    <Content Include="Content\Images\music_film\img04.jpg" />
-    <Content Include="Content\Images\music_film\img05.jpg" />
-    <Content Include="Content\Images\music_film\img06.jpg" />
-    <Content Include="Content\Images\music_film\img07.jpg" />
-    <Content Include="Content\Images\music_film\img08.jpg" />
     <Content Include="Content\Images\noavater.gif" />
     <Content Include="Content\Images\noavater_small.jpg" />
-    <Content Include="Content\Images\others_others\img01.jpg" />
-    <Content Include="Content\Images\others_others\img02.jpg" />
-    <Content Include="Content\Images\others_others\img03.jpg" />
-    <Content Include="Content\Images\others_others\img04.jpg" />
-    <Content Include="Content\Images\others_others\img05.jpg" />
-    <Content Include="Content\Images\others_others\img06.jpg" />
-    <Content Include="Content\Images\others_others\img07.jpg" />
-    <Content Include="Content\Images\others_others\img08.jpg" />
-    <Content Include="Content\Images\pag_others\img01.jpg" />
-    <Content Include="Content\Images\pag_others\img02.jpg" />
-    <Content Include="Content\Images\party\img01.jpg" />
-    <Content Include="Content\Images\practise\img01.gif" />
-    <Content Include="Content\Images\practise\img02.gif" />
-    <Content Include="Content\Images\practise\img03.jpg" />
-    <Content Include="Content\Images\research_others\img01.gif" />
-    <Content Include="Content\Images\research_others\img02.jpg" />
-    <Content Include="Content\Images\research_others\img03.jpg" />
-    <Content Include="Content\Images\social_others\1.jpg" />
-    <Content Include="Content\Images\social_others\2.jpg" />
-    <Content Include="Content\Images\social_others\3.jpg" />
-    <Content Include="Content\Images\social_others\5.jpg" />
-    <Content Include="Content\Images\social_others\6.jpg" />
-    <Content Include="Content\Images\social_others\7.jpg" />
-    <Content Include="Content\Images\social_others\8.jpg" />
-    <Content Include="Content\Images\social_others\img01.jpg" />
-    <Content Include="Content\Images\social_others\img02.jpg" />
-    <Content Include="Content\Images\social_others\img03.jpg" />
-    <Content Include="Content\Images\social_others\img05.jpg" />
-    <Content Include="Content\Images\social_others\img06.png" />
-    <Content Include="Content\Images\social_others\img08.jpg" />
-    <Content Include="Content\Images\sports\img01.jpg" />
-    <Content Include="Content\Images\sports\img02.jpg" />
-    <Content Include="Content\Images\sports\img03.jpg" />
-    <Content Include="Content\Images\sports\img04.jpg" />
-    <Content Include="Content\Images\sports\img05.jpg" />
-    <Content Include="Content\Images\sports\img06.jpg" />
-    <Content Include="Content\Images\sports\img07.jpg" />
-    <Content Include="Content\Images\sports\img08.jpg" />
-    <Content Include="Content\Images\sports\img09.jpg" />
-    <Content Include="Content\Images\sports\img10.jpg" />
-    <Content Include="Content\Images\sports\img11.jpg" />
     <Content Include="Content\Images\ui-bg_glass_100_f6f6f6_1x400.png" />
     <Content Include="Content\Images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
     <Content Include="Content\Images\ui-icons_ef8c08_256x240.png" />
     <Content Include="Content\Images\ui-icons_ffffff_256x240.png" />
-    <Content Include="Content\Images\volunteer\img01.png" />
-    <Content Include="Content\Images\volunteer\img02.jpg" />
-    <Content Include="Content\Images\volunteer\img03.gif" />
-    <Content Include="Content\Images\volunteer\img03.jpg" />
-    <Content Include="Content\Images\volunteer\img04.gif" />
-    <Content Include="Content\Images\volunteer\img05.jpg" />
-    <Content Include="Content\Images\volunteer\img06.jpg" />
-    <Content Include="Content\Images\wanted\1.jpg" />
-    <Content Include="Content\Images\wanted\2.jpg" />
-    <Content Include="Content\Images\wanted\3.jpg" />
     <Content Include="Content\Script\jquery-1.4.2.min.js" />
     <Content Include="Content\Script\jquery.gallerax-0.2.js" />
     <Content Include="Content\Script\jquery.slidertron-0.1.js" />
@@ -314,51 +217,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Main.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Atmosphere.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Practise.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Research_Others.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Music_Film.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Party.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Entertainment_Others.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Volunteer.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Donate.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Social_Others.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Sports.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Arts.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Pageant_Others.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Wanted.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Others_Others.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Help.Master" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
