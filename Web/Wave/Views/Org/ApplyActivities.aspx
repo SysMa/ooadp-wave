@@ -90,22 +90,22 @@
                 <tr>
                     <td align="right">Start Time:</td>
                     <td>
-                        <%: Html.TextBoxFor(model => model.starttime, new Dictionary<string, object>(){ {"class", "starttime"} })%>
+                        <%: Html.TextBoxFor(model => model.starttime, new Dictionary<string, object>() { { "readonly", "readonly" } })%>
                         <%: Html.ValidationMessageFor(model => model.actname) %>
                     </td>
                 </tr>
                 <tr>
                     <td align="right">End Time:</td>
                     <td>
-                        <%: Html.TextBoxFor(model => model.endtime, new Dictionary<string, object>() { { "class", "endtime" } })%>
+                        <%: Html.TextBoxFor(model => model.endtime, new Dictionary<string, object>() { { "readonly", "readonly" } })%>
                         <%: Html.ValidationMessageFor(model => model.actname) %>
                     </td>
                 </tr>
                 <tr>
                     <td align="right">Slogan:</td>
                     <td>
-                        <%: Html.TextAreaFor(model => model.slogan, 
-                            new Dictionary<string, object>() {{"Cols", "50"}, {"Rows", "2"}})%>
+                        <%: Html.TextAreaFor(model => model.slogan,
+                            new Dictionary<string, object>() { { "Cols", "40" }, { "Rows", "2" }, { "style", "resize:vertical" } })%>
                         <%: Html.ValidationMessageFor(model => model.actname) %>
                     </td>
                 </tr>
@@ -113,7 +113,7 @@
                     <td align="right">Description:</td>
                     <td>
                         <%: Html.TextAreaFor(model => model.acttext,
-                            new Dictionary<string, object> { { "Cols", "50" }, { "Rows", "4" } })%>
+                            new Dictionary<string, object>() { { "Cols", "40" }, { "Rows", "4" }, { "style", "resize:vertical" } })%>
                         <%: Html.ValidationMessageFor(model => model.acttext) %>
                     </td>
                 </tr>
