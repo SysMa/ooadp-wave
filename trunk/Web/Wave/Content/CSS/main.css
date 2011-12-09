@@ -222,10 +222,6 @@ ol li {
   list-style: decimal;
 }
 
-ul li {
-  list-style: square;
-}
-
 li.spaced {
   margin-bottom: 20px;
 }

@@ -128,6 +128,8 @@
     <Content Include="Content\CSS\donate.css" />
     <Content Include="Content\CSS\en_others.css" />
     <Content Include="Content\CSS\help.css" />
+    <Content Include="Content\CSS\jquery-ui-1.8.16.custom.css" />
+    <Content Include="Content\CSS\jquery.ui.datepicker.css" />
     <Content Include="Content\CSS\lecture.css" />
     <Content Include="Content\CSS\main.css" />
     <Content Include="Content\CSS\modules.css" />
@@ -223,6 +225,10 @@
     <Content Include="Content\Images\sports\img09.jpg" />
     <Content Include="Content\Images\sports\img10.jpg" />
     <Content Include="Content\Images\sports\img11.jpg" />
+    <Content Include="Content\Images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\Images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\Images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\Images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\Images\volunteer\img01.png" />
     <Content Include="Content\Images\volunteer\img02.jpg" />
     <Content Include="Content\Images\volunteer\img03.gif" />
@@ -240,6 +246,11 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\ga.js" />
     <Content Include="Scripts\jquery-1.4.1-and-plugins.min.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.16.custom.min.js" />
+    <Content Include="Scripts\jquery-ui-sliderAccess.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery.ui.datepicker.js" />
     <Content Include="Scripts\jquery.uploadify.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\showImg.js" />

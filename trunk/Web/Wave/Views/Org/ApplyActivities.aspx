@@ -7,6 +7,51 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
 <script type="text/javascript" src="../../Scripts/showImg.js"></script>
+<script type="text/javascript" src="../../Scripts/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="../../Scripts/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="../../Scripts/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="../../Scripts/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="../../Scripts/jquery-ui-sliderAccess.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#starttime').datetimepicker({
+            onClose: function (dateText, inst) {
+                var endDateTextBox = $('#endtime');
+                if (endDateTextBox.val() != '') {
+                    var testStartDate = new Date(dateText);
+                    var testEndDate = new Date(endDateTextBox.val());
+                    if (testStartDate > testEndDate)
+                        endDateTextBox.val(dateText);
+                }
+                else {
+                    endDateTextBox.val(dateText);
+                }
+            },
+            onSelect: function (selectedDateTime) {
+                var start = $(this).datetimepicker('getDate');
+                $('#endtime').datetimepicker('option', 'minDate', new Date(start.getTime()));
+            }
+        });
+        $('#endtime').datetimepicker({
+            onClose: function (dateText, inst) {
+                var startDateTextBox = $('#starttime');
+                if (startDateTextBox.val() != '') {
+                    var testStartDate = new Date(startDateTextBox.val());
+                    var testEndDate = new Date(dateText);
+                    if (testStartDate > testEndDate)
+                        startDateTextBox.val(dateText);
+                }
+                else {
+                    startDateTextBox.val(dateText);
+                }
+            },
+            onSelect: function (selectedDateTime) {
+                var end = $(this).datetimepicker('getDate');
+                $('#starttime').datetimepicker('option', 'maxDate', new Date(end.getTime()));
+            }
+        });
+    });
+</script>
 
     <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
 
