@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WaveWebModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="WaveWebModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="WaveWebModelStoreContainer">
           <EntitySet Name="Activity" EntityType="WaveWebModel.Store.Activity" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Admin" EntityType="WaveWebModel.Store.Admin" store:Type="Tables" Schema="dbo" />
@@ -42,7 +42,7 @@
           <Key>
             <PropertyRef Name="actid" />
           </Key>
-          <Property Name="actid" Type="int" Nullable="false" />
+          <Property Name="actid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="orgname" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="actname" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="actstate" Type="int" Nullable="false" />
@@ -52,6 +52,7 @@
           <Property Name="endtime" Type="datetime" Nullable="false" />
           <Property Name="slogan" Type="text" />
           <Property Name="acttext" Type="text" Nullable="false" />
+          <Property Name="pageid" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Admin">
           <Key>
@@ -60,7 +61,7 @@
           <Property Name="adminname" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="astate" Type="int" Nullable="false" />
           <Property Name="apasswd" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="aemail" Type="varchar" MaxLength="20" />
+          <Property Name="aemail" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Org">
           <Key>
@@ -69,7 +70,7 @@
           <Property Name="orgname" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="ostate" Type="int" Nullable="false" />
           <Property Name="opasswd" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="oemail" Type="varchar" MaxLength="20" />
+          <Property Name="oemail" Type="varchar" MaxLength="50" />
           <Property Name="ophone" Type="numeric" Precision="15" />
           <Property Name="oscore" Type="float" />
           <Property Name="oimage" Type="image" />
@@ -107,7 +108,7 @@
           <Property Name="username" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="ustate" Type="int" Nullable="false" />
           <Property Name="upasswd" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="uemail" Type="varchar" MaxLength="20" />
+          <Property Name="uemail" Type="varchar" MaxLength="50" />
           <Property Name="uphone" Type="numeric" Precision="15" />
           <Property Name="uscore" Type="float" Nullable="false" />
           <Property Name="uimage" Type="image" />
@@ -192,8 +193,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WaveWebModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -242,6 +242,7 @@
           <NavigationProperty Name="Org" Relationship="WaveWebModel.FK_Activity_Activity" FromRole="Activity" ToRole="Org" />
           <NavigationProperty Name="TakeActivity" Relationship="WaveWebModel.FK_TakeActivity_Activity" FromRole="Activity" ToRole="TakeActivity" />
           <NavigationProperty Name="Admin" Relationship="WaveWebModel.ReviewActivity" FromRole="Activity" ToRole="Admin" />
+          <Property Type="Int32" Name="pageid" Nullable="false" />
         </EntityType>
         <EntityType Name="Admin">
           <Key>
@@ -364,7 +365,8 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="WaveWebModelStoreContainer" CdmEntityContainer="WaveWebEntities">
           <EntitySetMapping Name="Activity"><EntityTypeMapping TypeName="WaveWebModel.Activity"><MappingFragment StoreEntitySet="Activity">
-            <ScalarProperty Name="actid" ColumnName="actid" />
+            <ScalarProperty Name="pageid" ColumnName="pageid" />
+                <ScalarProperty Name="actid" ColumnName="actid" />
             <ScalarProperty Name="orgname" ColumnName="orgname" />
             <ScalarProperty Name="actname" ColumnName="actname" />
             <ScalarProperty Name="actstate" ColumnName="actstate" />
