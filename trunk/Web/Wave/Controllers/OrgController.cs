@@ -189,23 +189,21 @@ namespace Wave.Controllers
         }
 
         //
-        // GET: /Org/Create
+        // GET: /Org/ApplyActivities
 
-        public ActionResult Create()
+        public ActionResult ApplyActivities()
         {
             return View();
         } 
 
         //
-        // POST: /Org/Create
+        // POST: /Org/ApplyActivities
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult ApplyActivities(Activity activity)
         {
             try
             {
-                // TODO: Add insert logic here
-
                 return RedirectToAction("Index");
             }
             catch
