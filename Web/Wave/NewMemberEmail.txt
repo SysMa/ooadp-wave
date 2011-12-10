@@ -1,0 +1,10 @@
+Dear [Name],
+
+Click the following link to active yourself¡£
+
+[LINK]
+
+Account : [UserName]
+Password: [Pwd]
+
+Welcome to our big family.
