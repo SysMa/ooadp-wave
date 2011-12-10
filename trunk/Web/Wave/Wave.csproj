@@ -109,7 +109,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Encrypt.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
+    <Compile Include="Helper\SendMail.cs" />
     <Compile Include="Models\ChangePwdModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Model1.Designer.cs">
@@ -142,6 +144,7 @@
     <Content Include="Content\Images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
     <Content Include="Content\Images\ui-icons_ef8c08_256x240.png" />
     <Content Include="Content\Images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\Images\Welcome.jpg" />
     <Content Include="Content\Script\jquery-1.4.2.min.js" />
     <Content Include="Content\Script\jquery.gallerax-0.2.js" />
     <Content Include="Content\Script\jquery.slidertron-0.1.js" />
@@ -171,6 +174,7 @@
     <Content Include="Views\Admin\Orgs.aspx" />
     <Content Include="Views\Admin\ReviewActivities.aspx" />
     <Content Include="Views\Admin\UserDetails.aspx" />
+    <Content Include="Views\Main\Activation.aspx" />
     <Content Include="Views\Main\Main.aspx" />
     <Content Include="Views\Main\Register.aspx" />
     <Content Include="Views\Main\ViewActivities.aspx" />

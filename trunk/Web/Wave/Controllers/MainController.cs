@@ -5,14 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using Wave.Models;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Text.RegularExpressions;
+using Wave.Helper;
 
 namespace Wave.Controllers
 {
@@ -192,45 +191,39 @@ namespace Wave.Controllers
                     return View();
                 }
 
-                string regexEmail = @"^\w+([-+.]?\w+)*@\w+([-.]?\w+)*\.\w+([-.]?\w+)*$ ";
-                System.Text.RegularExpressions.RegexOptions options = ((System.Text.RegularExpressions.RegexOptions.IgnorePatternWhitespace
-                    | System.Text.RegularExpressions.RegexOptions.Multiline)
-                    | System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-                System.Text.RegularExpressions.Regex regEmail = new System.Text.RegularExpressions.Regex(regexEmail, options);
-
-                string email = userToCreate.uemail;
-                if (regEmail.IsMatch(email))//email 填写符合正则表达式 "\\w{1,}@\\w{1,}\\.\\w{1,}"
-                {
-                   // successful
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = "Registration failed! Your E-mail don't follow the usual fomat."; 
-                    return View();
-                }
-
-                SmtpClient client = new SmtpClient();
-                //获取或设置用于验证发件人身份的凭据。
-                client.Credentials = new System.Net.NetworkCredential("2352695754@qq.com", "waveproject");
-                //经过ssl(安全套接层)加密,163邮箱SSL协议端口号为465/994,关闭SSL时端口为25,
-                //qq邮箱SSL协议端口号为465或587,关闭SSL时端口同样为25，不过用SSL加密后发送邮件都失败，具体原因不知
-                //client.EnableSsl = true;        
-                client.Port = 25;                //端口号
-                client.Host = "smtp.qq.com";     //获取或设置用于 SMTP 事务的主机的名称或 IP 地址
                 try
                 {
-                    client.Send(InitMailMessage("2352695754@qq.com", userToCreate.uemail));
+                    string content = System.IO.File.ReadAllText(Server.MapPath("~/NewMemberEmail.txt"));
+                    content = content.Replace("[Name]", userToCreate.username);
+                    content = content.Replace("[LINK]", "<a href='http://" + Request.Url.Host + ":" + Request.Url.Port + "/Activation-" + Server.UrlEncode(userToCreate.username) + "-" + userToCreate.upasswd + "'>^_^Active^_^</a>");
+                    content = content.Replace("[UserName]", userToCreate.username);
+                    content = content.Replace("[Pwd]", userToCreate.upasswd);
+
+                    if (!SendMail.send(userToCreate.uemail, content))
+                    {
+                        TempData["ErrorMessage"] = "Sorry. The format of your email address can't be recognized.";
+                        return View();
+                    };
                 }
-                catch (System.Net.Mail.SmtpException ex)
+                catch(Exception ex)
                 {
-                    TempData["ErrorMessage"] = "Confirm message failed to deliver." + ex.Message;
+                    TempData["ErrorMessage"] = "Registration failed! Check your email again please." + ex.Message;
                     return View();
                 }
 
-
-                _db.AddToUsers(userToCreate);
-                _db.SaveChanges();
-                TempData["SuccessMessage"] = "Registration succeeds! Your can log in using the new username and password.";
+                try
+                {
+                    // userToCreate.upasswd = Encrypt.EncryptDES(userToCreate.upasswd, userToCreate.username);
+                    _db.AddToUsers(userToCreate);
+                    _db.SaveChanges();
+                    TempData["SuccessMessage"] = "Registration succeeds! Your can log in using the new username and password.";
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = "The databse is unreachable. Try again later." + ex.Message;
+                    return View();
+                }
+                
                 return RedirectToAction("Main");
             }
             catch (Exception exception)
@@ -292,34 +285,39 @@ namespace Wave.Controllers
             }
         }
 
-        public MailMessage InitMailMessage(string from, string to)
+        /// <summary>
+        /// 处理激活
+        /// </summary>
+        /// <param name="id">用户登录id</param>
+        /// <param name="code">激活码</param>
+        /// <returns></returns>
+        public ActionResult Activation(string id, string code)
         {
-            MailMessage mail = new MailMessage();
+            try
+            {
+                var users = (from m in _db.Users
+                             where m.username == id
+                             select m);
 
-            mail.From = new MailAddress(from);  //发件人
-            mail.To.Add(to);                  //收件人
-            mail.Subject = "Wave Sign Up Confirm";         //主题
-            mail.Body = "You are now one member of the wave website.";            //内容
-
-            //邮件主题和正文的编码格式
-
-            mail.SubjectEncoding = System.Text.Encoding.UTF8;
-            mail.BodyEncoding = System.Text.Encoding.UTF8;
-
-
-            mail.IsBodyHtml = true;                     //邮件正文允许html编码
-            mail.Priority = MailPriority.Normal;        //优先级
-
-            //密送——就是将信密秘抄送给收件人以外的人，所有收件人看不到密件抄送的地址
-            mail.Bcc.Add("1050282973@qq.com");
-
-            //抄送——就是将信抄送给收件人以外的人,所有的收件人可以在抄送地址处看到此信还抄送给谁
-            // mail.CC.Add("1052647407@qq.com");
-
-            // mail.Attachments.Add(new Attachment("D:\\1.doc"));     //添加附件
-
-            return mail;
-
+                if (users.Count() != 1)
+                {
+                    TempData["ErrorMessage"] = "Failed to Active";
+                    return View();
+                }
+                else if(users.First().upasswd == code)
+                {
+                    users.First().ustate = 1;
+                    TempData["SuccessMessage"] = "Active Successful";
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Failed to Active" + ex.Message;
+                return View();
+            }
+            TempData["ErrorMessage"] = "Failed to Active";
+            return View();
         }
     }
 }
