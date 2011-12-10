@@ -185,5 +185,47 @@ namespace Wave.Controllers
                 return RedirectToAction("Main", "Main");
             }
         }
+
+        /// <summary>
+        /// 处理激活
+        /// </summary>
+        /// <param name="id">用户登录id</param>
+        /// <param name="code">激活码</param>
+        /// <returns></returns>
+        public ActionResult Activation(string id, string code)
+        {
+            try
+            {
+                var users = (from m in _db.Users
+                             where m.username == id
+                             select m);
+
+                if (users.Count() != 1)
+                {
+                    TempData["ErrorMessage"] = "Failed to Active";
+                    return RedirectToAction("Main", "Main");
+                }
+                else if (users.First().upasswd == code && users.First().ustate == 0)
+                {
+                    users.First().ustate = 1;
+                    _db.ApplyCurrentValues<Users>(users.First().EntityKey.EntitySetName, users.First());
+                    _db.SaveChanges();
+                    TempData["SuccessMessage"] = "Active Successful";
+                    return RedirectToAction("Main", "Main");
+                }
+                else if (users.First().upasswd == code && users.First().ustate != 0)
+                {
+                    TempData["WarningMessage"] = "You have already been actived. Keep an eye on your emails.";
+                    return RedirectToAction("Main", "Main");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Failed to Active" + ex.Message;
+                return RedirectToAction("Main", "Main");
+            }
+            TempData["ErrorMessage"] = "Failed to Active";
+            return RedirectToAction("Main", "Main");
+        }
     }
 }

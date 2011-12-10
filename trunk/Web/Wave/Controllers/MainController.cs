@@ -195,7 +195,7 @@ namespace Wave.Controllers
                 {
                     string content = System.IO.File.ReadAllText(Server.MapPath("~/NewMemberEmail.txt"));
                     content = content.Replace("[Name]", userToCreate.username);
-                    content = content.Replace("[LINK]", "<a href='http://" + Request.Url.Host + ":" + Request.Url.Port + "/Activation-" + Server.UrlEncode(userToCreate.username) + "-" + userToCreate.upasswd + "'>^_^Active^_^</a>");
+                    content = content.Replace("[LINK]", "<a href='http://" + Request.Url.Host + ":" + Request.Url.Port + "/User/Activation-" + Server.UrlEncode(userToCreate.username) + "-" + userToCreate.upasswd + "'>^_^Active^_^</a>");
                     content = content.Replace("[UserName]", userToCreate.username);
                     content = content.Replace("[Pwd]", userToCreate.upasswd);
 
@@ -283,41 +283,6 @@ namespace Wave.Controllers
                 TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
                 return RedirectToAction("Main");
             }
-        }
-
-        /// <summary>
-        /// 处理激活
-        /// </summary>
-        /// <param name="id">用户登录id</param>
-        /// <param name="code">激活码</param>
-        /// <returns></returns>
-        public ActionResult Activation(string id, string code)
-        {
-            try
-            {
-                var users = (from m in _db.Users
-                             where m.username == id
-                             select m);
-
-                if (users.Count() != 1)
-                {
-                    TempData["ErrorMessage"] = "Failed to Active";
-                    return View();
-                }
-                else if(users.First().upasswd == code)
-                {
-                    users.First().ustate = 1;
-                    TempData["SuccessMessage"] = "Active Successful";
-                    return View();
-                }
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = "Failed to Active" + ex.Message;
-                return View();
-            }
-            TempData["ErrorMessage"] = "Failed to Active";
-            return View();
         }
     }
 }
