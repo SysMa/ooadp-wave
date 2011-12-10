@@ -17,10 +17,17 @@ namespace Wave
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+               "Active",
+               "Activation-{id}-{code}",
+               new { controller = "Main", action = "Activation", id = (string)null, path = (string)null }
+           );
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Main", action = "Main", id = UrlParameter.Optional } // Parameter defaults
             );
+
 
         }
 
