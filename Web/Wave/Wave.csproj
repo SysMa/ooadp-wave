@@ -174,7 +174,7 @@
     <Content Include="Views\Admin\Orgs.aspx" />
     <Content Include="Views\Admin\ReviewActivities.aspx" />
     <Content Include="Views\Admin\UserDetails.aspx" />
-    <Content Include="Views\Main\Activation.aspx" />
+    <Content Include="Views\User\Activation.aspx" />
     <Content Include="Views\Main\Main.aspx" />
     <Content Include="Views\Main\Register.aspx" />
     <Content Include="Views\Main\ViewActivities.aspx" />

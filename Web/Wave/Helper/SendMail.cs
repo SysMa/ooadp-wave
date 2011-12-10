@@ -16,8 +16,8 @@ namespace Wave.Helper
 {
     public static class SendMail
     {
-        static string from = "1050282973@qq.com";
-        static string from_pwd = "msq19891221";
+        static string from = "2352695754@qq.com";
+        static string from_pwd = "waveproject";
         static int from_port = 25;
         static string from_server = "smtp.qq.com";
 

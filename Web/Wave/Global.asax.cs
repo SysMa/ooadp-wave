@@ -18,8 +18,8 @@ namespace Wave
 
             routes.MapRoute(
                "Active",
-               "Activation-{id}-{code}",
-               new { controller = "Main", action = "Activation", id = (string)null, path = (string)null }
+               "User/Activation-{id}-{code}",
+               new { controller = "User", action = "Activation", id = (string)null, path = (string)null }
            );
 
             routes.MapRoute(

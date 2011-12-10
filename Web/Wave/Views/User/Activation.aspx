@@ -8,7 +8,7 @@
 <center>
 <br />
 <br />
-<a href="Main">
+<a href="ChangeInfo">
     <h2 style="font-size:xx-large" >Congretulations.</h2>
     <img  width="750px" src="../../Content/Images/Welcome.jpg" alt="Welcom to WAVE." />
 </a>
