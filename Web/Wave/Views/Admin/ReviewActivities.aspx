@@ -17,6 +17,8 @@
         <div class="demo">
             <ul id="list" class="image-grid">
                 <%  int i = 0;
+                    int type = (int)Session["waveType"];
+                    string username = (string)Session["waveAccount"];
                     foreach (var item in Model)
                     {
                         i++;
@@ -26,9 +28,10 @@
                             path = "~/Content/Images/noavater.gif";
                         }%>
                     <li data-id="id-<%=i %>">
-                        <%= Html.Image("activity_pic" + i, ResolveUrl(path),
-                                        "No Pic", new { style = "width:100px;height:100px" })%>
-                        <strong><%: Html.ActionLink(item.actname, "Details", new { id = item.actid })%></strong>
+                        <a href="/Activity/ActivityDetails/<%=item.actid %>?usertype=<%=type %>&username=<%=username %>">
+                            <%= Html.Image("activity_pic" + i, ResolveUrl(path),
+                                "No Pic", new { style = "width:128px;height:128px" })%></a>
+                        <strong><%=item.actname%></strong>
                     </li>
                 <% } %>
             </ul>
