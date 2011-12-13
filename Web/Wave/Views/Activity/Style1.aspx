@@ -16,34 +16,36 @@
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("ul#hide").hide();
-            $("ul#show").show();
+            $("li#act").hide();
+            $("li#peo").show();
+            $("h2#act").css("cursor", "pointer");
+            $("h2#peo").css("cursor", "pointer");
 
-            $("ul#show").click(function () {
-                if ($("#hide").is(":hidden")) {
-                    $("#hide").show();
+            $("h2#act").click(function () {
+                if ($("li#peo").is(":hidden")) {
+                    $("li#peo").show();
                 } else {
-                    $("#hide").hide();
+                    $("li#peo").hide();
                 }
 
-                if ($("#show").is(":hidden")) {
-                    $("#show").show();
+                if ($("li#act").is(":hidden")) {
+                    $("li#act").show();
                 } else {
-                    $("#show").hide();
+                    $("li#act").hide();
                 }
             });
 
-            $("ul#hide").click(function () {
-                if ($("#hide").is(":hidden")) {
-                    $("#hide").show();
+            $("h2#peo").click(function () {
+                if ($("li#act").is(":hidden")) {
+                    $("li#act").show();
                 } else {
-                    $("#hide").hide();
+                    $("li#act").hide();
                 }
 
-                if ($("#show").is(":hidden")) {
-                    $("#show").show();
+                if ($("li#peo").is(":hidden")) {
+                    $("li#peo").show();
                 } else {
-                    $("#show").hide();
+                    $("li#peo").hide();
                 }
             });
         });
@@ -114,18 +116,16 @@
         </div>
         <!-- end #content -->
         <div id="sidebar">
-            <ul id="show">
-                <li>
-                    <h2>Other Activities:</h2>
+            <ul>
+                <li id="act">
+                    <h2 id="act">Other Activities:</h2>
                     <ul>
                         <li>
                         </li>
                     </ul>
                 </li>
-            </ul>
-            <ul id="hide">
-                <li>
-                    <h2>They are your partners:</h2>
+                <li id="peo">
+                    <h2 id="peo">They are your partners:</h2>
                     <ul>
                         <li>
                         </li>
