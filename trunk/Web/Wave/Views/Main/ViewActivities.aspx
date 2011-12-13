@@ -32,43 +32,53 @@
         <div class="demo">
             <ul id="list" class="image-grid" style="height: 591px; ">
                 <%  int i = 0, j = 0;
-                for (;; i++)
-                {
-                    if (i < holdingActs.Length)
+                    int type = -1;
+                    string username = "1";
+                    if (Session["waveType"] != null)
                     {
-                        j++;
-                        String path = "~/Content/Images/pics/Activity_" + holdingActs[i].actid + ".jpg";
-                        if (!System.IO.File.Exists(Server.MapPath(path)))
-                        {
-                            path = "~/Content/Images/noavater.gif";
-                        }%>
-                        <li data-id="id-<%= j %>" class="holding">
-                            <a href="/Activity/ActivityDetails/<%=holdingActs[i].actid %>">
-                                <%= Html.Image("activity_pic" + i, ResolveUrl(path),
-                                "No Pic", new { style = "width:128px;height:128px" })%></a>
-                            <strong><%=holdingActs[i].actname%></strong>
-                        </li>
-                    <%}
-                    if (i < stopedActs.Length)
-                    {
-                        j++;
-                        String path = "~/Content/Images/pics/Activity_" + stopedActs[i].actid + ".jpg";
-                        if (!System.IO.File.Exists(Server.MapPath(path)))
-                        {
-                            path = "~/Content/Images/noavater.gif";
-                        }%>
-                        <li data-id="id-<%= j %>" class="stoped">
-                            <a href="/Activity/ActivityDetails/<%=stopedActs[i].actid %>">
-                                <%= Html.Image("activity_pic" + i, ResolveUrl(path),
-                                "No Pic", new { style = "width:128px;height:128px" })%></a>
-                            <strong><%=stopedActs[i].actname%></strong>
-                        </li>
-                    <%}
-                    if (i >= holdingActs.Length && i >= stopedActs.Length)
-                    {
-                        break;
+                        type = (int)Session["waveType"];
                     }
-                } %>
+                    if (Session["waveAccount"] != null)
+                    {
+                        username = (string)Session["waveAccount"];
+                    }
+                    for (;; i++)
+                    {
+                        if (i < holdingActs.Length)
+                        {
+                            j++;
+                            String path = "~/Content/Images/pics/Activity_" + holdingActs[i].actid + ".jpg";
+                            if (!System.IO.File.Exists(Server.MapPath(path)))
+                            {
+                                path = "~/Content/Images/noavater.gif";
+                            }%>
+                            <li data-id="id-<%= j %>" class="holding">
+                                <a href="/Activity/ActivityDetails/<%=holdingActs[i].actid %>?usertype=<%=type %>&username=<%=username %>">
+                                    <%= Html.Image("holding_pic" + i, ResolveUrl(path),
+                                    "No Pic", new { style = "width:128px;height:128px" })%></a>
+                                <strong><%=holdingActs[i].actname%></strong>
+                            </li>
+                        <%}
+                        if (i < stopedActs.Length)
+                        {
+                            j++;
+                            String path = "~/Content/Images/pics/Activity_" + stopedActs[i].actid + ".jpg";
+                            if (!System.IO.File.Exists(Server.MapPath(path)))
+                            {
+                                path = "~/Content/Images/noavater.gif";
+                            }%>
+                            <li data-id="id-<%= j %>" class="stoped">
+                                <a href="/Activity/ActivityDetails/<%=stopedActs[i].actid %>?usertype=<%=type %>&username=<%=username %>">
+                                    <%= Html.Image("stoped_pic" + i, ResolveUrl(path),
+                                    "No Pic", new { style = "width:128px;height:128px" })%></a>
+                                <strong><%=stopedActs[i].actname%></strong>
+                            </li>
+                        <%}
+                        if (i >= holdingActs.Length && i >= stopedActs.Length)
+                        {
+                            break;
+                        }
+                    } %>
             </ul>
         </div>
     <%} %>

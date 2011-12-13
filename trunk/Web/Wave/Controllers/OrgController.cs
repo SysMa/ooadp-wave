@@ -207,12 +207,22 @@ namespace Wave.Controllers
         [HttpPost]
         public ActionResult ApplyActivities(Activity activity)
         {
+            if (!ModelState.IsValid)
+                return View();
+            string user = Session["waveAccount"].ToString();
             try
             {
+                var account = (from m in _db.Org
+                               where m.orgname == user
+                               select m).First();
+                activity.orgname = account.orgname;
+                _db.AddToActivity(activity);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception exception)
             {
+                TempData["ErrorMessage"] = "Activity apply has failed because: " + exception.Message;
                 return View();
             }
         }

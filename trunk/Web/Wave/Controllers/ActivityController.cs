@@ -8,9 +8,10 @@ namespace Wave.Controllers
 {
     public class ActivityController : Controller
     {
+        private Wave.Models.WaveWebEntities _db = new Models.WaveWebEntities();
+
         //
         // GET: /Activity/
-        private Wave.Models.WaveWebEntities _db = new Models.WaveWebEntities();
 
         public ActionResult Index()
         {
@@ -20,9 +21,39 @@ namespace Wave.Controllers
         //
         // GET: /Activity/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult ActivityDetails(int id)
         {
-            return View();
+            string type = Request.QueryString["type"];
+            string username = Request.QueryString["username"];
+            try
+            {
+                var activity = (from m in _db.Activity
+                               where m.actid == id
+                               select m).First();
+                if (type == "2")
+                {
+                    if (activity.orgname != username)
+                    {
+                        Session.Clear();
+                        return RedirectToAction("Main", "Main");
+                    }
+                }
+                else if (type == "1")
+                {
+                }
+                else if (type == "3")
+                {
+                }
+                else if (type == "-1")
+                {
+                }
+                return View(activity);
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
+                return View();
+            }
         }
 
         //

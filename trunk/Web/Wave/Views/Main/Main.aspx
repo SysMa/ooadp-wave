@@ -67,6 +67,16 @@
     <div class="demo">
         <ul id="list" class="image-grid" style="height: 591px; ">
             <%  int i = 0, j = 0;
+                int type = -1;
+                string username = "1";
+                if (Session["waveType"] != null)
+                {
+                    type = (int)Session["waveType"];
+                }
+                if (Session["waveAccount"] != null)
+                {
+                    username = (string)Session["waveAccount"];
+                }
                 Wave.Models.Activity[] actList = ViewData["actList"] as Wave.Models.Activity[];
                 Wave.Models.Org[] orgList = ViewData["orgList"] as Wave.Models.Org[];
                 for (;; i++)
@@ -80,7 +90,7 @@
                             path = "~/Content/Images/noavater.gif";
                         }%>
                         <li data-id="id-<%= j %>" class="act">
-                            <a href="/Activity/ActivityDetails/<%=actList[i].actid %>">
+                            <a href="/Activity/ActivityDetails/<%=actList[i].actid %>?usertype=<%=type %>&username=<%=username %>">
                                 <%= Html.Image("activity_pic" + i, ResolveUrl(path),
                                 "No Pic", new { style = "width:128px;height:128px" })%></a>
                             <strong><%=actList[i].actname%></strong>
