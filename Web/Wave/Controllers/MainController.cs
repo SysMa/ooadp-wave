@@ -284,5 +284,94 @@ namespace Wave.Controllers
                 return RedirectToAction("Main");
             }
         }
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult ForgotPassword(LoginModel toCheck)
+        {
+            try
+            {
+                switch (toCheck.type)
+                {
+                    case 0:
+                        {
+                            TempData["WarningMessage"] = "I am sorry. But I can' help.";
+                        }
+                        break;
+                    case 1:
+                        {
+                            TempData["WarningMessage"] = "I am sorry. Ask for your manager.";
+                        }
+                        break;
+                    case 2:
+                        {
+                            var account = (from m in _db.Org
+                                           where m.orgname == toCheck.account
+                                           select m);
+                            if (account.Count() == 0)
+                            {
+                                TempData["ErrorMessage"] = "Check your account, please! ";
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    string content = "Your Password is " + account.First().opasswd;
+
+                                    if (!SendMail.send(account.First().oemail, content))
+                                    {
+                                        TempData["ErrorMessage"] = "Encounter error while trying to send your password to your email..";
+                                    };
+
+                                    TempData["SuccessMessage"] = "An Email has been sent to you. Check it.";
+                                }
+                                catch (Exception ex)
+                                {
+                                    TempData["ErrorMessage"] = "Encounter error while trying to send your password to your email.." + ex.Message;
+                                }
+                            }
+                        }
+                        break;
+                    case 3:
+                        {
+                            var account = (from m in _db.Users
+                                           where m.username == toCheck.account
+                                           select m);
+                            if (account.Count() == 0)
+                            {
+                                TempData["ErrorMessage"] = "Check your account, please! ";
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    string content = "Your Password is " + account.First().upasswd;
+
+                                    if (!SendMail.send(account.First().uemail, content))
+                                    {
+                                        TempData["ErrorMessage"] = "Encounter error while trying to send your password to your email..";
+                                    };
+
+                                    TempData["SuccessMessage"] = "An Email has been sent to you. Check it.";
+                                }
+                                catch (Exception ex)
+                                {
+                                    TempData["ErrorMessage"] = "Encounter error while trying to send your password to your email.." + ex.Message;
+                                }
+                            }
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Encounter error." + ex.Message;
+            }
+            return RedirectToAction("Main");
+        }
     }
 }

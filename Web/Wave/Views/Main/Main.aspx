@@ -39,7 +39,7 @@
         <%= Html.DropDownListFor(model => model.type, list)%>
 
         <br /><br />
-        <%= Html.ActionLink("Forgot Password", "ForgotPassword")%> | 
+        <%= Html.ActionLink("Forgot Password", "ForgotPassword", "Main")%> | 
         <%= Html.ActionLink("Join Now", "Register")%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <button type="submit" id="user-login-button" >Log In</button>
     </form>

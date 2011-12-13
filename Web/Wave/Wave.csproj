@@ -189,6 +189,7 @@
     <Content Include="Views\Admin\Orgs.aspx" />
     <Content Include="Views\Admin\ReviewActivities.aspx" />
     <Content Include="Views\Admin\UserDetails.aspx" />
+    <Content Include="Views\Main\ForgotPassword.aspx" />
     <Content Include="Views\User\Activation.aspx" />
     <Content Include="Views\Main\Main.aspx" />
     <Content Include="Views\Main\Register.aspx" />
