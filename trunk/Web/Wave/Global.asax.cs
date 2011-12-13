@@ -27,8 +27,6 @@ namespace Wave
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Main", action = "Main", id = UrlParameter.Optional } // Parameter defaults
             );
-
-
         }
 
         protected void Application_Start()

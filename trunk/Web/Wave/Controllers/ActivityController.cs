@@ -133,5 +133,11 @@ namespace Wave.Controllers
                 return View();
             }
         }
+
+        public ActionResult Style1()
+        {
+            
+            return View();
+        }
     }
 }

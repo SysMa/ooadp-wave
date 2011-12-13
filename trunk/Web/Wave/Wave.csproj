@@ -130,6 +130,8 @@
     <Content Include="Content\CSS\jquery.ui.datepicker.css" />
     <Content Include="Content\CSS\main.css" />
     <Content Include="Content\CSS\modules.css" />
+    <Content Include="Content\CSS\slidertron.css" />
+    <Content Include="Content\CSS\style1.css" />
     <Content Include="Content\CSS\uploadify.css" />
     <Content Include="Content\Images\cancel.png" />
     <Content Include="Content\Images\main\buttons.png" />
@@ -140,6 +142,17 @@
     <Content Include="Content\Images\message\warning.png" />
     <Content Include="Content\Images\noavater.gif" />
     <Content Include="Content\Images\noavater_small.jpg" />
+    <Content Include="Content\Images\Style1\img01.jpg" />
+    <Content Include="Content\Images\Style1\img02.jpg" />
+    <Content Include="Content\Images\Style1\img03.jpg" />
+    <Content Include="Content\Images\Style1\img04.jpg" />
+    <Content Include="Content\Images\Style1\img05.jpg" />
+    <Content Include="Content\Images\Style1\img06.jpg" />
+    <Content Include="Content\Images\Style1\img07.jpg" />
+    <Content Include="Content\Images\Style1\img08.jpg" />
+    <Content Include="Content\Images\Style1\img09.jpg" />
+    <Content Include="Content\Images\Style1\img10.jpg" />
+    <Content Include="Content\Images\Style1\img11.jpg" />
     <Content Include="Content\Images\ui-bg_glass_100_f6f6f6_1x400.png" />
     <Content Include="Content\Images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
     <Content Include="Content\Images\ui-icons_ef8c08_256x240.png" />
@@ -156,11 +169,13 @@
     <Content Include="Scripts\jquery-ui-1.8.16.custom.min.js" />
     <Content Include="Scripts\jquery-ui-sliderAccess.js" />
     <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery.slidertron-0.1.js" />
     <Content Include="Scripts\jquery.ui.datepicker.js" />
     <Content Include="Scripts\jquery.uploadify.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\showImg.js" />
     <Content Include="Scripts\uploader.swf" />
+    <Content Include="Views\Activity\Style1.aspx" />
     <Content Include="Views\Admin\ChangeInfo.aspx" />
     <Content Include="Views\Admin\ChangePwd.aspx" />
     <Content Include="Views\Admin\CreateOrg.aspx" />
@@ -216,9 +231,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Activity\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Shared\Main.Master" />
   </ItemGroup>
