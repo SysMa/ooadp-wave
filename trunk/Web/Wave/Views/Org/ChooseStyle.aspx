@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>Wave | Chose the Best Style for Your Page</title>
+		<title>Wave | Choose the Best Style for Your Page</title>
 		<link rel="stylesheet" href="../../Content/CSS/basic.css" type="text/css" />
 		<style type="text/css">
 			@import "../../Content/CSS/galleriffic-2.css"
@@ -16,14 +16,14 @@
 		<script type="text/javascript" src="../../Scripts/jquery.opacityrollover.js"></script>
 		<!-- We only want the thunbnails to display when javascript is disabled -->
 		<script type="text/javascript">
-			document.write('<style>.noscript { display: none; }</style>');
+		    document.write('<style>.noscript { display: none; }</style>');
 		</script>
 	</head>
 	<body>
 		<div id="page">
 			<div id="container">
 				<h1 style="color:#46C5EC">Wave</h1>
-				<h2 style="color:#46C5EC">Chose the Best Style for Your Page</h2>
+				<h2 style="color:#46C5EC">Choose the Best Style for Your Page</h2>
 
 				<!-- Start Advanced Gallery Html Containers -->
 				<div id="gallery" class="content">
@@ -36,24 +36,37 @@
 				</div>
 				<div id="thumbs" class="navigation">
 					<ul class="thumbs noscript">
-						<li>
-							<a class="thumb" name="leaf" href="http://farm4.static.flickr.com/3261/2538183196_8baf9a8015.jpg" title="Title #0">
-								<img src="http://farm4.static.flickr.com/3261/2538183196_8baf9a8015_s.jpg" alt="Title #0" />
+						<li id="0">
+							<a class="thumb" name="style1" href="../../Content/Images/style1.png" title="Style1">
+								<img src="../../Content/Images/style1.png" alt="Title #0" style="width:125px; height:125px" />
 							</a>
 							<div class="caption">
-								<div class="download">
-									<a href="http://farm4.static.flickr.com/3127/2538173236_b704e7622e_b.jpg">View Large</a>
-								</div>
-								<div class="image-title">Title #0</div>
-								<div class="image-desc">Description</div>
+                                <div class="download" style="font-size:xx-large">
+								    <%= Html.ActionLink("Choose it.", "ApplyActivities", new { pageid = 0 }) %>
+							    </div>
+								<div class="image-title">Style1</div>
+							</div>
+						</li>
+                        <li id="1">
+							<a class="thumb" name="style2" href="../../Content/Images/style1.png" title="Style2">
+								<img src="../../Content/Images/style1.png" alt="Title #0" style="width:125px; height:125px" />
+							</a>
+							<div class="caption">
+                                <div class="download" style="font-size:xx-large">
+								    <%= Html.ActionLink("Choose it.", "ApplyActivities", new { pageid = 1 }) %>
+							    </div>
+								<div class="image-title">Style2</div>
 							</div>
 						</li>
 					</ul>
 				</div>
 				<div style="clear: both;"></div>
+                <div style="font-size:xx-large;">
+                    <%= Html.ActionLink("Back", "Index") %>
+                </div>
 			</div>
 		</div>
-		<div id="footer">&copy; 2009 Trent Foley</div>
+		<div id="footer">&copy;</div>
 		<script type="text/javascript">
 			jQuery(document).ready(function ($) {
 				// We only want these styles applied when javascript is enabled
@@ -84,8 +97,6 @@
 					loadingContainerSel: '#loading',
 					renderSSControls: true,
 					renderNavControls: true,
-					playLinkText: 'Play Slideshow',
-					pauseLinkText: 'Pause Slideshow',
 					prevLinkText: '&lsaquo; Previous Model',
 					nextLinkText: 'Next Model &rsaquo;',
 					nextPageLinkText: 'Next &rsaquo;',

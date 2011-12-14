@@ -76,8 +76,6 @@
 		loadingContainerSel:       '',
 		renderSSControls:          true,
 		renderNavControls:         true,
-		playLinkText:              'Play',
-		pauseLinkText:             'Pause',
 		prevLinkText:              'Previous',
 		nextLinkText:              'Next',
 		nextPageLinkText:          'Next &rsaquo;',
@@ -109,7 +107,6 @@
 
 			// This function is attached to the click event of generated hyperlinks within the gallery
 			clickHandler: function(e, link) {
-				this.pause();
 
 				if (!this.enableHistory) {
 					// The href attribute holds the unique hash for an image
@@ -374,55 +371,6 @@
 				return prevIndex;
 			},
 
-			// Pauses the slideshow
-			pause: function() {
-				this.isSlideshowRunning = false;
-				if (this.slideshowTimeout) {
-					clearTimeout(this.slideshowTimeout);
-					this.slideshowTimeout = undefined;
-				}
-
-				if (this.$controlsContainer) {
-					this.$controlsContainer
-						.find('div.ss-controls a').removeClass().addClass('play')
-						.attr('title', this.playLinkText)
-						.attr('href', '#play')
-						.html(this.playLinkText);
-				}
-				
-				return this;
-			},
-
-			// Plays the slideshow
-			play: function() {
-				this.isSlideshowRunning = true;
-
-				if (this.$controlsContainer) {
-					this.$controlsContainer
-						.find('div.ss-controls a').removeClass().addClass('pause')
-						.attr('title', this.pauseLinkText)
-						.attr('href', '#pause')
-						.html(this.pauseLinkText);
-				}
-
-				if (!this.slideshowTimeout) {
-					var gallery = this;
-					this.slideshowTimeout = setTimeout(function() { gallery.ssAdvance(); }, this.delay);
-				}
-
-				return this;
-			},
-
-			// Toggles the state of the slideshow (playing/paused)
-			toggleSlideshow: function() {
-				if (this.isSlideshowRunning)
-					this.pause();
-				else
-					this.play();
-
-				return this;
-			},
-
 			// Advances the slideshow to the next image and delegates navigation to the
 			// history plugin when history is enabled
 			// enableHistory is true
@@ -483,8 +431,6 @@
 			// @param {Boolean} dontPause Specifies whether to pause the slideshow.
 			// @param {Boolean} bypassHistory Specifies whether to delegate navigation to the history plugin when history is enabled.
 			gotoIndex: function(index, dontPause, bypassHistory) {
-				if (!dontPause)
-					this.pause();
 				
 				if (index < 0) index = 0;
 				else if (index >= this.data.length) index = this.data.length-1;
@@ -890,23 +836,6 @@
 		// Setup controls
 		if (this.controlsContainerSel) {
 			this.$controlsContainer = $(this.controlsContainerSel).empty();
-			
-			if (this.renderSSControls) {
-				if (this.autoStart) {
-					this.$controlsContainer
-						.append('<div class="ss-controls"><a href="#pause" class="pause" title="'+this.pauseLinkText+'">'+this.pauseLinkText+'</a></div>');
-				} else {
-					this.$controlsContainer
-						.append('<div class="ss-controls"><a href="#play" class="play" title="'+this.playLinkText+'">'+this.playLinkText+'</a></div>');
-				}
-
-				this.$controlsContainer.find('div.ss-controls a')
-					.click(function(e) {
-						gallery.toggleSlideshow();
-						e.preventDefault();
-						return false;
-					});
-			}
 		
 			if (this.renderNavControls) {
 				this.$controlsContainer
@@ -966,10 +895,6 @@
 				}
 			});
 		}
-
-		// Auto start the slideshow
-		if (this.autoStart)
-			this.play();
 
 		// Kickoff Image Preloader after 1 second
 		setTimeout(function() { gallery.preloadInit(); }, 1000);

@@ -107,9 +107,9 @@
                 <div class="post">
                     <h2 class="title">Slogan: &nbsp&nbsp<%: Model.slogan %></h2>
                     <div class="entry">
-                        <ul>
-                            <li>
-                                <span>
+                        <table style="width: 569px; table-layout:fixed; word-wrap:break-word;">
+                            <tr>
+                                <td>
                                 <%  String path = "~/Content/Images/pics/Activity_" + Model.actid + ".jpg";
                                     if (!System.IO.File.Exists(Server.MapPath(path)))
                                     {
@@ -117,17 +117,17 @@
                                     } %>
                                     <%= Html.Image("logo_pic", ResolveUrl(path),
                                     "No Pic", new { style = "width:100px;height:100px" })%>
-                                </span>
-                            </li>
-                            <li>
-                                <span style="font-size:large">&nbsp&nbsp&nbsp&nbsp<%: Model.acttext %></span>
-                            </li>
-                            <li>
-                                <span style="font-size:large">Duration:&nbsp<%: Model.starttime %> - <%: Model.endtime %></span>
-                            </li>
-                            <li>
-                                <span style="font-size:large">CurrentNumber/MaxNumber:&nbsp<%: Model.usenum %>/<%: Model.maxuser %></span>
-                            </li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:large">&nbsp&nbsp&nbsp&nbsp<%: Model.acttext %></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:large">Duration:&nbsp<%: Model.starttime %> - <%: Model.endtime %></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:large">CurrentNumber/MaxNumber:&nbsp<%: Model.usenum %>/<%: Model.maxuser %></td>
+                            </tr>
                             <%  if (visitor != "org")
                                 {
                                     String orgController = "Admin";
@@ -138,13 +138,13 @@
                                         orgAction = "OrgDetails";
                                     }
                                  %>
-                                    <li>
-                                        <span style="font-size:large">Organization: 
+                                    <tr>
+                                        <td style="font-size:large">Organization: 
                                             <%= Html.ActionLink(Model.orgname, orgAction, orgController, new { id = Model.orgname }, null) %>
-                                        </span>
-                                    </li>
+                                        </td>
+                                    </tr>
                             <%} %>
-                        </ul>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -55,7 +55,8 @@
 
     <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
 
-    <% using (Html.BeginForm()) {%>
+    <% using (Html.BeginForm("ApplyActivities", "Org", FormMethod.Post, new { enctype = "multipart/form-data", id = "form" }))
+       {%>
         <%: Html.ValidationSummary(true) %>
 
         <fieldset>
@@ -129,6 +130,7 @@
                 </tr>
             </table>
         </fieldset>
+        <%= Html.HiddenFor(model => model.pageid, new Dictionary<string, object>() { { "value", ViewData["pageid"] } }) %>
 
     <% } %>
 

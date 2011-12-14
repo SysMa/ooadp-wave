@@ -97,7 +97,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
     <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
     <label style="font-size:large" >Welcome, Organization: <%= Session["waveAccount"] %></label>&nbsp&nbsp&nbsp
-    <%: Html.ActionLink("Apply Activities", "ApplyActivities") %> |
+    <%: Html.ActionLink("Apply Activities", "ChooseStyle") %> |
     <%: Html.ActionLink("Modify Infomation", "ChangeInfo") %> |
     <%: Html.ActionLink("Change Password", "ChangePwd") %> |
     <%: Html.ActionLink("Log Out", "LogOut") %>

@@ -189,15 +189,29 @@ namespace Wave.Controllers
         }
 
         //
-        // GET: /Org/ApplyActivities
+        // GET: /Org/ChooseStyle
 
-        public ActionResult ApplyActivities()
+        public ActionResult ChooseStyle()
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
             {
                 Session.Clear();
                 return RedirectToAction("Main", "Main");
             }
+            return View();
+        }
+
+        //
+        // GET: /Org/ApplyActivities
+
+        public ActionResult ApplyActivities(int pageid)
+        {
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
+            {
+                Session.Clear();
+                return RedirectToAction("Main", "Main");
+            }
+            ViewData["pageid"] = pageid;
             return View();
         } 
 
@@ -281,11 +295,6 @@ namespace Wave.Controllers
             {
                 return View();
             }
-        }
-
-        public ActionResult ChooseStyle()
-        {
-            return View();
         }
     }
 }
