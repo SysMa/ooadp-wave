@@ -7,6 +7,27 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
     <script type="text/javascript" src="../../Scripts/showImg.js"></script>
+    <script type="text/javascript" src="../../Scripts/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        $.noConflict();
+        jQuery(document).ready(function ($) {
+            $("#oemail").bind('change',
+            function () {
+                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                if (!emailReg.test(this.value)) {
+                    //alert("This isnot a email.");
+                    $("#error").css("color", "red");
+                    $("#error").html("This is not a Email address.");
+                    $(":submit").hide();
+                    return false;
+                } else {
+                    //alert("This is a email.");
+                    $(":submit").show();
+                    return true;
+                }
+            });
+        })
+    </script>
 
     <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
 
@@ -38,7 +59,7 @@
                 <tr>
                     <td align="right">Email:</td>
                     <td>
-                        <%: Html.TextBoxFor(model => model.oemail, new Dictionary<string, object>() { { "maxlength", "50" } })%>
+                        <%: Html.TextBoxFor(model => model.oemail, new Dictionary<string, object>() { { "maxlength", "50" } })%><label id="error"></label>
                     </td>
                 </tr>
                 <tr>
