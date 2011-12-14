@@ -1,21 +1,18 @@
-﻿function $(o) {
-    return document.getElementById(o);
-}
-function checkImgCss(o, img) {
+﻿function checkImgCss(o, img) {
     if (!/\.((jpg)|(bmp)|(gif)|(png))$/ig.test(o.value)) {
         alert('只能上传jpg,bmp,gif,png格式图片!');
         o.outerHTML = o.outerHTML;
     }
     else {
-        if ($("avater_pic") !== null) {
-            $(img).removeChild($("avater_pic"));
+        if (document.getElementById("avater_pic") !== null) {
+            document.getElementById(img).removeChild(document.getElementById("avater_pic"));
         }
-        $(img).filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = o.value;
+        document.getElementById(img).filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = o.value;
     }
 }
 function displayImage(container, dataURL) {
-    if ($("avater_pic") !== null) {
-        container.removeChild($("avater_pic"));
+    if (document.getElementById("avater_pic") !== null) {
+        container.removeChild(document.getElementById("avater_pic"));
     }
     var img = document.createElement('img');
     img.src = dataURL;
@@ -34,7 +31,7 @@ function handleFiles(files, label) {
 
         var reader = new FileReader();
         reader.onload = function (e) {
-            displayImage($(label), e.target.result);
+            displayImage(document.getElementById(label), e.target.result);
         }
         reader.readAsDataURL(file);
     }

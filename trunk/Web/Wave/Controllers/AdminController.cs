@@ -563,5 +563,37 @@ namespace Wave.Controllers
             }
         }
 
+        public ActionResult PassActivity(int id)
+        {
+            String url = Request.QueryString["url"];
+
+            try
+            {
+                String username = Session["waveAccount"] as String;
+
+                var admin = (from m in _db.Admin
+                             where m.adminname == username
+                             select m).First();
+
+                var activity = (from m in _db.Activity
+                                where m.actid == id
+                                select m).First();
+
+                activity.Admin.Add(admin);
+                if (activity.Admin.Count() >= _db.Admin.Count())
+                {
+                    activity.actstate = 1;
+                }
+
+                _db.ApplyCurrentValues<Activity>(activity.EntityKey.EntitySetName, activity);
+                _db.SaveChanges();
+                return RedirectToAction("Orgs");
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Activity review has failed because: " + exception.Message;
+                return Redirect(url);
+            }
+        }
     }
 }
