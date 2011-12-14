@@ -18,10 +18,10 @@
         $(document).ready(function () {
             $("li#act").hide();
             $("li#peo").show();
-            $("h2#act").css("cursor", "pointer");
-            $("h2#peo").css("cursor", "pointer");
+            $("h2#acth").css("cursor", "pointer");
+            $("h2#peoh").css("cursor", "pointer");
 
-            $("h2#act").click(function () {
+            $("h2#acth").click(function () {
                 if ($("li#peo").is(":hidden")) {
                     $("li#peo").show();
                 } else {
@@ -35,7 +35,7 @@
                 }
             });
 
-            $("h2#peo").click(function () {
+            $("h2#peoh").click(function () {
                 if ($("li#act").is(":hidden")) {
                     $("li#act").show();
                 } else {
@@ -62,7 +62,7 @@
     <!-- end #logo -->
     <div id="header">
         <div id="menu">
-            <h1 class="title">&nbsp&nbsp<%: Model.actname %></h1>
+            <h1 class="title" style="margin-top:10px">&nbsp&nbsp<%: Model.actname %></h1>
         </div>
     </div>
     <!-- end #header -->
@@ -123,10 +123,16 @@
                                 <td style="font-size:large">&nbsp&nbsp&nbsp&nbsp<%: Model.acttext %></td>
                             </tr>
                             <tr>
-                                <td style="font-size:large">Duration:&nbsp<%: Model.starttime %> - <%: Model.endtime %></td>
+                                <td style="font-size:large">
+                                    <span style="color:GREEN">Duration:</span>
+                                    &nbsp<%: Model.starttime %> - <%: Model.endtime %>
+                                </td>
                             </tr>
                             <tr>
-                                <td style="font-size:large">CurrentNumber/MaxNumber:&nbsp<%: Model.usenum %>/<%: Model.maxuser %></td>
+                                <td style="font-size:large">
+                                    <span style="color:GREEN">CurrentNumber/MaxNumber:</span>
+                                    &nbsp<%: Model.usenum %>/<%: Model.maxuser %>
+                                </td>
                             </tr>
                             <%  if (visitor != "org")
                                 {
@@ -139,8 +145,9 @@
                                     }
                                  %>
                                     <tr>
-                                        <td style="font-size:large">Organization: 
-                                            <%= Html.ActionLink(Model.orgname, orgAction, orgController, new { id = Model.orgname }, null) %>
+                                        <td style="font-size:large">
+                                            <span style="color:GREEN">Organization:</span>
+                                            &nbsp<%= Html.ActionLink(Model.orgname, orgAction, orgController, new { id = Model.orgname }, null)%>
                                         </td>
                                     </tr>
                             <%} %>
@@ -160,7 +167,7 @@
                         %>
                         <ul>
                             <li id="act">
-                                <h2 id="act">Other Activities:</h2>
+                                <h2 id="acth">Other Activities:</h2>
                                 <ul>
                                     <%
                                         for (int i = 0; i < acts.Length && i < 10; i++)
@@ -183,12 +190,12 @@
                         </ul>
                         <ul>
                             <li id="peo">
-                                <h2 id="peo">Other Participator:</h2>
+                                <h2 id="peoh">Other Participator:</h2>
                                 <ul>
                                     <%
                                         for (int i = 0; i < part.Length && i < 10; i++)
                                         {
-                                            String imgpath = "~/Content/Images/pics/Activity_" + part[i].username + ".jpg";
+                                            String imgpath = "~/Content/Images/pics/User_" + part[i].username + ".jpg";
                                             if (!System.IO.File.Exists(Server.MapPath(path)))
                                             {
                                                 path = "~/Content/Images/noavater.gif";
@@ -197,6 +204,7 @@
                                             <li>
                                                 <%= Html.Image("part" + i, ResolveUrl(imgpath), 
                                                     "No Pic", new { style = "width:80px;height:80px" })%>
+                                                <br />
                                                 <strong><%=part[i].username%></strong>
                                             </li>
                                     <%  } %>
@@ -206,7 +214,7 @@
                     <%}
                     else if (visitor == "admin")
                     { %>
-                        <span style="font-size:xx-large"><h2>
+                        <h2 style="font-size:xx-large">
                         <% if (ViewData["review"] == null)
                            {%>
                             <%= Html.ActionLink("Pass The Activity", "PassActivity", "Admin", new { id = Model.actid, url = url }, null)%>
@@ -215,8 +223,43 @@
                            { %>
                            You have passed the activity.
                            <%} %>    
-                        </h2></span>
-                    <%} %>
+                        </h2>
+                  <%}
+                    else
+                    {
+                        String state = ViewData["state"] as String;
+                        if (state == "apply")
+                        {%>
+                            <h2 style="font-size:large">
+                                <%= Html.ActionLink("Edit The Activity", "EditActivity", "Org", new { id = Model.actid, url = url }, null)%>  
+                            </h2>
+                            <h2 style="font-size:large">
+                                <%= Html.ActionLink("Delete The Activity", "DeleteActivity", "Org", new { id = Model.actid, url = url }, null)%>  
+                            </h2>
+                  <%    }
+                        else 
+                        {
+                            Wave.Models.TakeActivity[] part = ViewData["part"] as Wave.Models.TakeActivity[];%>
+                            <h2>Participator:</h2>
+                            <ul>
+                                <%
+                                    for (int i = 0; i < part.Length && i < 10; i++)
+                                    {
+                                        String imgpath = "~/Content/Images/pics/User_" + part[i].username + ".jpg";
+                                        if (!System.IO.File.Exists(Server.MapPath(path)))
+                                        {
+                                            path = "~/Content/Images/noavater.gif";
+                                        }
+                                %>
+                                        <li>
+                                            <%= Html.Image("part" + i, ResolveUrl(imgpath), 
+                                                "No Pic", new { style = "width:80px;height:80px" })%>
+                                            <strong><%=part[i].username%></strong>
+                                        </li>
+                                <%  } %>
+                            </ul>
+                  <%    }
+                    } %>
             </div>
             <!-- end #sidebar -->
             <div style="clear: both;">&nbsp;</div>

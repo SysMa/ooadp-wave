@@ -71,6 +71,15 @@ namespace Wave.Controllers
                         Session.Clear();
                         return RedirectToAction("Main", "Main");
                     }
+                    if (activity.actstate == 0)
+                    {
+                        ViewData["state"] = "apply";
+                    }
+                    else
+                    {
+                        ViewData["state"] = "passed";
+                        ViewData["part"] = activity.TakeActivity.ToArray();
+                    }
                     ViewData["visitor"] = "org";
                 }
                 else if (type == "1")
@@ -92,9 +101,12 @@ namespace Wave.Controllers
                 }
                 else if (type == "3" || type == "-1")
                 {
-                    var acts = (from m in _db.Activity
-                                where m.orgname == activity.orgname
+                    var acts = (from m in (from m in _db.Activity
+                                           where m.orgname == activity.orgname
+                                           select m)
+                                where m.actstate == 1
                                 select m);
+
                     acts = (from m in acts
                             where m.actid != activity.actid
                             select m);
