@@ -278,5 +278,10 @@ namespace Wave.Controllers
                 return View();
             }
         }
+
+        public ActionResult ChooseStyle()
+        {
+            return View();
+        }
     }
 }

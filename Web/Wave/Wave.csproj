@@ -126,6 +126,8 @@
     <Content Include="App_Data\WaveWeb_log.ldf">
       <DependentUpon>WaveWeb.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\CSS\basic.css" />
+    <Content Include="Content\CSS\galleriffic-2.css" />
     <Content Include="Content\CSS\jquery-ui-1.8.16.custom.css" />
     <Content Include="Content\CSS\jquery.ui.datepicker.css" />
     <Content Include="Content\CSS\main.css" />
@@ -164,17 +166,21 @@
     <Content Include="Content\Script\slideshow.init.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\ga.js" />
+    <Content Include="Scripts\jquery-1.3.2.js" />
     <Content Include="Scripts\jquery-1.4.1-and-plugins.min.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.16.custom.min.js" />
     <Content Include="Scripts\jquery-ui-sliderAccess.js" />
     <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery.galleriffic.js" />
+    <Content Include="Scripts\jquery.opacityrollover.js" />
     <Content Include="Scripts\jquery.slidertron-0.1.js" />
     <Content Include="Scripts\jquery.ui.datepicker.js" />
     <Content Include="Scripts\jquery.uploadify.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\showImg.js" />
     <Content Include="Scripts\uploader.swf" />
+    <Content Include="Views\Org\ChooseStyle.aspx" />
     <Content Include="Views\Activity\Style1.aspx" />
     <Content Include="Views\Admin\ChangeInfo.aspx" />
     <Content Include="Views\Admin\ChangePwd.aspx" />
