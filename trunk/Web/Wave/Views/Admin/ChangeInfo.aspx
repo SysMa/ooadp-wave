@@ -1,11 +1,31 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewPage<Wave.Models.Admin>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Change Information
+    Change Information
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(":submit").hide();
 
+            $("#aemail").bind('change',
+            function () {
+                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                if (!emailReg.test(this.value)) {
+                    //alert("This isnot a email.");
+                    $("#error").css("color", "red");
+                    $("#error").html("This is not a Email address.");
+                    $(":submit").hide();
+                    return false;
+                } else {
+                    //alert("This is a email.");
+                    $(":submit").show();
+                    return true;
+                }
+            });
+        })
+    </script>
     <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
 
     <% using (Html.BeginForm()) {%>
@@ -22,7 +42,7 @@
                 <tr>
                     <td align="right">Email:</td>
                     <td>
-                        <%: Html.TextBoxFor(model => model.aemail, new Dictionary<string, object>() { { "maxlength", "50" } })%>
+                        <%: Html.TextBoxFor(model => model.aemail, new Dictionary<string, object>() { { "maxlength", "50" } })%><label id="error"></label>
                     </td>
                 </tr>
                 <tr>
