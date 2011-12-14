@@ -68,7 +68,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">Activity Picture:</td>
+                    <td align="right">Activity Logo:</td>
                     <td>
                         <div id="avater" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=,sizingMethod=scale);width:100px;height:100px;">
                             <%= Html.Image("avater_pic", ResolveUrl("~/Content/Images/noavater.gif"),

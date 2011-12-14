@@ -218,6 +218,10 @@ namespace Wave.Controllers
                 activity.orgname = account.orgname;
                 _db.AddToActivity(activity);
                 _db.SaveChanges();
+                if (Request.Files["avater_path"].FileName != "")
+                {
+                    Request.Files["avater_path"].SaveAs(Server.MapPath("~/Content/Images/pics/Activity_" + activity.actid + ".jpg"));
+                }
                 return RedirectToAction("Index");
             }
             catch (Exception exception)
