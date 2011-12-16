@@ -18,42 +18,16 @@ namespace Wave.Controllers
         {
             string type = Request.QueryString["usertype"];
             string username = Request.QueryString["username"];
+            string url = Request.QueryString["url"];
+            if (url == null)
+            {
+                url = Request.UrlReferrer.ToString();
+            }
             try
             {
                 var activity = (from m in _db.Activity
                                where m.actid == id
                                select m).First();
-
-                switch (activity.pageid)
-                {
-                    case 0:
-                    default:
-                        return RedirectToAction("Style1", new { id = id, type = type, username = username });
-                }
-            }
-            catch (Exception exception)
-            {
-                TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
-                return View();
-            }
-        }
-
-        public ActionResult Style1(int id)
-        {
-            if (Request.UrlReferrer == null)
-            {
-                Session.Clear();
-                return RedirectToAction("Main", "Main");
-            }
-            string type = Request.QueryString["type"];
-            string username = Request.QueryString["username"];
-            string url = Request.UrlReferrer.ToString();
-
-            try
-            {
-                var activity = (from m in _db.Activity
-                                where m.actid == id
-                                select m).First();
 
                 if (type == "2")
                 {
@@ -98,9 +72,10 @@ namespace Wave.Controllers
                 }
                 else if (type == "3" || type == "-1")
                 {
-                    var acts = (from m in (from m in _db.Activity
-                                           where m.orgname == activity.orgname
-                                           select m)
+                    var acts = (from m in
+                                    (from m in _db.Activity
+                                     where m.orgname == activity.orgname
+                                     select m)
                                 where m.actstate == 1
                                 select m);
 
@@ -132,8 +107,8 @@ namespace Wave.Controllers
                         ViewData["visitor"] = "user";
 
                         var part = (from m in activity.TakeActivity
-                                where m.username != username
-                                select m);
+                                    where m.username != username
+                                    select m);
                         ViewData["part"] = part.ToArray();
                     }
 
@@ -149,7 +124,10 @@ namespace Wave.Controllers
 
                 ViewData["returnUrl"] = url;
 
-                return View(activity);
+                String styleName = "Style";
+
+                styleName += (activity.pageid + 1);
+                return View(styleName, activity);
             }
             catch (Exception exception)
             {

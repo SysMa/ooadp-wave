@@ -236,6 +236,7 @@ namespace Wave.Controllers
                 return RedirectToAction("Main", "Main");
             }
 
+            string url = Request.UrlReferrer.ToString();
             string user = Session["waveAccount"].ToString();
             try
             {
@@ -268,7 +269,7 @@ namespace Wave.Controllers
                 _db.TakeActivity.AddObject(ta);
                 _db.SaveChanges();
 
-                return RedirectToAction("ActivityDetails", "Activity", new { id = id, usertype = 3, username = user });
+                return RedirectToAction("ActivityDetails", "Activity", new { id = id, usertype = 3, username = user, url = url });
             }
             catch (Exception exception)
             {
