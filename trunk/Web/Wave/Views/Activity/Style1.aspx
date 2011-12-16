@@ -150,7 +150,21 @@
                                             &nbsp<%= Html.ActionLink(Model.orgname, orgAction, orgController, new { id = Model.orgname }, null)%>
                                         </td>
                                     </tr>
-                            <%} %>
+                            <%      if (visitor == "user" && Model.actstate == 1)
+                                    {
+                                        String iftake = ViewData["take"] as String;
+                                        if (iftake == null)
+                                        {%>
+                                            <tr><td align="center" style="font-size:xx-large">
+                                                <%= Html.ActionLink("Join us", "JoinActivity", "User", new { id = Model.actid }, null)%>
+                                            </td></tr>
+                            <%          }
+                                        else
+                                        {%>
+                            <%                
+                                        }
+                                    }
+                                } %>
                         </table>
                     </div>
                 </div>
@@ -167,22 +181,23 @@
                         %>
                         <ul>
                             <li id="act">
-                                <h2 id="acth">Other Activities:</h2>
+                                <h2 id="acth" style="font-size:x-large">Other Activities:</h2>
                                 <ul>
                                     <%
                                         for (int i = 0; i < acts.Length && i < 10; i++)
                                         {
                                             String imgpath = "~/Content/Images/pics/Activity_" + acts[i].actid + ".jpg";
-                                            if (!System.IO.File.Exists(Server.MapPath(path)))
+                                            if (!System.IO.File.Exists(Server.MapPath(imgpath)))
                                             {
-                                                path = "~/Content/Images/noavater.gif";
+                                                imgpath = "~/Content/Images/noavater.gif";
                                             }
                                     %>
-                                            <li>
+                                            <li style="padding-left:40px;padding-top:10px;">
                                                 <a href="/Activity/ActivityDetails/<%=acts[i].actid %>?usertype=<%=type %>&username=<%=username %>">
-                                                <%= Html.Image("activity_pic" + i, ResolveUrl(path),
+                                                <%= Html.Image("activity_pic" + i, ResolveUrl(imgpath),
                                                     "No Pic", new { style = "width:80px;height:80px" })%></a>
-                                                <strong><%=acts[i].actname%></strong>
+                                                <br />
+                                                <strong style="font-size:large"><%=acts[i].actname%></strong>
                                             </li>
                                     <%  } %>
                                 </ul>
@@ -190,22 +205,22 @@
                         </ul>
                         <ul>
                             <li id="peo">
-                                <h2 id="peoh">Other Participator:</h2>
+                                <h2 id="peoh" style="font-size:x-large">Other Participator:</h2>
                                 <ul>
                                     <%
                                         for (int i = 0; i < part.Length && i < 10; i++)
                                         {
                                             String imgpath = "~/Content/Images/pics/User_" + part[i].username + ".jpg";
-                                            if (!System.IO.File.Exists(Server.MapPath(path)))
+                                            if (!System.IO.File.Exists(Server.MapPath(imgpath)))
                                             {
-                                                path = "~/Content/Images/noavater.gif";
+                                                imgpath = "~/Content/Images/noavater.gif";
                                             }
                                     %>
-                                            <li>
+                                            <li style="padding-left:40px;padding-top:10px;">
                                                 <%= Html.Image("part" + i, ResolveUrl(imgpath), 
                                                     "No Pic", new { style = "width:80px;height:80px" })%>
                                                 <br />
-                                                <strong><%=part[i].username%></strong>
+                                                <strong style="font-size:large"><%=part[i].username%></strong>
                                             </li>
                                     <%  } %>
                                 </ul>
@@ -230,35 +245,42 @@
                         String state = ViewData["state"] as String;
                         if (state == "apply")
                         {%>
-                            <h2 style="font-size:large">
-                                <%= Html.ActionLink("Edit The Activity", "EditActivity", "Org", new { id = Model.actid, url = url }, null)%>  
+                            <h2 style="font-size:x-large; height:90px">
+                                Your activity is still under review. 
                             </h2>
                             <h2 style="font-size:large">
-                                <%= Html.ActionLink("Delete The Activity", "DeleteActivity", "Org", new { id = Model.actid, url = url }, null)%>  
+                                <%= Html.ActionLink("Delete The Activity?", "DeleteActivity", "Org", new { id = Model.actid, url = url }, null)%>  
                             </h2>
                   <%    }
-                        else 
+                        else
                         {
                             Wave.Models.TakeActivity[] part = ViewData["part"] as Wave.Models.TakeActivity[];%>
-                            <h2>Participator:</h2>
+                            <h2 style="font-size:x-large">Participator: </h2>
                             <ul>
                                 <%
                                     for (int i = 0; i < part.Length && i < 10; i++)
                                     {
                                         String imgpath = "~/Content/Images/pics/User_" + part[i].username + ".jpg";
-                                        if (!System.IO.File.Exists(Server.MapPath(path)))
+                                        if (!System.IO.File.Exists(Server.MapPath(imgpath)))
                                         {
-                                            path = "~/Content/Images/noavater.gif";
+                                            imgpath = "~/Content/Images/noavater.gif";
                                         }
                                 %>
-                                        <li>
-                                            <%= Html.Image("part" + i, ResolveUrl(imgpath), 
+                                        <li style="padding-left:40px;padding-top:10px;">
+                                            <%= Html.Image("part" + i, ResolveUrl(imgpath),
                                                 "No Pic", new { style = "width:80px;height:80px" })%>
-                                            <strong><%=part[i].username%></strong>
+                                            <br />
+                                            <strong style="font-size:large"><%=part[i].username%></strong>
                                         </li>
                                 <%  } %>
                             </ul>
-                  <%    }
+                            <%  if (part.Length > 0)
+                                { %>
+                                    <h2 style="font-size:large">
+                                        <%= Html.ActionLink("More", "ParticipatorDetails", "Org", new { id = Model.actid }, null)%>  
+                                    </h2>
+                  <%            }
+                        }
                     } %>
             </div>
             <!-- end #sidebar -->

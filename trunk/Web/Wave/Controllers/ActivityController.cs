@@ -12,14 +12,6 @@ namespace Wave.Controllers
         private Wave.Models.WaveWebEntities _db = new Models.WaveWebEntities();
 
         //
-        // GET: /Activity/
-
-        public ActionResult Index()
-        {
-            return View(_db.Activity.ToList());
-        }
-
-        //
         // GET: /Activity/Details/5
 
         public ActionResult ActivityDetails(int id)
@@ -48,6 +40,11 @@ namespace Wave.Controllers
 
         public ActionResult Style1(int id)
         {
+            if (Request.UrlReferrer == null)
+            {
+                Session.Clear();
+                return RedirectToAction("Main", "Main");
+            }
             string type = Request.QueryString["type"];
             string username = Request.QueryString["username"];
             string url = Request.UrlReferrer.ToString();

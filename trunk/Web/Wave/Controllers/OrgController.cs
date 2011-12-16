@@ -181,14 +181,6 @@ namespace Wave.Controllers
         }
 
         //
-        // GET: /Org/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
         // GET: /Org/ChooseStyle
 
         public ActionResult ChooseStyle()
@@ -274,9 +266,83 @@ namespace Wave.Controllers
         //
         // GET: /Org/Delete/5
  
-        public ActionResult Delete(int id)
+        public ActionResult DeleteActivity(int id)
         {
-            return View();
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
+            {
+                Session.Clear();
+                return RedirectToAction("Main", "Main");
+            }
+
+            String url = Request.QueryString["url"];
+            String user = Session["waveAccount"] as String;
+            try
+            {
+                var account = (from m in _db.Org
+                               where m.orgname == user
+                               select m).First();
+
+                var activity = (from m in _db.Activity
+                                where m.actid == id
+                                select m).First();
+
+                if (activity.orgname != account.orgname)
+                {
+                    Session.Clear();
+                    return RedirectToAction("Main", "Main");
+                }
+                if (activity.actstate != 0)
+                {
+                    Session.Clear();
+                    return RedirectToAction("Main", "Main");
+                }
+                _db.DeleteObject(activity);
+                _db.SaveChanges();
+                return Redirect(url);
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Activity Deletion has failed because: " + exception.Message;
+                return Redirect(url);
+            }
+        }
+
+        public ActionResult ParticipatorDetails(int id)
+        {
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
+            {
+                Session.Clear();
+                return RedirectToAction("Main", "Main");
+            }
+
+            String user = Session["waveAccount"] as String;
+            try
+            {
+                var account = (from m in _db.Org
+                               where m.orgname == user
+                               select m).First();
+
+                var activity = (from m in _db.Activity
+                                where m.actid == id
+                                select m).First();
+
+                if (activity.orgname != account.orgname)
+                {
+                    Session.Clear();
+                    return RedirectToAction("Main", "Main");
+                }
+                if (activity.actstate == 0)
+                {
+                    Session.Clear();
+                    return RedirectToAction("Main", "Main");
+                }
+                return View(activity.TakeActivity.ToList());
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
+                return View();
+            }
         }
 
         //
