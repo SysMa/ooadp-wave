@@ -227,5 +227,54 @@ namespace Wave.Controllers
             TempData["ErrorMessage"] = "Failed to Active";
             return RedirectToAction("Main", "Main");
         }
+
+        public ActionResult JoinActivity(int id)
+        {
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 3)
+            {
+                Session.Clear();
+                return RedirectToAction("Main", "Main");
+            }
+
+            string user = Session["waveAccount"].ToString();
+            try
+            {
+                var account = (from m in _db.Users
+                               where m.username == user
+                               select m).First();
+
+                var activity = (from m in _db.Activity
+                                where m.actid == id
+                                select m).First();
+
+                if (activity.actstate != 1)
+                {
+                    Session.Clear();
+                    return RedirectToAction("Main", "Main");
+                }
+
+                var temp = (from m in activity.TakeActivity
+                            where m.username == user
+                            select m);
+                if (temp.Count() != 0)
+                {
+                    Session.Clear();
+                    return RedirectToAction("Main", "Main");
+                }
+
+                TakeActivity ta = _db.CreateObject<TakeActivity>();
+                ta.username = user;
+                ta.actid = id;
+                _db.TakeActivity.AddObject(ta);
+                _db.SaveChanges();
+
+                return RedirectToAction("ActivityDetails", "Activity", new { id = id, usertype = 3, username = user });
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
+                return RedirectToAction("Main", "Main");
+            }
+        }
     }
 }
