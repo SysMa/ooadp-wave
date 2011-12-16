@@ -31,8 +31,9 @@
        else
        { %>
         <div class="demo">
-            <ul id="list" class="image-grid" style="height: 591px; ">
+            <ul id="list" class="image-grid">
                 <%  int i = 0, j = 0;
+                    String username = Session["waveAccount"] as String;
                 for (;; i++)
                 {
                     if (i < holdingActs.Length)
@@ -44,7 +45,7 @@
                             path = "~/Content/Images/noavater.gif";
                         }%>
                         <li data-id="id-<%= j %>" class="holding">
-                            <a href="/Activity/ActivityDetails/<%=holdingActs[i].actid %>">
+                            <a href="/Activity/ActivityDetails/<%=holdingActs[i].actid %>?usertype=3&username=<%=username %>">
                                 <%= Html.Image("activity_pic" + i, ResolveUrl(path),
                                 "No Pic", new { style = "width:128px;height:128px" })%></a>
                             <strong><%=holdingActs[i].actname%></strong>
@@ -59,7 +60,7 @@
                             path = "~/Content/Images/noavater.gif";
                         }%>
                         <li data-id="id-<%= j %>" class="stoped">
-                            <a href="/Activity/ActivityDetails/<%=stopedActs[i].actid %>">
+                            <a href="/Activity/ActivityDetails/<%=stopedActs[i].actid %>?usertype=3&username=<%=username %>">
                                 <%= Html.Image("activity_pic" + i, ResolveUrl(path),
                                 "No Pic", new { style = "width:128px;height:128px" })%></a>
                             <strong><%=stopedActs[i].actname%></strong>

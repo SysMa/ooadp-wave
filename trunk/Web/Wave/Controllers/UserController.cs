@@ -167,9 +167,9 @@ namespace Wave.Controllers
                                where m.username == user
                                select m).First();
 
-                var activities = (from m in _db.Activity
-                                  join t in account.TakeActivity
-                                  on m.actid equals t.actid
+                var activities = (from t in account.TakeActivity
+                                  join m in _db.Activity
+                                  on t.actid equals m.actid
                                   select m);
                 ViewData["holding_acts"] = (from m in activities
                                             where m.actstate == 1
@@ -275,6 +275,35 @@ namespace Wave.Controllers
             {
                 TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
                 return RedirectToAction("Main", "Main");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Rate(int id)
+        {
+            String username = Request.QueryString["username"];
+            String url = Request.QueryString["url"];
+            try
+            {
+                var activity = (from m in _db.Activity
+                                where m.actid == id
+                                select m).First();
+
+                var temp = (from m in activity.TakeActivity
+                            where m.username == username
+                            select m).First();
+
+                temp.orgscore = int.Parse(Request.Form["rate"]);
+
+                _db.ApplyCurrentValues<TakeActivity>(temp.EntityKey.EntitySetName, temp);
+                _db.SaveChanges();
+
+                return RedirectToAction("ActivityDetails", "Activity", new { id = id, usertype = 3, username = username, url = url });
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
+                return Redirect(url);
             }
         }
     }

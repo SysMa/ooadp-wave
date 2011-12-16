@@ -103,7 +103,19 @@ namespace Wave.Controllers
                         if (took.Count() != 0)
                         {
                             ViewData["take"] = "true";
+                            int rate = took.First().orgscore;
+                            bool[] selected = { false, false, false, false, false };
+                            if (rate != 0)
+                            {
+                                selected[rate - 1] = true;
+                            }
+                            else
+                            {
+                                selected[4] = true;
+                            }
+                            ViewData["selected"] = selected;
                         }
+
                         ViewData["visitor"] = "user";
 
                         var part = (from m in activity.TakeActivity
