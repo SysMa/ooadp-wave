@@ -14,7 +14,7 @@
 		    $("#oemail").bind('change',
 			function () {
 			    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-			    if ((!emailReg.test(this.value)) || this.value == null) {
+			    if ((!emailReg.test(this.value)) || this.value == "") {
 			        //alert("This isnot a email.");
 			        $("#email_error").css("color", "red").html("This is not a Email address.").show();
 			        $(":submit").hide();
