@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<root>  
+    <Mail>
+        <Name>Active</Name>
+        <From>2352695754@qq.com</From>
+        <Password>waveproject</Password>
+        <Port>25</Port>
+        <Server>smtp.qq.com</Server>
+    </Mail>
+    <Mail>
+        <Name>Default</Name>
+        <From>2352695754@qq.com</From>
+        <Password>waveproject</Password>
+        <Port>25</Port>
+        <Server>smtp.qq.com</Server>
+    </Mail>
+</root>

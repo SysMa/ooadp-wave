@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Wave.Models;
-using System.IO;
-using System.Net.Mail;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Text.RegularExpressions;
 using Wave.Helper;
+using Wave.Models;
 
 namespace Wave.Controllers
 {
@@ -199,7 +190,7 @@ namespace Wave.Controllers
                     content = content.Replace("[UserName]", userToCreate.username);
                     content = content.Replace("[Pwd]", userToCreate.upasswd);
 
-                    if (!SendMail.send(userToCreate.uemail, content))
+                    if (!SendMail.send(userToCreate.uemail, content,Server, "Active"))
                     {
                         TempData["ErrorMessage"] = "Sorry. The format of your email address can't be recognized.";
                         return View();
@@ -322,7 +313,7 @@ namespace Wave.Controllers
                                 {
                                     string content = "Your Password is " + account.First().opasswd;
 
-                                    if (!SendMail.send(account.First().oemail, content))
+                                    if (!SendMail.send(account.First().oemail, content, Server, "Default"))
                                     {
                                         TempData["ErrorMessage"] = "Encounter error while trying to send your password to your email..";
                                     };
@@ -351,7 +342,7 @@ namespace Wave.Controllers
                                 {
                                     string content = "Your Password is " + account.First().upasswd;
 
-                                    if (!SendMail.send(account.First().uemail, content))
+                                    if (!SendMail.send(account.First().uemail, content, Server, "Default"))
                                     {
                                         TempData["ErrorMessage"] = "Encounter error while trying to send your password to your email..";
                                     };
