@@ -11,20 +11,34 @@
 	<script type="text/javascript">
 		$.noConflict();
 		jQuery(document).ready(function ($) {
-			$("#oemail").bind('change',
+		    $("#oemail").bind('change',
 			function () {
-				var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-				if (!emailReg.test(this.value)) {
-					//alert("This isnot a email.");
-					$("#error").css("color", "red");
-					$("#error").html("This is not a Email address.");
-					$(":submit").hide();
-					return false;
-				} else {
-					//alert("This is a email.");
-					$(":submit").show();
-					return true;
-				}
+			    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			    if ((!emailReg.test(this.value)) || this.value == null) {
+			        //alert("This isnot a email.");
+			        $("#email_error").css("color", "red").html("This is not a Email address.").show();
+			        $(":submit").hide();
+			    } else {
+			        //alert("This is a email.");
+			        $("#email_error").hide();
+			        if ($("#phone_error").is(":hidden")) {
+			            $(":submit").show();
+			        }
+			    }
+			});
+
+		    $("#ophone").bind('change',
+			function () {
+			    if ($("#ophone").val().match(/(130|131|132|133|134|135|136|137|138|139|158|150|151|152|155|189|188|187|182|186)\d{8}/) == null) {
+			        $("#phone_error").css("color", "red").html("Please Check your telephone number.").show();
+			        $(":submit").hide();
+			    }
+			    else {
+			        $("#phone_error").hide();
+			        if ($("#email_error").is(":hidden")) {
+			            $(":submit").show();
+			        }
+			    }
 			});
 		})
 	</script>
@@ -59,7 +73,7 @@
 				<tr>
 					<td align="right">Email:</td>
 					<td>
-						<%: Html.TextBoxFor(model => model.oemail, new Dictionary<string, object>() { { "maxlength", "50" } })%><label id="error"></label>
+						<%: Html.TextBoxFor(model => model.oemail, new Dictionary<string, object>() { { "maxlength", "50" } })%><label id="email_error"></label>
 					</td>
 				</tr>
 				<tr>
@@ -67,6 +81,7 @@
 					<td>
 						<%: Html.TextBoxFor(model => model.ophone,
 							new Dictionary<string, object>() { { "maxlength", "15" } })%>
+                        <label id="phone_error"></label>
 					</td>
 				</tr>
 				<tr>
