@@ -21,7 +21,7 @@
 			    } else {
 			        //alert("This is a email.");
 			        $("#email_error").hide();
-			        if ($("#phone_error").is(":hidden")) {
+			        if ($("#phone_error").is(":hidden") && !(($("#uphone").val() == "")) ) {
 			            $(":submit").show();
 			        }
 			    }
@@ -35,7 +35,7 @@
 			    }
 			    else {
 			        $("#phone_error").hide();
-			        if ($("#email_error").is(":hidden")) {
+			        if ($("#email_error").is(":hidden") && !(($("#uemail").val() == "")) ) {
 			            $(":submit").show();
 			        }
 			    }

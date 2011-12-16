@@ -1,25 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Net.Mail;
 using System.Web;
-using System.Web.Mvc;
-using Wave.Models;
-using System.IO;
-using System.Net.Mail;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Text.RegularExpressions;
+using System.Xml;
+
 
 namespace Wave.Helper
 {
     public static class SendMail
     {
-        static string from = "2352695754@qq.com";
-        static string from_pwd = "waveproject";
-        static int from_port = 25;
-        static string from_server = "smtp.qq.com";
+        // default values
+        static string from = "";
+        static string from_pwd = "";
+        static int from_port = -1;
+        static string from_server = "";
 
         public static MailMessage InitMailMessage(string to, string message)
         {
@@ -50,8 +42,28 @@ namespace Wave.Helper
             return mail;
         }
 
-        public static bool send(string to, string message)
+        public static bool send(string to, string message, HttpServerUtilityBase server, string from_name = "Default")
         {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(server.MapPath("~/Models/Mail.xml"));
+
+            XmlNodeList nodes = doc.GetElementsByTagName("Mail");
+            foreach (XmlElement node in nodes)
+            {
+                if (node.FirstChild.InnerText == from_name)
+                {
+                    from_port = int.Parse(node.FirstChild.NextSibling.NextSibling.NextSibling.InnerText);
+                    from = node.FirstChild.NextSibling.InnerText;
+                    from_pwd = node.FirstChild.NextSibling.NextSibling.InnerText;
+                    from_server = node.FirstChild.NextSibling.NextSibling.NextSibling.NextSibling.InnerText;
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
             string regexEmail = @"^\w+([-+.]?\w+)*@\w+([-.]?\w+)*\.\w+([-.]?\w+)*$ ";
             System.Text.RegularExpressions.RegexOptions options = ((System.Text.RegularExpressions.RegexOptions.IgnorePatternWhitespace
                 | System.Text.RegularExpressions.RegexOptions.Multiline)
