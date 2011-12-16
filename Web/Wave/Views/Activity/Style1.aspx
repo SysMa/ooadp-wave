@@ -156,7 +156,7 @@
                                         if (iftake == null)
                                         {%>
                                             <tr><td align="center" style="font-size:xx-large">
-                                                <%= Html.ActionLink("Join us", "JoinActivity", "User", new { id = Model.actid }, null)%>
+                                                <%= Html.ActionLink("Join us", "JoinActivity", "User", new { id = Model.actid, url = url }, null)%>
                                             </td></tr>
                             <%          }
                                         else

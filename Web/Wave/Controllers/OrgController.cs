@@ -336,12 +336,109 @@ namespace Wave.Controllers
                     Session.Clear();
                     return RedirectToAction("Main", "Main");
                 }
+                ViewData["activity"] = activity.actname;
+                ViewData["id"] = activity.actid;
                 return View(activity.TakeActivity.ToList());
             }
             catch (Exception exception)
             {
                 TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
                 return View();
+            }
+        }
+
+        //
+        // GET: /Org/UserDetails/5
+
+        public ActionResult UserDetails(int id)
+        {
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
+            {
+                Session.Clear();
+                return RedirectToAction("Main", "Main");
+            }
+
+            String user = Session["waveAccount"] as String;
+            String username = Request.QueryString["username"];
+            try
+            {
+                var activity = (from m in _db.Activity
+                                where m.actid == id
+                                select m).First();
+                if (activity.orgname != user || activity.actstate == 0)
+                {
+                    Session.Clear();
+                    return RedirectToAction("Main", "Main");
+                }
+
+                var temp = (from m in activity.TakeActivity
+                            where m.username == username
+                            select m);
+                if (temp.Count() == 0)
+                {
+                    Session.Clear();
+                    return RedirectToAction("Main", "Main");
+                }
+                int rate = temp.First().userscore;
+                bool[] selected = { false, false, false, false, false };
+                if (rate != 0)
+                {
+                    selected[rate - 1] = true;
+                }
+                else
+                {
+                    selected[4] = true;
+                }
+                ViewData["selected"] = selected;
+
+                var account = (from m in _db.Users
+                               where m.username == username
+                               select m).First();
+                String path = Server.MapPath("~/Content/Images/pics/User_" + account.username + ".jpg");
+                if (System.IO.File.Exists(path))
+                {
+                    ViewData["avater_path"] = "~/Content/Images/pics/User_" + account.username + ".jpg";
+                }
+                else
+                {
+                    ViewData["avater_path"] = "~/Content/Images/noavater.gif";
+                }
+                ViewData["act_state"] = activity.actstate;
+                ViewData["id"] = id;
+                return View(account);
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Rate(int id)
+        {
+            String username = Request.QueryString["username"];
+            try
+            {
+                var activity = (from m in _db.Activity
+                                where m.actid == id
+                                select m).First();
+
+                var temp = (from m in activity.TakeActivity
+                            where m.username == username
+                            select m).First();
+
+                temp.userscore = int.Parse(Request.Form["rate"]);
+
+                _db.ApplyCurrentValues<TakeActivity>(temp.EntityKey.EntitySetName, temp);
+                _db.SaveChanges();
+
+                return RedirectToAction("ParticipatorDetails", new { id = id });
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
+                return RedirectToAction("UserDetails", new { id=id, username = username });
             }
         }
 

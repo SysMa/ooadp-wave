@@ -52,13 +52,13 @@
 		<fieldset>
 			<table>
 				<tr>
-					<td align="right">Organization Name:</td>
+					<td align="right" style="width: 425px">Organization Name:</td>
 					<td>
 						<%: Html.DisplayTextFor(model => model.orgname)%>
 					</td>
 				</tr>
 				<tr>
-					<td align="right">Avater:</td>
+					<td align="right" style="width: 425px">Avater:</td>
 					<td>
 						<div id="avater" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=,sizingMethod=scale);width:100px;height:100px;">
 							<%= Html.Image("avater_pic", ResolveUrl((String)ViewData["avater_path"]),
@@ -71,13 +71,13 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="right">Email:</td>
+					<td align="right" style="width: 425px">Email:</td>
 					<td>
 						<%: Html.TextBoxFor(model => model.oemail, new Dictionary<string, object>() { { "maxlength", "50" } })%><label id="email_error"></label>
 					</td>
 				</tr>
 				<tr>
-					<td align="right">Phone:</td>
+					<td align="right" style="width: 425px">Phone:</td>
 					<td>
 						<%: Html.TextBoxFor(model => model.ophone,
 							new Dictionary<string, object>() { { "maxlength", "15" } })%>
@@ -85,14 +85,14 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="right">Address:</td>
+					<td align="right" style="width: 425px">Address:</td>
 					<td>
 						<%: Html.TextBoxFor(model => model.oaddress,
 							new Dictionary<string, object>() { { "maxlength", "100" } })%>
 					</td>
 				</tr>
 				<tr>
-					<td align="right"><input type="submit" value="Update" /></td>
+					<td align="right" style="width: 425px"><input type="submit" value="Update" /></td>
 					<td><input type="reset" value="Reset" /></td>
 				</tr>
 			</table>
