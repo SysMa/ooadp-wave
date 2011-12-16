@@ -150,17 +150,37 @@
                                             &nbsp<%= Html.ActionLink(Model.orgname, orgAction, orgController, new { id = Model.orgname }, null)%>
                                         </td>
                                     </tr>
-                            <%      if (visitor == "user" && Model.actstate == 1)
+                            <%      if (visitor == "user")
                                     {
                                         String iftake = ViewData["take"] as String;
-                                        if (iftake == null)
+                                        if (iftake == null && Model.actstate == 1)
                                         {%>
                                             <tr><td align="center" style="font-size:xx-large">
                                                 <%= Html.ActionLink("Join us", "JoinActivity", "User", new { id = Model.actid, url = url }, null)%>
                                             </td></tr>
                             <%          }
-                                        else
+                                        else if (iftake != null && Model.actstate == 2)
                                         {%>
+                                            <tr>
+                                                <td style="font-size:large">
+                                                    <form method="post" action="<%= Url.Action("Rate", "User", new { id=Model.actid, username=ViewData["username"], url=url }) %>" >
+                                                        <span style="color:GREEN">Rate for the Organization:</span>
+                                                        &nbsp&nbsp&nbsp&nbsp
+                                                        <%
+                                                            bool[] selected = (bool[])ViewData["selected"];
+                                                            List<SelectListItem> list = new List<SelectListItem> {
+                                                                new SelectListItem { Text = "1", Value = "1", Selected = selected[0] },
+                                                                new SelectListItem { Text = "2", Value = "2", Selected = selected[1] },
+                                                                new SelectListItem { Text = "3", Value = "3", Selected = selected[2] },
+                                                                new SelectListItem { Text = "4", Value = "4", Selected = selected[3] },
+                                                                new SelectListItem { Text = "5", Value = "5", Selected = selected[4]}};
+                                                        %>
+                          
+                                                            <%= Html.DropDownList("rate", list) %>
+                                                            <input type="submit" value="Rate" />
+                                                    </form>
+                                                </td>
+                                            </tr>
                             <%                
                                         }
                                     }
