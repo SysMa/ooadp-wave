@@ -118,6 +118,13 @@ namespace Wave.Controllers
                                 }
                                 else
                                 {
+                                    if (account.First().ostate == -1)
+                                    {
+                                        account.First().ostate = 0;
+                                        _db.ApplyCurrentValues<Org>(account.First().EntityKey.EntitySetName, account.First());
+                                        _db.SaveChanges();
+                                    }
+
                                     Session["waveAccount"] = toCheck.account;
                                     Session["waveType"] = toCheck.type;
                                     return RedirectToAction("Index", "Org");
@@ -156,6 +163,13 @@ namespace Wave.Controllers
                                 {
                                     Session["waveAccount"] = toCheck.account;
                                     Session["waveType"] = toCheck.type;
+
+                                    if (account.First().ustate == -1)
+                                    {
+                                        account.First().ustate = 1;
+                                        _db.ApplyCurrentValues<Users>(account.First().EntityKey.EntitySetName, account.First());
+                                        _db.SaveChanges();
+                                    }
                                     return Redirect(Request.UrlReferrer.ToString());
                                 }
                             }
