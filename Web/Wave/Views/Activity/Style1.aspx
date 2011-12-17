@@ -155,9 +155,17 @@
                                         String iftake = ViewData["take"] as String;
                                         if (iftake == null && Model.actstate == 1)
                                         {%>
-                                            <tr><td align="center" style="font-size:xx-large">
-                                                <%= Html.ActionLink("Join us", "JoinActivity", "User", new { id = Model.actid, url = url }, null)%>
-                                            </td></tr>
+                                            <tr>
+                                                <% if (Model.usenum < Model.maxuser)
+                                                   { %>
+                                                        <td align="center" style="font-size:xx-large">
+                                                        <%= Html.ActionLink("Join us", "JoinActivity", "User", new { id = Model.actid, url = url }, null)%></td>
+                                                <% }
+                                                   else
+                                                   { %>
+                                                        <td style="font-size:x-large; color:Red;">Sorry, you can't join the activity because the number of participator has reached the maximum number.</td>
+                                                <% } %>
+                                            </tr>
                             <%          }
                                         else if (iftake != null && Model.actstate == 2)
                                         {%>
@@ -275,7 +283,15 @@
                         else
                         {
                             Wave.Models.TakeActivity[] part = ViewData["part"] as Wave.Models.TakeActivity[];%>
-                            <h2 style="font-size:x-large">Participator: </h2>
+                            <h2 style="font-size:x-large"><%= Html.ActionLink("Upload Pictures", "UploadPictures", "Org", new { id = Model.actid }, null)%></h2>
+                            <h2 style="font-size:x-large">Participator: 
+                                <%  if (part.Length > 0)
+                                    { %>
+                                    <span style="font-size:large; position: relative; right: -40px;">
+                                        <%= Html.ActionLink("More", "ParticipatorDetails", "Org", new { id = Model.actid }, null)%>  
+                                    </span>
+                                <%  } %>
+                            </h2>
                             <ul>
                                 <%
                                     for (int i = 0; i < part.Length && i < 10; i++)
@@ -294,13 +310,8 @@
                                         </li>
                                 <%  } %>
                             </ul>
-                            <%  if (part.Length > 0)
-                                { %>
-                                    <h2 style="font-size:large">
-                                        <%= Html.ActionLink("More", "ParticipatorDetails", "Org", new { id = Model.actid }, null)%>  
-                                    </h2>
-                  <%            }
-                        }
+                            
+                  <%   }
                     } %>
             </div>
             <!-- end #sidebar -->
