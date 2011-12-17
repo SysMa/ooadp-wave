@@ -5,44 +5,45 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
-<br /><br />
+    
 	<h2 style="font-size:x-large">Find Your Password Back:</h2>
 
 	<% using (Html.BeginForm()) {%>
 		<%: Html.ValidationSummary(true) %>
 
 		<fieldset>
-			<br /><br />
-			<div>
-				<label>Enter Your Account:</label><br /><br />
-				<div class="editor-field">
-					<%: Html.TextBoxFor(model => model.account) %>
-					<%: Html.ValidationMessageFor(model => model.account) %>
-				</div>
-			</div>
-			<br /><br />
-			<div>
-				<label>Type</label><br /><br />
-				<%	List<SelectListItem> list = new List<SelectListItem> {
-					new SelectListItem { Text = "Organization", Value = "2" },
-					new SelectListItem { Text = "User", Value = "3" ,Selected = true}};
-				%>
-				<%= Html.DropDownListFor(model => model.type, list)%>
-				<br /><br />
-				<p>
-					<input type="submit" value="OK" />
-				</p>
-			</div>
+			<br />
+            <table>
+                <tr>
+                    <td align="right">Enter Your Account:</td>
+                    <td><%: Html.TextBoxFor(model => model.account) %>
+					    <%: Html.ValidationMessageFor(model => model.account) %></td>
+                </tr>
+                <tr>
+                    <td align="right">Type:</td>
+                    <td>
+                        <%	List<SelectListItem> list = new List<SelectListItem> {
+					        new SelectListItem { Text = "Organization", Value = "2" },
+					        new SelectListItem { Text = "User", Value = "3" ,Selected = true}};
+				        %>
+				        <%= Html.DropDownListFor(model => model.type, list)%></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" value="OK" /></td>
+                </tr>
+            </table>
 		</fieldset>
 		<br />
 	<% } %>
 
 	<div>
-		<%: Html.ActionLink("Back to List", "Main") %>
+		<%: Html.ActionLink("Back", "Main") %>
 	</div>
 
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Login" runat="server">
+    <br />
+    <br />
 </asp:Content>
 

@@ -627,14 +627,14 @@ namespace Wave.Controllers
                                 select m).First();
 
                 activity.Admin.Add(admin);
-                if (activity.Admin.Count() >= _db.Admin.Count())
+                if (activity.Admin.Count() >= (_db.Admin.Count() / 2))
                 {
                     activity.actstate = 1;
                 }
 
                 _db.ApplyCurrentValues<Activity>(activity.EntityKey.EntitySetName, activity);
                 _db.SaveChanges();
-                return RedirectToAction("Orgs");
+                return RedirectToAction("ReviewActivities");
             }
             catch (Exception exception)
             {
