@@ -3,6 +3,7 @@
 using System;
 using System.Web;
 using System.IO;
+using System.Linq;
 using Wave.Models;
 
 public class Upload : IHttpHandler {
@@ -29,12 +30,21 @@ public class Upload : IHttpHandler {
                 Directory.CreateDirectory(savepath);
 
             int id = int.Parse(actid);
-            var pics = (from 
-            string filename = postedFile.FileName;
+            var pics = (from m in _db.Images
+                        where m.actid == id
+                        select m);
+            int picid = pics.Count() + 1;
             
-            // name the file and folder Using Session
-            filename = "User_lhb.jpg";
+            string filename = string.Format("{0:000}", picid) + ".jpg";
+            
             postedFile.SaveAs(savepath + @"\" + filename);
+
+            Images images = _db.CreateObject<Images>();
+            images.actid = id;
+            images.picid = picid;
+            _db.AddToImages(images);
+            _db.SaveChanges();
+            
             context.Response.Write(tempPath + "/" + filename);
             context.Response.StatusCode = 200;
         }
