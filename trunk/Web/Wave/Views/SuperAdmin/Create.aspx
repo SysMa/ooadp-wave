@@ -5,7 +5,27 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
+	<script type="text/javascript" src="../../Scripts/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript">
+	    $.noConflict();
+	    jQuery(document).ready(function ($) {
+	        $(":submit").hide();
 
+	        $("#aemail").bind('change',
+			function () {
+			    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			    if ((!emailReg.test(this.value)) || this.value == "") {
+			        //alert("This isnot a email.");
+			        $("#email_error").css("color", "red").html("This is not a Email address.").show();
+			        $(":submit").hide();
+			    } else {
+			        //alert("This is a email.");
+			        $("#email_error").hide();
+			        $(":submit").show();
+			    }
+			});
+	    })
+	</script>
 	<% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
 
 	<% using (Html.BeginForm()) {%>
@@ -38,6 +58,7 @@
 					<td>
 						<%: Html.TextBoxFor(model => model.aemail, new Dictionary<string, object>() {{"maxlength", "50"}}) %>
 						<%: Html.ValidationMessageFor(model => model.aemail) %>
+                        <label id="email_error"></label>
 					</td>
 				</tr>
 				<tr>
