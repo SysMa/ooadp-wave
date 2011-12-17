@@ -8,6 +8,7 @@
         <EntityContainer Name="WaveWebModelStoreContainer">
           <EntitySet Name="Activity" EntityType="WaveWebModel.Store.Activity" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Admin" EntityType="WaveWebModel.Store.Admin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Images" EntityType="WaveWebModel.Store.Images" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Org" EntityType="WaveWebModel.Store.Org" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ReviewActivity" EntityType="WaveWebModel.Store.ReviewActivity" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SuperAdmin" EntityType="WaveWebModel.Store.SuperAdmin" store:Type="Tables" Schema="dbo" />
@@ -16,6 +17,10 @@
           <AssociationSet Name="FK_Activity_Activity" Association="WaveWebModel.Store.FK_Activity_Activity">
             <End Role="Org" EntitySet="Org" />
             <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_Activity" Association="WaveWebModel.Store.FK_Images_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Images" EntitySet="Images" />
           </AssociationSet>
           <AssociationSet Name="FK_Org_Org" Association="WaveWebModel.Store.FK_Org_Org">
             <End Role="Org" EntitySet="Org" />
@@ -63,6 +68,15 @@
           <Property Name="apasswd" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="aemail" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="actid" />
+            <PropertyRef Name="picid" />
+          </Key>
+          <Property Name="actid" Type="int" Nullable="false" />
+          <Property Name="picid" Type="int" Nullable="false" />
+          <Property Name="picstate" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Org">
           <Key>
             <PropertyRef Name="orgname" />
@@ -72,7 +86,7 @@
           <Property Name="opasswd" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="oemail" Type="varchar" MaxLength="50" />
           <Property Name="ophone" Type="numeric" Precision="15" />
-          <Property Name="oscore" Type="float" />
+          <Property Name="oscore" Type="float" Nullable="false" />
           <Property Name="oaddress" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="ReviewActivity">
@@ -122,6 +136,20 @@
             </Principal>
             <Dependent Role="Activity">
               <PropertyRef Name="orgname" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Images_Activity">
+          <End Role="Activity" Type="WaveWebModel.Store.Activity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Images" Type="WaveWebModel.Store.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="actid" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="actid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -222,6 +250,11 @@
             <End Role="Activity" EntitySet="Activity" />
             <End Role="Admin" EntitySet="Admin" />
           </AssociationSet>
+          <EntitySet Name="Images" EntityType="WaveWebModel.Images" />
+          <AssociationSet Name="FK_Images_Activity" Association="WaveWebModel.FK_Images_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Activity">
           <Key>
@@ -241,6 +274,7 @@
           <NavigationProperty Name="Org" Relationship="WaveWebModel.FK_Activity_Activity" FromRole="Activity" ToRole="Org" />
           <NavigationProperty Name="TakeActivity" Relationship="WaveWebModel.FK_TakeActivity_Activity" FromRole="Activity" ToRole="TakeActivity" />
           <NavigationProperty Name="Admin" Relationship="WaveWebModel.ReviewActivity" FromRole="Activity" ToRole="Admin" />
+          <NavigationProperty Name="Images" Relationship="WaveWebModel.FK_Images_Activity" FromRole="Activity" ToRole="Images" />
         </EntityType>
         <EntityType Name="Admin">
           <Key>
@@ -356,6 +390,28 @@
           <End Role="Activity" Type="WaveWebModel.Activity" Multiplicity="*" />
           <End Role="Admin" Type="WaveWebModel.Admin" Multiplicity="*" />
         </Association>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="actid" />
+            <PropertyRef Name="picid" />
+          </Key>
+          <Property Type="Int32" Name="actid" Nullable="false" />
+          <Property Type="Int32" Name="picid" Nullable="false" />
+          <Property Type="Int32" Name="picstate" Nullable="false" />
+          <NavigationProperty Name="Activity" Relationship="WaveWebModel.FK_Images_Activity" FromRole="Images" ToRole="Activity" />
+        </EntityType>
+        <Association Name="FK_Images_Activity">
+          <End Type="WaveWebModel.Activity" Role="Activity" Multiplicity="1" />
+          <End Type="WaveWebModel.Images" Role="Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="actid" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="actid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -416,6 +472,15 @@
               <ScalarProperty Name="adminname" ColumnName="adminname" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="WaveWebModel.Images">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="picstate" ColumnName="picstate" />
+                <ScalarProperty Name="picid" ColumnName="picid" />
+                <ScalarProperty Name="actid" ColumnName="actid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -449,8 +514,8 @@
         </AssociationConnector>
         <AssociationConnector Association="WaveWebModel.FK_TakeActivity_Activity" ManuallyRouted="false">
           <ConnectorPoint PointX="3.75" PointY="3" />
-          <ConnectorPoint PointX="3.75" PointY="1.8305261230468748" />
-          <ConnectorPoint PointX="5.25" PointY="1.8305261230468748" />
+          <ConnectorPoint PointX="3.75" PointY="1.5447680922851557" />
+          <ConnectorPoint PointX="5.25" PointY="1.5447680922851557" />
         </AssociationConnector>
         <AssociationConnector Association="WaveWebModel.FK_Org_Org" ManuallyRouted="false">
           <ConnectorPoint PointX="1.2819230769230767" PointY="6.3001310221354156" />
@@ -469,6 +534,15 @@
           <ConnectorPoint PointX="4.791666666666667" PointY="4.8600162760416659" />
           <ConnectorPoint PointX="4.958333333333333" PointY="4.8600162760416667" />
           <ConnectorPoint PointX="5.25" PointY="4.8600162760416667" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="WaveWebModel.Images" Width="1.5" PointX="5.25" PointY="10" Height="1.7790128580729174" />
+        <AssociationConnector Association="WaveWebModel.FK_Images_Activity" >
+          <ConnectorPoint PointX="4.5" PointY="6.8179207998798068" />
+          <ConnectorPoint PointX="4.8160744349011217" PointY="7.1339952347809277" />
+          <ConnectorPoint PointX="4.9339255650988791" PointY="7.251846364978686" />
+          <ConnectorPoint PointX="5.0625" PointY="7.3804207998798068" />
+          <ConnectorPoint PointX="5.0625" PointY="10.889506429036459" />
+          <ConnectorPoint PointX="5.25" PointY="10.889506429036459" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

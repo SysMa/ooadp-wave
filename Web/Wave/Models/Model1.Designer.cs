@@ -23,6 +23,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("WaveWebModel", "FK_Org_Org", "Org", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Wave.Models.Org), "Org1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Wave.Models.Org), true)]
 [assembly: EdmRelationshipAttribute("WaveWebModel", "FK_TakeActivity_Users", "Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Wave.Models.Users), "TakeActivity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Wave.Models.TakeActivity), true)]
 [assembly: EdmRelationshipAttribute("WaveWebModel", "ReviewActivity", "Activity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Wave.Models.Activity), "Admin", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Wave.Models.Admin))]
+[assembly: EdmRelationshipAttribute("WaveWebModel", "FK_Images_Activity", "Activity", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Wave.Models.Activity), "Images", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Wave.Models.Images), true)]
 
 #endregion
 
@@ -169,6 +170,22 @@ namespace Wave.Models
             }
         }
         private ObjectSet<Users> _Users;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        public ObjectSet<Images> Images
+        {
+            get
+            {
+                if ((_Images == null))
+                {
+                    _Images = base.CreateObjectSet<Images>("Images");
+                }
+                return _Images;
+            }
+        }
+        private ObjectSet<Images> _Images;
 
         #endregion
         #region AddTo 方法
@@ -219,6 +236,14 @@ namespace Wave.Models
         public void AddToUsers(Users users)
         {
             base.AddObject("Users", users);
+        }
+    
+        /// <summary>
+        /// 用于向 Images EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToImages(Images images)
+        {
+            base.AddObject("Images", images);
         }
 
         #endregion
@@ -623,6 +648,28 @@ namespace Wave.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("WaveWebModel", "FK_Images_Activity", "Images")]
+        public EntityCollection<Images> Images
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Images>("WaveWebModel.FK_Images_Activity", "Images");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Images>("WaveWebModel.FK_Images_Activity", "Images", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -776,6 +823,157 @@ namespace Wave.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Activity>("WaveWebModel.ReviewActivity", "Activity", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// 没有元数据文档可用。
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="WaveWebModel", Name="Images")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Images : EntityObject
+    {
+        #region 工厂方法
+    
+        /// <summary>
+        /// 创建新的 Images 对象。
+        /// </summary>
+        /// <param name="actid">actid 属性的初始值。</param>
+        /// <param name="picid">picid 属性的初始值。</param>
+        /// <param name="picstate">picstate 属性的初始值。</param>
+        public static Images CreateImages(global::System.Int32 actid, global::System.Int32 picid, global::System.Int32 picstate)
+        {
+            Images images = new Images();
+            images.actid = actid;
+            images.picid = picid;
+            images.picstate = picstate;
+            return images;
+        }
+
+        #endregion
+        #region 基元属性
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 actid
+        {
+            get
+            {
+                return _actid;
+            }
+            set
+            {
+                if (_actid != value)
+                {
+                    OnactidChanging(value);
+                    ReportPropertyChanging("actid");
+                    _actid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("actid");
+                    OnactidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _actid;
+        partial void OnactidChanging(global::System.Int32 value);
+        partial void OnactidChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 picid
+        {
+            get
+            {
+                return _picid;
+            }
+            set
+            {
+                if (_picid != value)
+                {
+                    OnpicidChanging(value);
+                    ReportPropertyChanging("picid");
+                    _picid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("picid");
+                    OnpicidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _picid;
+        partial void OnpicidChanging(global::System.Int32 value);
+        partial void OnpicidChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 picstate
+        {
+            get
+            {
+                return _picstate;
+            }
+            set
+            {
+                OnpicstateChanging(value);
+                ReportPropertyChanging("picstate");
+                _picstate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("picstate");
+                OnpicstateChanged();
+            }
+        }
+        private global::System.Int32 _picstate;
+        partial void OnpicstateChanging(global::System.Int32 value);
+        partial void OnpicstateChanged();
+
+        #endregion
+    
+        #region 导航属性
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("WaveWebModel", "FK_Images_Activity", "Activity")]
+        public Activity Activity
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Activity>("WaveWebModel.FK_Images_Activity", "Activity").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Activity>("WaveWebModel.FK_Images_Activity", "Activity").Value = value;
+            }
+        }
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Activity> ActivityReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Activity>("WaveWebModel.FK_Images_Activity", "Activity");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Activity>("WaveWebModel.FK_Images_Activity", "Activity", value);
                 }
             }
         }

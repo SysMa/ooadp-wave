@@ -3,8 +3,11 @@
 using System;
 using System.Web;
 using System.IO;
+using Wave.Models;
 
 public class Upload : IHttpHandler {
+
+    private WaveWebEntities _db = new WaveWebEntities();
     
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/plain";
@@ -15,11 +18,18 @@ public class Upload : IHttpHandler {
             
             string savepath = "";
             string tempPath = "";
+            string actid = context.Request.QueryString["actid"];
+            
             tempPath = System.Configuration.ConfigurationManager.AppSettings["FolderPath"]; 
             savepath = context.Server.MapPath(tempPath);
+            savepath += "\\ActivityImages\\";
+            savepath += "Activity_" + actid;
+             
             if (!Directory.Exists(savepath))
                 Directory.CreateDirectory(savepath);
-            
+
+            int id = int.Parse(actid);
+            var pics = (from 
             string filename = postedFile.FileName;
             
             // name the file and folder Using Session
