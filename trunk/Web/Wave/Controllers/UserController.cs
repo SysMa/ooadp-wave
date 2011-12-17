@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Wave.Models;
 using System.Drawing;
 using System.IO;
+using Wave.Helper;
 
 namespace Wave.Controllers
 {
@@ -205,7 +206,7 @@ namespace Wave.Controllers
                     TempData["ErrorMessage"] = "Failed to Active";
                     return RedirectToAction("Main", "Main");
                 }
-                else if (users.First().upasswd == code && users.First().ustate == 0)
+                else if ( MD5Code.verifyMd5Hash(users.First().username, code) && users.First().ustate == 0)
                 {
                     users.First().ustate = 1;
                     _db.ApplyCurrentValues<Users>(users.First().EntityKey.EntitySetName, users.First());
@@ -213,9 +214,14 @@ namespace Wave.Controllers
                     TempData["SuccessMessage"] = "Active Successful";
                     return RedirectToAction("Main", "Main");
                 }
-                else if (users.First().upasswd == code && users.First().ustate != 0)
+                else if (MD5Code.verifyMd5Hash(users.First().username, code) && users.First().ustate != 0)
                 {
                     TempData["WarningMessage"] = "You have already been actived. Keep an eye on your emails.";
+                    return RedirectToAction("Main", "Main");
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Time out. Sign up again, please.";
                     return RedirectToAction("Main", "Main");
                 }
             }

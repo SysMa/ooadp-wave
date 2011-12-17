@@ -186,7 +186,7 @@ namespace Wave.Controllers
                 {
                     string content = System.IO.File.ReadAllText(Server.MapPath("~/NewMemberEmail.txt"));
                     content = content.Replace("[Name]", userToCreate.username);
-                    content = content.Replace("[LINK]", "<a href='http://" + Request.Url.Host + ":" + Request.Url.Port + "/User/Activation-" + Server.UrlEncode(userToCreate.username) + "-" + userToCreate.upasswd + "'>^_^Active^_^</a>");
+                    content = content.Replace("[LINK]", "<a href='http://" + Request.Url.Host + ":" + Request.Url.Port + "/User/Activation-" + Server.UrlEncode(userToCreate.username) + "-" + MD5Code.getMd5Hash(userToCreate.username) + "'>^_^Active^_^</a>");
                     content = content.Replace("[UserName]", userToCreate.username);
                     content = content.Replace("[Pwd]", userToCreate.upasswd);
 
