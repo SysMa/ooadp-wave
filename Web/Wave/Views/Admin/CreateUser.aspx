@@ -5,7 +5,43 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
+	<script type="text/javascript" src="../../Scripts/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript">
+	    $.noConflict();
+	    jQuery(document).ready(function ($) {
+	        $(":submit").hide();
 
+	        $("#uemail").bind('change',
+			function () {
+			    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			    if ((!emailReg.test(this.value)) || this.value == "") {
+			        //alert("This isnot a email.");
+			        $("#email_error").css("color", "red").html("This is not a Email address.").show();
+			        $(":submit").hide();
+			    } else {
+			        //alert("This is a email.");
+			        $("#email_error").hide();
+			        if ($("#phone_error").is(":hidden") && ($("#uphone").val() != "")) {
+			            $(":submit").show();
+			        }
+			    }
+			});
+
+	        $("#uphone").bind('change',
+			function () {
+			    if ($("#uphone").val().match(/(130|131|132|133|134|135|136|137|138|139|158|150|151|152|155|189|188|187|182|186)\d{8}/) == null) {
+			        $("#phone_error").css("color", "red").html("Please Check your telephone number.").show();
+			        $(":submit").hide();
+			    }
+			    else {
+			        $("#phone_error").hide();
+			        if ($("#email_error").is(":hidden") && ($("#uemail").val() != "")) {
+			            $(":submit").show();
+			        }
+			    }
+			});
+	    })
+	</script>
     <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
 
     <% using (Html.BeginForm()) {%>
@@ -38,6 +74,7 @@
 					<td>
 						<%: Html.TextBoxFor(model => model.uemail, new Dictionary<string, object>() {{"maxlength", "50"}}) %>
 						<%: Html.ValidationMessageFor(model => model.uemail) %>
+                        <label id="email_error"></label>
 					</td>
 				</tr>
                 <tr>
@@ -46,6 +83,7 @@
 						<%: Html.TextBoxFor(model => model.uphone, 
                             new Dictionary<string, object>() { { "maxlength", "15" } })%>
                         <%: Html.ValidationMessageFor(model => model.uphone) %>
+                        <label id="phone_error"></label>
 					</td>
 				</tr>
 				<tr>

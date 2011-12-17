@@ -5,7 +5,43 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
+	<script type="text/javascript" src="../../Scripts/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript">
+	    $.noConflict();
+	    jQuery(document).ready(function ($) {
+	        $(":submit").hide();
 
+	        $("#oemail").bind('change',
+			function () {
+			    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			    if ((!emailReg.test(this.value)) || this.value == "") {
+			        //alert("This isnot a email.");
+			        $("#email_error").css("color", "red").html("This is not a Email address.").show();
+			        $(":submit").hide();
+			    } else {
+			        //alert("This is a email.");
+			        $("#email_error").hide();
+			        if ($("#phone_error").is(":hidden") && ($("#ophone").val() != "")) {
+			            $(":submit").show();
+			        }
+			    }
+			});
+
+	        $("#ophone").bind('change',
+			function () {
+			    if ($("#ophone").val().match(/(130|131|132|133|134|135|136|137|138|139|158|150|151|152|155|189|188|187|182|186)\d{8}/) == null) {
+			        $("#phone_error").css("color", "red").html("Please Check your telephone number.").show();
+			        $(":submit").hide();
+			    }
+			    else {
+			        $("#phone_error").hide();
+			        if ($("#email_error").is(":hidden") && ($("#oemail").val() != "")) {
+			            $(":submit").show();
+			        }
+			    }
+			});
+	    })
+	</script>
     <% Html.RenderPartial("~/Views/Shared/Message.ascx"); %>
 
     <% using (Html.BeginForm()) {%>
@@ -33,21 +69,6 @@
 						<%: Html.Password("ConfirmPassword", "", new Dictionary<string, object>() { { "maxlength", "20" } })%>
 					</td>
 				</tr>
-				<tr>
-					<td align="right">Email:</td>
-					<td>
-						<%: Html.TextBoxFor(model => model.oemail, new Dictionary<string, object>() {{"maxlength", "50"}}) %>
-						<%: Html.ValidationMessageFor(model => model.oemail) %>
-					</td>
-				</tr>
-                <tr>
-					<td align="right">Phone:</td>
-					<td>
-						<%: Html.TextBoxFor(model => model.ophone, 
-                            new Dictionary<string, object>() { { "maxlength", "15" } })%>
-                        <%: Html.ValidationMessageFor(model => model.ophone) %>
-					</td>
-				</tr>
                 <tr>
 					<td align="right">Address:</td>
 					<td>
@@ -59,6 +80,23 @@
 				<tr>
 					<td align="right"><input type="submit" value="Create" /></td>
 					<td><input type="reset" value="Reset" /></td>
+				</tr>
+				<tr>
+					<td align="right">Email:</td>
+					<td>
+						<%: Html.TextBoxFor(model => model.oemail, new Dictionary<string, object>() {{"maxlength", "50"}}) %>
+						<%: Html.ValidationMessageFor(model => model.oemail) %>
+                        <label id="email_error"></label>
+					</td>
+				</tr>
+                <tr>
+					<td align="right">Phone:</td>
+					<td>
+						<%: Html.TextBoxFor(model => model.ophone, 
+                            new Dictionary<string, object>() { { "maxlength", "15" } })%>
+                        <%: Html.ValidationMessageFor(model => model.ophone) %>
+                        <label id="phone_error"></label>
+					</td>
 				</tr>
 			</table>
         </fieldset>
