@@ -10,10 +10,31 @@
     <meta name="description" content="" />
     <script type="text/javascript" src="../../Scripts/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="../../Scripts/jquery.slidertron-0.1.js"></script>
+    <script src="../../Scripts/jquery.uploadify.js" type="text/javascript"></script>
     <link href="../../Content/CSS/style1.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../../Content/CSS/uploadify.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         @import url("../../Content/CSS/slidertron.css");
     </style>
+    
+    <script type = "text/javascript">
+        $(window).load(
+    function () {
+        $("#<%=FileUpload.ClientID%>").fileUpload({
+            'uploader': '../../Scripts/uploader.swf',
+            'buttonText': 'Browse Files',
+            'script': '../../Content/Images/Upload.ashx',
+            'folder': '/Pics',
+            'fileDesc': 'Image Files',
+            'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
+            'multi': true,
+            'auto': true,
+            'onComplete': function (event, queueID, fileObj, response, data) {
+
+            }
+        });
+    });
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("li#act").hide();
@@ -283,7 +304,11 @@
                         else
                         {
                             Wave.Models.TakeActivity[] part = ViewData["part"] as Wave.Models.TakeActivity[];%>
-                            <h2 style="font-size:x-large"><%= Html.ActionLink("Upload Pictures", "UploadPictures", "Org", new { id = Model.actid }, null)%></h2>
+                                <form id="form1" runat="server">
+                                    <div>
+                                        <asp:FileUpload ID="FileUpload" runat="server" />
+                                    </div>
+                                </form>
                             <h2 style="font-size:x-large">Participator: 
                                 <%  if (part.Length > 0)
                                     { %>
