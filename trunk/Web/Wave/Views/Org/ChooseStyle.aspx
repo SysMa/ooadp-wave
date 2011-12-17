@@ -8,7 +8,7 @@
 		<title>Wave | Choose the Best Style for Your Page</title>
 		<link rel="stylesheet" href="../../Content/CSS/basic.css" type="text/css" />
 		<style type="text/css">
-			@import "../../Content/CSS/galleriffic-2.css"
+			@import url("../../Content/CSS/galleriffic-2.css");
 		</style>
 
 		<script type="text/javascript" src="../../Scripts/jquery-1.3.2.js"></script>

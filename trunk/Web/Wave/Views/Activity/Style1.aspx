@@ -12,7 +12,7 @@
     <script type="text/javascript" src="../../Scripts/jquery.slidertron-0.1.js"></script>
     <link href="../../Content/CSS/style1.css" rel="stylesheet" type="text/css" media="screen" />
     <style type="text/css">
-        @import "../../Content/CSS/slidertron.css"
+        @import url("../../Content/CSS/slidertron.css");
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
