@@ -23,7 +23,7 @@
         $("#<%=FileUpload.ClientID%>").fileUpload({
             'uploader': '../../Scripts/uploader.swf',
             'buttonText': 'Browse Files',
-            'script': '../../Content/Images/Upload.ashx',
+            'script': '../../Helper/Upload.ashx',
             'folder': '&actid=<%=Model.actid %>',
             'fileDesc': 'Image Files',
             'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
@@ -97,10 +97,13 @@
                 <div class="viewer">
                     <div class="reel">
                         <div class="slide">
-                        <!--
-                            <img src="../../Content/Images/Style1/img04.jpg" width="726" height="335" alt="" /> 
-                            <span>Image 1</span>
-                        -->
+                            <%  String[] actpics = ViewData["actpics"] as String[];
+                                for (int i = 0; i < actpics.Length; i++)
+                                {
+                                    String actpath = "../../Content/Images/ActivityImages/Activity_"
+                                                + Model.actid + "/" + actpics[i]; %>
+                                    <img src="<%=actpath %>" width="726" height="335" alt="" /> 
+                        <%      } %>
                         </div>
                     </div>
                 </div>
