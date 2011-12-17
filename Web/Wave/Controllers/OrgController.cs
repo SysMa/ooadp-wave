@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Wave.Models;
+using Wave.Helper;
 
 namespace Wave.Controllers
 {
@@ -76,7 +75,13 @@ namespace Wave.Controllers
                            where m.orgname == user
                            select m).First();
 
-            if (account.opasswd != passwordToChange.original)
+            string key = account.orgname;
+            while (key.Length < 8)
+            {
+                key = key + key;
+            }
+
+            if ( DESCode.DecryptDES(account.opasswd, key) != passwordToChange.original)
             {
                 TempData["ErrorMessage"] = "Your original passwords do not match, please retype it and try again. ";
                 return View();
@@ -88,8 +93,7 @@ namespace Wave.Controllers
             }
             else
             {
-                account.opasswd = passwordToChange.password;
-
+                account.opasswd = DESCode.EncryptDES(passwordToChange.password, key);
                 try
                 {
                     _db.ApplyCurrentValues<Org>(account.EntityKey.EntitySetName, account);
