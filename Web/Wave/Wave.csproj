@@ -109,8 +109,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helper\Encrypt.cs" />
+    <Compile Include="Helper\DESCode.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
+    <Compile Include="Helper\MD5Code.cs" />
     <Compile Include="Helper\SendMail.cs" />
     <Compile Include="Models\ChangePwdModel.cs" />
     <Compile Include="Models\LoginModel.cs" />

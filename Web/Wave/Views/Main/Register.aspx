@@ -53,21 +53,21 @@
                 <tr>
                     <td align="right">User Name:</td>
                     <td>
-                        <%: Html.TextBoxFor(model => model.username, new Dictionary<string, object>() { { "maxlength", "20" } })%>
+                        <%: Html.TextBoxFor(model => model.username, new Dictionary<string, object>() { { "maxlength", "20" }, { "minlength", "8" } })%>
                         <%: Html.ValidationMessageFor(model => model.username) %>
                     </td>
                 </tr>
                 <tr>
                     <td align="right">Password:</td>
                     <td>
-                        <%: Html.PasswordFor(model => model.upasswd, new Dictionary<string, object>() { { "maxlength", "20" } })%>
+                        <%: Html.PasswordFor(model => model.upasswd, new Dictionary<string, object>() { { "maxlength", "20" }, { "minlength", "6" } })%>
                         <%: Html.ValidationMessageFor(model => model.upasswd) %>
                     </td>
                 </tr>
                 <tr>
                     <td align="right">Confirm Password:</td>
                     <td>
-                        <%: Html.Password("ConfirmPassword", "", new Dictionary<string, object>() { { "maxlength", "20" } })%>
+                        <%: Html.Password("ConfirmPassword", "", new Dictionary<string, object>() { { "maxlength", "20" }, { "minlength", "6" } })%>
                     </td>
                 </tr>
                 <tr>
