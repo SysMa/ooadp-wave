@@ -393,17 +393,5 @@ namespace Wave.Controllers
                 return RedirectToAction("UserDetails", new { id=id, username = username });
             }
         }
-
-        public ActionResult UploadPictures(int id)
-        {
-            ViewData["id"] = id;
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult UploadPictures()
-        {
-            return View();
-        }
     }
 }

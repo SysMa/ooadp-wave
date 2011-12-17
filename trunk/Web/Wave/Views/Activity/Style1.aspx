@@ -24,7 +24,7 @@
             'uploader': '../../Scripts/uploader.swf',
             'buttonText': 'Browse Files',
             'script': '../../Content/Images/Upload.ashx',
-            'folder': '/Pics',
+            'folder': '&actid=<%=Model.actid %>',
             'fileDesc': 'Image Files',
             'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
             'multi': true,
@@ -304,11 +304,11 @@
                         else
                         {
                             Wave.Models.TakeActivity[] part = ViewData["part"] as Wave.Models.TakeActivity[];%>
-                                <form id="form1" runat="server">
-                                    <div>
-                                        <asp:FileUpload ID="FileUpload" runat="server" />
-                                    </div>
-                                </form>
+                            <form id="form1" runat="server">
+                                <div>
+                                    <asp:FileUpload ID="FileUpload" runat="server" />
+                                </div>
+                            </form>
                             <h2 style="font-size:x-large">Participator: 
                                 <%  if (part.Length > 0)
                                     { %>
