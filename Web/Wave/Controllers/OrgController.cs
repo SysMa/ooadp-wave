@@ -401,7 +401,7 @@ namespace Wave.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadPictures(int id)
+        public ActionResult UploadPictures()
         {
             return View();
         }
