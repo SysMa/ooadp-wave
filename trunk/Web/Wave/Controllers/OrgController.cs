@@ -10,9 +10,6 @@ namespace Wave.Controllers
     {
         private WaveWebEntities _db = new WaveWebEntities();
 
-        //
-        // GET: /Org/
-
         public ActionResult Index()
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
@@ -50,8 +47,6 @@ namespace Wave.Controllers
             return RedirectToAction("Main", "Main");
         }
 
-        //
-        // GET: /Org/ChangePwd/
         public ActionResult ChangePwd()
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
@@ -61,9 +56,6 @@ namespace Wave.Controllers
             }
             return View();
         }
-
-        //
-        // POST: /Org/ChangePwd/
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult ChangePwd(ChangePwdModel passwordToChange)
@@ -109,9 +101,6 @@ namespace Wave.Controllers
             }
         }
 
-        //
-        // GET: /Org/ChangeInfo/
-
         public ActionResult ChangeInfo()
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
@@ -143,9 +132,6 @@ namespace Wave.Controllers
                 return RedirectToAction("Index");
             }
         }
-
-        //
-        // POST: /Org/ChangeInfo/
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult ChangeInfo(Org orgToEdit)
@@ -184,9 +170,6 @@ namespace Wave.Controllers
             }
         }
 
-        //
-        // GET: /Org/ChooseStyle
-
         public ActionResult ChooseStyle()
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
@@ -196,9 +179,6 @@ namespace Wave.Controllers
             }
             return View();
         }
-
-        //
-        // GET: /Org/ApplyActivities
 
         public ActionResult ApplyActivities(int pageid)
         {
@@ -210,9 +190,6 @@ namespace Wave.Controllers
             ViewData["pageid"] = pageid;
             return View();
         } 
-
-        //
-        // POST: /Org/ApplyActivities
 
         [HttpPost]
         public ActionResult ApplyActivities(Activity activity)
@@ -240,35 +217,6 @@ namespace Wave.Controllers
                 return View();
             }
         }
-        
-        //
-        // GET: /Org/Edit/5
- 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Org/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Org/Delete/5
  
         public ActionResult DeleteActivity(int id)
         {
@@ -446,22 +394,16 @@ namespace Wave.Controllers
             }
         }
 
-        //
-        // POST: /Org/Delete/5
+        public ActionResult UploadPictures(int id)
+        {
+            ViewData["id"] = id;
+            return View();
+        }
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult UploadPictures(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
     }
 }

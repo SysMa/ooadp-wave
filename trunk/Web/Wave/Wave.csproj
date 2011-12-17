@@ -200,6 +200,7 @@
     <Content Include="Views\Admin\UserDetails.aspx" />
     <Content Include="Views\Main\ForgotPassword.aspx" />
     <Content Include="Views\Org\ParticipatorDetails.aspx" />
+    <Content Include="Views\Org\UploadPictures.aspx" />
     <Content Include="Views\Org\UserDetails.aspx" />
     <Content Include="Views\User\Activation.aspx" />
     <Content Include="Views\Main\Main.aspx" />
