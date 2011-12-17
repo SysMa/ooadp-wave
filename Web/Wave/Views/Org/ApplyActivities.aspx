@@ -119,12 +119,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">Page Template:</td>
-                    <td>
-                        <input type="button" value="Preview" />
-                    </td>
-                </tr>
-                <tr>
                     <td align="right"><input type="submit" value="Apply" /></td>
                     <td><input type="reset" value="Reset" /></td>
                 </tr>

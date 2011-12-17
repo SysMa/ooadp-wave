@@ -248,7 +248,7 @@ namespace Wave.Controllers
                 return RedirectToAction("Main", "Main");
             }
 
-            string url = Request.UrlReferrer.ToString();
+            string url = Request.QueryString["url"];
             string user = Session["waveAccount"].ToString();
             try
             {

@@ -213,7 +213,7 @@
                                             }
                                     %>
                                             <li style="padding-left:40px;padding-top:10px;">
-                                                <a href="/Activity/ActivityDetails/<%=acts[i].actid %>?usertype=<%=type %>&username=<%=username %>">
+                                                <a href="/Activity/ActivityDetails/<%=acts[i].actid %>?usertype=<%=type %>&username=<%=username %>&url=<%=url %>">
                                                 <%= Html.Image("activity_pic" + i, ResolveUrl(imgpath),
                                                     "No Pic", new { style = "width:80px;height:80px" })%></a>
                                                 <br />
@@ -249,7 +249,7 @@
                     <%}
                     else if (visitor == "admin")
                     { %>
-                        <h2 style="font-size:xx-large">
+                        <h2 style="font-size:x-large">
                         <% if (ViewData["review"] == null)
                            {%>
                             <%= Html.ActionLink("Pass The Activity", "PassActivity", "Admin", new { id = Model.actid, url = url }, null)%>
