@@ -78,10 +78,6 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="right"><input type="submit" value="Create" /></td>
-					<td><input type="reset" value="Reset" /></td>
-				</tr>
-				<tr>
 					<td align="right">Email:</td>
 					<td>
 						<%: Html.TextBoxFor(model => model.oemail, new Dictionary<string, object>() {{"maxlength", "50"}}) %>
@@ -97,6 +93,10 @@
                         <%: Html.ValidationMessageFor(model => model.ophone) %>
                         <label id="phone_error"></label>
 					</td>
+				</tr>
+                <tr>
+					<td align="right"><input type="submit" value="Create" /></td>
+					<td><input type="reset" value="Reset" /></td>
 				</tr>
 			</table>
         </fieldset>
