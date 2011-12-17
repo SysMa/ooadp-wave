@@ -96,15 +96,15 @@
             <div id="col2">
                 <div class="viewer">
                     <div class="reel">
-                        <div class="slide">
-                            <%  String[] actpics = ViewData["actpics"] as String[];
-                                for (int i = 0; i < actpics.Length; i++)
-                                {
-                                    String actpath = "../../Content/Images/ActivityImages/Activity_"
-                                                + Model.actid + "/" + actpics[i]; %>
+                        <%  String[] actpics = ViewData["actpics"] as String[];
+                            for (int i = 0; i < actpics.Length; i++)
+                            {
+                                String actpath = "../../Content/Images/ActivityImages/Activity_"
+                                            + Model.actid + "/" + actpics[i]; %>
+                                <div class="slide">
                                     <img src="<%=actpath %>" width="726" height="335" alt="" /> 
-                        <%      } %>
-                        </div>
+                                </div>
+                        <%  } %>    
                     </div>
                 </div>
             </div>
