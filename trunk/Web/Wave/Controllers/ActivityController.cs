@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Wave.Models;
+using Wave.Helper;
 
 namespace Wave.Controllers
 {
@@ -52,6 +53,10 @@ namespace Wave.Controllers
                         ViewData["part"] = activity.TakeActivity.ToArray();
                     }
                     ViewData["visitor"] = "org";
+
+                    var pics = (from m in _db.Images
+                                where m.actid == activity.actid
+                                select m);
                 }
                 else if (type == "1")
                 {
@@ -139,6 +144,12 @@ namespace Wave.Controllers
                 String styleName = "Style";
 
                 styleName += (activity.pageid + 1);
+
+                var actpics = (from m in activity.Images
+                               select m.pic);
+
+                ViewData["actpics"] = actpics.ToArray();
+
                 return View(styleName, activity);
             }
             catch (Exception exception)
