@@ -163,7 +163,7 @@
                                                 <% }
                                                    else
                                                    { %>
-                                                        <td style="font-size:x-large; color:Red;">Sorry, you can't join the activity because the number of participator has reached the maximum number.</td>
+                                                        <td style="font-size:x-large; color:Red;">Sorry, you can't join the activity,  because the number of participator has reached the maximum number.</td>
                                                 <% } %>
                                             </tr>
                             <%          }
