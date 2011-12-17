@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Wave.Helper;
 using Wave.Models;
 
 namespace Wave.Controllers
@@ -82,8 +81,13 @@ namespace Wave.Controllers
             var account = (from m in _db.Admin
                            where m.adminname == user
                            select m).First();
+            string key = account.adminname;
+            while (key.Length < 8)
+            {
+                key = key + key;
+            }
 
-            if (account.apasswd != passwordToChange.original)
+            if ( DESCode.DecryptDES(account.apasswd, key) != passwordToChange.original)
             {
                 TempData["ErrorMessage"] = "Your original passwords do not match, please retype it and try again. ";
                 return View();
@@ -95,7 +99,7 @@ namespace Wave.Controllers
             }
             else
             {
-                account.apasswd = passwordToChange.password;
+                account.apasswd = DESCode.EncryptDES(passwordToChange.password, key);
 
                 try
                 {
@@ -207,23 +211,59 @@ namespace Wave.Controllers
 
             try
             {
-                var user = (from m in _db.Users
+                var users = (from m in _db.Users
                              where m.username == userToCreate.username
                              select m);
 
-                if (user.Count() != 0)
+                if (users.Count() != 0)
                 {
                     TempData["ErrorMessage"] = "User name exists! ";
                     return View();
                 }
                 if (userToCreate.upasswd != Request.Form["ConfirmPassword"])
                 {
-                    TempData["ErrorMessage"] = "User creation failed! Passwords must match, please re-enter and try again.";
+                    TempData["ErrorMessage"] = "Registration failed! Your passwords must match, please re-enter and try again.";
                     return View();
                 }
-                _db.AddToUsers(userToCreate);
-                _db.SaveChanges();
-                TempData["SuccessMessage"] = "User creation succeeds!";
+
+                try
+                {
+                    string content = System.IO.File.ReadAllText(Server.MapPath("~/NewMemberEmail.txt"));
+                    content = content.Replace("[Name]", userToCreate.username);
+                    content = content.Replace("[LINK]", "<a href='http://" + Request.Url.Host + ":" + Request.Url.Port + "/User/Activation-" + Server.UrlEncode(userToCreate.username) + "-" + MD5Code.getMd5Hash(userToCreate.username) + "'>^_^Active^_^</a>");
+                    content = content.Replace("[UserName]", userToCreate.username);
+                    content = content.Replace("[Pwd]", userToCreate.upasswd);
+
+                    if (!SendMail.send(userToCreate.uemail, content, Server, "Active"))
+                    {
+                        TempData["ErrorMessage"] = "Sorry. The format of your email address can't be recognized.";
+                        return View();
+                    };
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = "Registration failed! Check your email again please." + ex.Message;
+                    return View();
+                }
+
+                try
+                {
+                    string key = userToCreate.username;
+                    while (key.Length < 8)
+                    {
+                        key = key + key;
+                    }
+                    userToCreate.upasswd = DESCode.EncryptDES(userToCreate.upasswd, key);
+                    _db.AddToUsers(userToCreate);
+                    _db.SaveChanges();
+                    TempData["SuccessMessage"] = "Create successful. Waiting for being actived.";
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = "The databse is unreachable. Try again later." + ex.Message;
+                    return View();
+                }
+
                 return RedirectToAction("Index");
             }
             catch (Exception exception)
@@ -433,6 +473,13 @@ namespace Wave.Controllers
                     TempData["ErrorMessage"] = "Org creation failed! Passwords must match, please re-enter and try again.";
                     return View();
                 }
+                string key = orgToCreate.orgname;
+                while (key.Length < 8)
+                {
+                    key = key + key;
+                }
+                orgToCreate.opasswd = DESCode.EncryptDES( orgToCreate.opasswd, key);
+                orgToCreate.oscore = 0;
                 _db.AddToOrg(orgToCreate);
                 _db.SaveChanges();
                 TempData["SuccessMessage"] = "Org creation succeeds!";

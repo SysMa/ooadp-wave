@@ -49,7 +49,7 @@ namespace Wave.Helper
         {
             try
             {
-                byte[] rgbKey = Encoding.UTF8.GetBytes(decryptKey);
+                byte[] rgbKey = Encoding.UTF8.GetBytes(decryptKey.Substring(0, 8));
                 byte[] rgbIV = Keys;
                 byte[] inputByteArray = Convert.FromBase64String(decryptString);
                 DESCryptoServiceProvider DCSP = new DESCryptoServiceProvider();

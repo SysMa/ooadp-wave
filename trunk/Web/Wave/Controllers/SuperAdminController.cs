@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Wave.Helper;
 using Wave.Models;
 
 namespace Wave.Controllers
@@ -61,6 +60,12 @@ namespace Wave.Controllers
                     TempData["ErrorMessage"] = "Administrator creation failed! Passwords must match, please re-enter and try again.";
                     return View();
                 }
+                string key = adminToCreate.adminname;
+                while (key.Length < 8)
+                {
+                    key = key + key;
+                }
+                adminToCreate.apasswd = DESCode.EncryptDES(adminToCreate.apasswd, key);
                 _db.AddToAdmin(adminToCreate);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
@@ -172,7 +177,13 @@ namespace Wave.Controllers
                                  where m.supname == superAdmin
                                  select m).First();
 
-            if (account.spasswd != passwordToChange.original)
+             string key = account.supname;
+             while (key.Length < 8)
+             {
+                 key = key + key;
+             }
+
+            if ( DESCode.DecryptDES( account.spasswd, key) != passwordToChange.original)
             {
                 TempData["ErrorMessage"] = "Your original passwords do not match, please retype it and try again. ";
                 return View();
@@ -184,7 +195,7 @@ namespace Wave.Controllers
             }
             else
             {
-                account.spasswd = passwordToChange.password;
+                account.spasswd = DESCode.EncryptDES(passwordToChange.password, key);
 
                 try
                 {

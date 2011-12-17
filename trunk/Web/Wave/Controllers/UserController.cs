@@ -45,7 +45,13 @@ namespace Wave.Controllers
                            where m.username == user
                            select m).First();
 
-            if (account.upasswd != passwordToChange.original)
+            string key = account.username;
+            while (key.Length < 8)
+            {
+                key = key + key;
+            }
+
+            if ( DESCode.DecryptDES( account.upasswd, key) != passwordToChange.original)
             {
                 TempData["ErrorMessage"] = "Your original passwords do not match, please retype it and try again. ";
                 return View();
@@ -57,7 +63,7 @@ namespace Wave.Controllers
             }
             else
             {
-                account.upasswd = passwordToChange.password;
+                account.upasswd = DESCode.EncryptDES( passwordToChange.password, key);
 
                 try
                 {
@@ -230,8 +236,8 @@ namespace Wave.Controllers
                 TempData["ErrorMessage"] = "Failed to Active" + ex.Message;
                 return RedirectToAction("Main", "Main");
             }
-            TempData["ErrorMessage"] = "Failed to Active";
-            return RedirectToAction("Main", "Main");
+            // TempData["ErrorMessage"] = "Failed to Active";
+            // return RedirectToAction("Main", "Main");
         }
 
         public ActionResult JoinActivity(int id)

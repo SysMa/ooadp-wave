@@ -44,7 +44,12 @@ namespace Wave.Controllers
                             }
                             else
                             {
-                                if (account.First().spasswd != toCheck.password)
+                                string key = account.First().supname;
+                                while (key.Length < 8)
+                                {
+                                    key = key + key;
+                                }
+                                if (DESCode.DecryptDES(account.First().spasswd, key) != toCheck.password)
                                 {
                                     TempData["ErrorMessage"] = "Check your password, please! ";
                                     return RedirectToAction("Main");
@@ -70,7 +75,12 @@ namespace Wave.Controllers
                             }
                             else
                             {
-                                if (account.First().apasswd != toCheck.password)
+                                string key = account.First().adminname;
+                                while (key.Length < 8)
+                                {
+                                    key = key + key;
+                                }
+                                if (DESCode.DecryptDES(account.First().apasswd, key) != toCheck.password)
                                 {
                                     TempData["ErrorMessage"] = "Check your password, please! ";
                                     return RedirectToAction("Main");
@@ -96,7 +106,12 @@ namespace Wave.Controllers
                             }
                             else
                             {
-                                if (account.First().opasswd != toCheck.password)
+                                string key = account.First().orgname;
+                                while (key.Length < 8)
+                                {
+                                    key = key + key;
+                                }
+                                if (DESCode.DecryptDES(account.First().opasswd, key) != toCheck.password)
                                 {
                                     TempData["ErrorMessage"] = "Check your password, please! ";
                                     return RedirectToAction("Main");
@@ -122,9 +137,19 @@ namespace Wave.Controllers
                             }
                             else
                             {
-                                if (account.First().upasswd != toCheck.password)
+                                string key = account.First().username;
+                                while (key.Length < 8)
+                                {
+                                    key = key + key;
+                                }
+                                if ( DESCode.DecryptDES(account.First().upasswd, key) != toCheck.password)
                                 {
                                     TempData["ErrorMessage"] = "Check your password, please! ";
+                                    return RedirectToAction("Main");
+                                }
+                                else if (account.First().ustate == 0)
+                                {
+                                    TempData["WarningMessage"] = "Your need to active your account.";
                                     return RedirectToAction("Main");
                                 }
                                 else
@@ -204,7 +229,12 @@ namespace Wave.Controllers
 
                 try
                 {
-                    // userToCreate.upasswd = Encrypt.EncryptDES(userToCreate.upasswd, userToCreate.username);
+                    string key = userToCreate.username;
+                    while (key.Length < 8)
+                    {
+                        key = key + key;
+                    }
+                    userToCreate.upasswd = DESCode.EncryptDES(userToCreate.upasswd, key);
                     _db.AddToUsers(userToCreate);
                     _db.SaveChanges();
                     TempData["SuccessMessage"] = "Registration succeeds! Your can log in using the new username and password.";
