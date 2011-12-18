@@ -310,11 +310,13 @@
                         {
                             Wave.Models.TakeActivity[] part = ViewData["part"] as Wave.Models.TakeActivity[];%>
                             <form id="form1" runat="server">
-                                <div>
+                                <h2>
                                     <asp:FileUpload ID="FileUpload" runat="server" />
-                                </div>
+                                </h2>
                             </form>
-                            <%= Html.ActionLink("Pick Some", "Pick", "Org", new { id = Model.actid, url = url }, null)%>
+                            <h2 style="font-size:x-large">
+                                <%= Html.ActionLink("Pick Some", "Pick", "Org", new { id = Model.actid, url = url }, null)%>
+                            </h2>
                             <h2 style="font-size:x-large">Participator: 
                                 <%  if (part.Length > 0)
                                     { %>

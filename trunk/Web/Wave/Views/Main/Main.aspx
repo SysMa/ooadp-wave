@@ -52,7 +52,9 @@
     <script src="../../Scripts/main.js" type="text/javascript"></script>
     <ul class="splitter">
         <li>
-            <ul>
+            <% using (Ajax.BeginForm("Search", new AjaxOptions { HttpMethod = "Post" }))
+               {%>
+            <ul style="margin-left:100px;">
                 <li class="segment-1 selected-1">
                     <a href="#" data-value="all">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ALL&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
                 </li>
@@ -61,6 +63,11 @@
                 <li class="segment-2"><a href="#" data-value="org">Organizations</a>
                 </li>
             </ul>
+                <input type="text" style="position:relative; right:-180px;" />
+                <input type="submit" value="" style="border-style: none; background-position: center center; position:relative;
+                     right:-180px; background-image: url('../../Content/Images/search_keywords_fg.png'); background-repeat: no-repeat; 
+                     line-height: normal; width:20px; cursor:pointer; background-color:transparent;" />
+            <%  } %>
         </li>
     </ul>
 
