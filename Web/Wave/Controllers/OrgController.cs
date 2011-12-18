@@ -411,6 +411,7 @@ namespace Wave.Controllers
 
                 ViewData["imgs"] = imgs.ToArray();
                 ViewData["actid"] = id;
+                ViewData["url"] = url;
             }
             catch (Exception exception)
             {
@@ -429,6 +430,7 @@ namespace Wave.Controllers
             }
             int actid = int.Parse(Request.QueryString["actid"]);
             String pic = Request.QueryString["pic"];
+            String url = Request.QueryString["url"];
 
             var img = (from m in _db.Images
                         where m.actid == actid where m.pic == pic
@@ -437,7 +439,7 @@ namespace Wave.Controllers
             img.picstate = 1;
             _db.ApplyCurrentValues<Images>(img.EntityKey.EntitySetName, img);
             _db.SaveChanges();
-            return RedirectToAction("Pick", new { id = actid });
+            return RedirectToAction("Pick", new { id = actid, url = url });
         }
 
         public ActionResult Removepics()
@@ -449,6 +451,7 @@ namespace Wave.Controllers
             }
             int actid = int.Parse(Request.QueryString["actid"]);
             String pic = Request.QueryString["pic"];
+            String url = Request.QueryString["url"];
 
             var img = (from m in _db.Images
                        where m.actid == actid
@@ -458,7 +461,7 @@ namespace Wave.Controllers
             img.picstate = 0;
             _db.ApplyCurrentValues<Images>(img.EntityKey.EntitySetName, img);
             _db.SaveChanges();
-            return RedirectToAction("Pick", new { id = actid });
+            return RedirectToAction("Pick", new { id = actid, url = url });
         }
     }
 }

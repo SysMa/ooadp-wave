@@ -53,10 +53,6 @@ namespace Wave.Controllers
                         ViewData["part"] = activity.TakeActivity.ToArray();
                     }
                     ViewData["visitor"] = "org";
-
-                    var pics = (from m in _db.Images
-                                where m.actid == activity.actid
-                                select m);
                 }
                 else if (type == "1")
                 {
@@ -145,14 +141,10 @@ namespace Wave.Controllers
 
                 styleName += (activity.pageid + 1);
 
-                var actpics = (from m in activity.Images
+                var actpics = (from m in activity.Images.Where(i => i.picstate == 1)
                                select m.pic);
 
-                var actpicstates = (from m in activity.Images
-                                    select m.picstate);
-
                 ViewData["actpics"] = actpics.ToArray();
-                ViewData["picstates"] = actpicstates.ToArray();
 
                 return View(styleName, activity);
             }

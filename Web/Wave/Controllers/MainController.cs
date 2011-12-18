@@ -408,5 +408,33 @@ namespace Wave.Controllers
             }
             return RedirectToAction("Main");
         }
+
+        [HttpPost]
+        public ActionResult Search(string searchKey)
+        {
+            int type = -1;
+            string username = "1";
+            if (Session["waveType"] != null)
+            {
+                type = (int)Session["waveType"];
+            }
+            if (Session["waveAccount"] != null)
+            {
+                username = (string)Session["waveAccount"];
+            }
+
+            var acts = (from m in _db.Activity.Where(a => a.actstate == 1)
+                        where m.actname.Contains(searchKey)
+                        select m);
+
+            var orgs = (from m in _db.Org.Where(o => o.ostate == 0)
+                        where m.orgname.Contains(searchKey)
+                        select m);
+
+            ViewData["actList"] = acts.ToArray();
+            ViewData["orgList"] = orgs.ToArray();
+            ViewData["searchKey"] = searchKey;
+            return View();
+        }
     }
 }

@@ -103,13 +103,11 @@
                             int[] picstates = ViewData["picstates"] as int[];
                             for (int i = 0; i < actpics.Length; i++)
                             {
-                                if (picstates[i] == 1) { 
-                                    String actpath = "../../Content/Images/ActivityImages/Activity_"
-                                                + Model.actid + "/" + actpics[i]; %>
-                                    <div class="slide">
-                                        <img src="<%=actpath %>" width="726" height="335" alt="" /> 
-                                    </div>
-                             <% } %> 
+                                String actpath = "../../Content/Images/ActivityImages/Activity_"
+                                            + Model.actid + "/" + actpics[i]; %>
+                                <div class="slide">
+                                    <img src="<%=actpath %>" width="726" height="335" alt="" /> 
+                                </div>
                         <%  }
                             if (actpics.Length == 0)
                             {%>
