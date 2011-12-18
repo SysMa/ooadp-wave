@@ -41,7 +41,7 @@
         <br /><br />
         <%= Html.ActionLink("Forgot Password", "ForgotPassword", "Main")%> | 
         <%= Html.ActionLink("Join Now", "Register")%> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <button type="submit" id="user-login-button" >Log In</button>
+        <button type="submit" id="user-login-button" style="border-style: none; background-image: none; background-color: #282B2E; color: #46C5EC; text-decoration: underline; font-size: large;">Log In</button>
     </form>
 
 </center>
