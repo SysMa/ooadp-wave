@@ -95,8 +95,7 @@
             <div id="col1"><a href="#" class="previous">&nbsp;</a></div>
             <div id="col2">
                 <div class="viewer">
-                    <div class="reel">
-                    <div class="slide"></div>
+                    <div class="reel">          
                         <%  String[] actpics = ViewData["actpics"] as String[];
                             for (int i = 0; i < actpics.Length; i++)
                             {
@@ -105,6 +104,10 @@
                                 <div class="slide">
                                     <img src="<%=actpath %>" width="726" height="335" alt="" /> 
                                 </div>
+                        <%  }
+                            if (actpics.Length == 0)
+                            {%>
+                                <div class="slide"><img src="" width="726" height="335" alt="No pictures" /></div>
                         <%  } %>    
                     </div>
                 </div>
