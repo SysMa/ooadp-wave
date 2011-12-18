@@ -42,7 +42,7 @@
                            String imgpath = "../../Content/Images/ActivityImages/Activity_" + ViewData["actid"] + "/" + actpics[i].pic;
                     %>
 						<li id="<%=i %>">
-							<a class="thumb" name="style1" href="<%=imgpath %>" title="Style1" style="width:125px; height:125px">
+							<a class="thumb" name="pic<%=i %>" href="<%=imgpath %>" title="pic<%=i %>" style="width:125px; height:125px">
 								<img src="<%=imgpath %>" alt="Title #0" style="width:125px; height:125px" />
 							</a>
 							<div class="caption">
@@ -56,7 +56,7 @@
 				</div>
 				<div style="clear: both;"></div>
                 <div style="font-size:xx-large;">
-                    <%= Html.ActionLink("Back", "Index") %>
+                    <a href="javascript:history.back(-1)">Back</a>
                 </div>
 			</div>
 		</div>

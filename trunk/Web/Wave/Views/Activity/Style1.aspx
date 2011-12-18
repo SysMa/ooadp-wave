@@ -22,13 +22,16 @@
     function () {
         $("#<%=FileUpload.ClientID%>").fileUpload({
             'uploader': '../../Scripts/uploader.swf',
-            'buttonText': 'Browse Files',
+            'buttonText': 'Upload Pictures',
             'script': '../../Helper/Upload.ashx',
             'folder': '&actid=<%=Model.actid %>',
             'fileDesc': 'Image Files',
             'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
             'multi': true,
             'auto': true,
+            'buttonImg': '../../Content/Images/button.png',
+            'width': 203,
+            'height': 35,
             'onComplete': function (event, queueID, fileObj, response, data) {
 
             }
@@ -310,7 +313,7 @@
                         {
                             Wave.Models.TakeActivity[] part = ViewData["part"] as Wave.Models.TakeActivity[];%>
                             <form id="form1" runat="server">
-                                <h2>
+                                <h2 style="padding-left:0px; padding-top:0px; padding-bottom:5px; margin-left:-1px;">
                                     <asp:FileUpload ID="FileUpload" runat="server" />
                                 </h2>
                             </form>
