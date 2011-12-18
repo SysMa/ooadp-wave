@@ -63,9 +63,9 @@
                 <li class="segment-2"><a href="#" data-value="org">Organizations</a>
                 </li>
             </ul>
-                <input type="text" style="position:relative; right:-180px;" />
+                <input type="text" style="position:relative; right:-170px;" />
                 <input type="submit" value="" style="border-style: none; background-position: center center; position:relative;
-                     right:-180px; background-image: url('../../Content/Images/search_keywords_fg.png'); background-repeat: no-repeat; 
+                     right:-170px; background-image: url('../../Content/Images/search_keywords_fg.png'); background-repeat: no-repeat; 
                      line-height: normal; width:20px; cursor:pointer; background-color:transparent;" />
             <%  } %>
         </li>
