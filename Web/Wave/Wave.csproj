@@ -145,6 +145,7 @@
     <Content Include="Content\Images\message\warning.png" />
     <Content Include="Content\Images\noavater.gif" />
     <Content Include="Content\Images\noavater_small.jpg" />
+    <Content Include="Content\Images\search_keywords_fg.png" />
     <Content Include="Content\Images\style1.png" />
     <Content Include="Content\Images\Style1\img01.jpg" />
     <Content Include="Content\Images\Style1\img02.jpg" />
