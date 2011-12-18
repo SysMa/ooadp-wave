@@ -136,6 +136,7 @@
     <Content Include="Content\CSS\slidertron.css" />
     <Content Include="Content\CSS\style1.css" />
     <Content Include="Content\CSS\uploadify.css" />
+    <Content Include="Content\Images\button.png" />
     <Content Include="Content\Images\cancel.png" />
     <Content Include="Content\Images\main\buttons.png" />
     <Content Include="Content\Images\main\splitter.png" />
