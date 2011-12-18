@@ -49,13 +49,13 @@
                                 <% if (actpics[i].picstate == 0)
                                    {  %>
                                 <div class="download" style="font-size:xx-large">
-                                    <%= Html.ActionLink("Choose it.", "Usepics", "Org", new { actid = ViewData["actid"], pic = actpics[i].pic }, null)%>
+                                    <%= Html.ActionLink("Choose it.", "Usepics", "Org", new { actid = ViewData["actid"], pic = actpics[i].pic, url = ViewData["url"] }, null)%>
                                 </div>
                                 <%  }
                                    else
                                    { %>
                                 <div class="download" style="font-size:xx-large">
-                                    <%= Html.ActionLink("Remove it.", "Removepics", "Org", new { actid = ViewData["actid"], pic = actpics[i].pic }, null)%>
+                                    <%= Html.ActionLink("Remove it.", "Removepics", "Org", new { actid = ViewData["actid"], pic = actpics[i].pic, url = ViewData["url"] }, null)%>
                                 </div>
                                 <%  } %>
                             </div>
@@ -65,7 +65,7 @@
                 </div>
                 <div style="clear: both;"></div>
                 <div style="font-size:xx-large;">
-                    <a href="javascript:history.back(-1)">Back</a>
+                    <a href="<%=ViewData["url"] %>">Back</a>
                 </div>
             </div>
         </div>
