@@ -16,7 +16,7 @@
 		<script type="text/javascript" src="../../Scripts/jquery.opacityrollover.js"></script>
 		<!-- We only want the thunbnails to display when javascript is disabled -->
 		<script type="text/javascript">
-		    document.write('<style>.noscript { display: none; }</style>');
+			document.write('<style>.noscript { display: none; }</style>');
 		</script>
 	</head>
 	<body>
@@ -41,29 +41,29 @@
 								<img src="../../Content/Images/style1.png" alt="Title #0" style="width:125px; height:125px" />
 							</a>
 							<div class="caption">
-                                <div class="download" style="font-size:xx-large">
-								    <%= Html.ActionLink("Choose it.", "ApplyActivities", new { pageid = 0 }) %>
-							    </div>
+								<div class="download" style="font-size:xx-large">
+									<%= Html.ActionLink("Choose it.", "ApplyActivities", new { pageid = 0 }) %>
+								</div>
 								<div class="image-title">Style1</div>
 							</div>
 						</li>
-                        <li id="1">
+						<li id="1">
 							<a class="thumb" name="style2" href="../../Content/Images/style1.png" title="Style2">
 								<img src="../../Content/Images/style1.png" alt="Title #0" style="width:125px; height:125px" />
 							</a>
 							<div class="caption">
-                                <div class="download" style="font-size:xx-large">
-								    <%= Html.ActionLink("Choose it.", "ApplyActivities", new { pageid = 1 }) %>
-							    </div>
+								<div class="download" style="font-size:xx-large">
+									<%= Html.ActionLink("Choose it.", "ApplyActivities", new { pageid = 1 }) %>
+								</div>
 								<div class="image-title">Style2</div>
 							</div>
 						</li>
 					</ul>
 				</div>
 				<div style="clear: both;"></div>
-                <div style="font-size:xx-large;">
-                    <%= Html.ActionLink("Back", "Index") %>
-                </div>
+				<div style="font-size:xx-large;">
+					<%= Html.ActionLink("Back", "Index") %>
+				</div>
 			</div>
 		</div>
 		<div id="footer">&copy;</div>

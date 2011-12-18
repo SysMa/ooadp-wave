@@ -148,7 +148,11 @@ namespace Wave.Controllers
                 var actpics = (from m in activity.Images
                                select m.pic);
 
+                var actpicstates = (from m in activity.Images
+                                    select m.picstate);
+
                 ViewData["actpics"] = actpics.ToArray();
+                ViewData["picstates"] = actpicstates.ToArray();
 
                 return View(styleName, activity);
             }
