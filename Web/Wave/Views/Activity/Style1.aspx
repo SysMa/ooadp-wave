@@ -314,6 +314,7 @@
                                     <asp:FileUpload ID="FileUpload" runat="server" />
                                 </div>
                             </form>
+                            <%= Html.ActionLink("Pick Some", "Pick", "Org", new { id = Model.actid, url = url }, null)%>
                             <h2 style="font-size:x-large">Participator: 
                                 <%  if (part.Length > 0)
                                     { %>
