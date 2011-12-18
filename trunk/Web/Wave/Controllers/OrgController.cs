@@ -419,5 +419,46 @@ namespace Wave.Controllers
             }
             return View();
         }
+
+        public ActionResult Usepics()
+        {
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
+            {
+                Session.Clear();
+                return RedirectToAction("Main", "Main");
+            }
+            int actid = int.Parse(Request.QueryString["actid"]);
+            String pic = Request.QueryString["pic"];
+
+            var img = (from m in _db.Images
+                        where m.actid == actid where m.pic == pic
+                        select m).First();
+
+            img.picstate = 1;
+            _db.ApplyCurrentValues<Images>(img.EntityKey.EntitySetName, img);
+            _db.SaveChanges();
+            return RedirectToAction("Pick", new { id = actid });
+        }
+
+        public ActionResult Removepics()
+        {
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
+            {
+                Session.Clear();
+                return RedirectToAction("Main", "Main");
+            }
+            int actid = int.Parse(Request.QueryString["actid"]);
+            String pic = Request.QueryString["pic"];
+
+            var img = (from m in _db.Images
+                       where m.actid == actid
+                       where m.pic == pic
+                       select m).First();
+
+            img.picstate = 0;
+            _db.ApplyCurrentValues<Images>(img.EntityKey.EntitySetName, img);
+            _db.SaveChanges();
+            return RedirectToAction("Pick", new { id = actid });
+        }
     }
 }
