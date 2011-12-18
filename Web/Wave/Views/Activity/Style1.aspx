@@ -96,6 +96,7 @@
             <div id="col2">
                 <div class="viewer">
                     <div class="reel">
+                    <div class="slide"></div>
                         <%  String[] actpics = ViewData["actpics"] as String[];
                             for (int i = 0; i < actpics.Length; i++)
                             {
@@ -111,7 +112,6 @@
             <div id="col3"><a href="#" class="next">&nbsp;</a></div>
         </div>
         <script type="text/javascript">
-
             $('#foobar').slidertron({
                 viewerSelector: '.viewer',
                 reelSelector: '.viewer .reel',
@@ -121,7 +121,6 @@
                 navFirstSelector: '.first',
                 navLastSelector: '.last'
             });
-                      
         </script>
         <!-- end -->
     </div>
