@@ -393,5 +393,31 @@ namespace Wave.Controllers
                 return RedirectToAction("UserDetails", new { id=id, username = username });
             }
         }
+
+        public ActionResult Pick(int id)
+        {
+            if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
+            {
+                Session.Clear();
+                return RedirectToAction("Main", "Main");
+            }
+            String url = Request.QueryString["url"];
+            String user = Session["waveAccount"] as String;
+            try
+            {
+                var imgs = (from m in _db.Images
+                                where m.actid == id
+                                select m);
+
+                ViewData["imgs"] = imgs.ToArray();
+                ViewData["actid"] = id;
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Activity Deletion has failed because: " + exception.Message;
+                return Redirect(url);
+            }
+            return View();
+        }
     }
 }

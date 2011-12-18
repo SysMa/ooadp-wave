@@ -61,6 +61,10 @@ div.slideshow a.advance-link:hover, div.slideshow a.advance-link:active, div.sli
 div.slideshow img {
 	vertical-align: middle;
 	border: 1px solid #ccc;
+    max-width:550px; 
+    max-height:500px; 
+    height:auto; 
+    width:auto;
 }
 div.download {
 	float: right;
