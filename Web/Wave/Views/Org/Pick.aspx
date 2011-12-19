@@ -47,28 +47,17 @@
                             <a class="thumb" name="pic<%=i %>" href="<%=imgpath %>" title="pic<%=i %>" style="width:125px; height:125px">
                                 <img src="<%=imgpath %>" alt="Title #0" style="width:125px; height:125px" />
                             </a>
-                            <div class="caption">
+                            <div class="caption"> 
+                            <div class="download" id="show<%=i %>" style="font-size:xx-large"> 
                                 <% if (actpics[i].picstate == 0)
                                    {  %>
-                                   <% using (Ajax.BeginForm("Toogle", new { actid = actpics[i].actid, pic
-                                      = actpics[i].pic, url = Url
-                                      }, new AjaxOptions { UpdateTargetId = "show"+ i }))
-                                      { %>
-                                    <div class="download" style="font-size:xx-large" id="show<%=i %>">
-                                        <input type="submit" value="Choose it."/>
-                                    </div>
+                                   <%= Ajax.ActionLink("Choose it.", "Toogle", "Org", new { actid = actpics[i].actid, pic = actpics[i].pic, url = Url, listid = i }, new AjaxOptions { UpdateTargetId = "show"+ i }) %>
                                     <% }
-                                   }
                                    else
                                    { %>
-                                   <% using (Ajax.BeginForm("Toogle", new { actid = actpics[i].actid, pic
-                                       = actpics[i].pic, url = Url }, new AjaxOptions { UpdateTargetId = "show"+i }))
-                                    { %>
-                                    <div class="download" style="font-size:xx-large" id="show<%=i %>">
-                                        <input type="submit" value="Remove it." />
-                                    </div>
-                                    <% }
-                                   }%>
+                                   <%= Ajax.ActionLink("Remove it.", "Toogle", "Org", new { actid = actpics[i].actid, pic = actpics[i].pic, url = Url, listid = i }, new AjaxOptions { UpdateTargetId = "show" + i })%>
+                                    <% } %>
+                            </div>
                             </div>
                         </li>
                         <%} %>

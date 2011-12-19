@@ -432,6 +432,7 @@ namespace Wave.Controllers
             int actid = int.Parse(Request.QueryString["actid"]);
             String pic = Request.QueryString["pic"];
             String url = Request.QueryString["url"];
+            int listid = int.Parse(Request.QueryString["listid"]);
             String change = "";
 
             var img = (from m in _db.Images
@@ -445,14 +446,14 @@ namespace Wave.Controllers
                     img.picstate = 0;
                     _db.ApplyCurrentValues<Images>(img.EntityKey.EntitySetName, img);
                     _db.SaveChanges();
-                    change = "<input type='submit' value='Choose it.'/>";
+                    change = "<a onclick=\"Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, updateTargetId: 'show" + listid + "' });\" href=\"/Org/Toogle?actid=" + actid + "&pic=" + pic + "&url=System.Web.Mvc.UrlHelper&listid=" + listid + "\">Choose it.</a>";
                 }
                 else
                 {
                     img.picstate = 1;
                     _db.ApplyCurrentValues<Images>(img.EntityKey.EntitySetName, img);
                     _db.SaveChanges();
-                    change = "<input type='submit' value='Remove it.' />";
+                    change = "<a onclick=\"Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, updateTargetId: 'show" + listid + "' });\" href=\"/Org/Toogle?actid=" + actid + "&pic=" + pic + "&url=System.Web.Mvc.UrlHelper&listid=" + listid + "\">Remove it.</a>";
                 }
             }
             catch (Exception ex)
@@ -462,6 +463,7 @@ namespace Wave.Controllers
             }
             return Content(change);
         }
+        
         /*
         public ActionResult Removepics()
         {
