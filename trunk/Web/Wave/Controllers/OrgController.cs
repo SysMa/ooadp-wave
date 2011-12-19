@@ -421,7 +421,8 @@ namespace Wave.Controllers
             return View();
         }
 
-        public ActionResult Usepics()
+        [HttpPost]
+        public ActionResult Toogle(FormCollection post)
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
             {
@@ -431,17 +432,37 @@ namespace Wave.Controllers
             int actid = int.Parse(Request.QueryString["actid"]);
             String pic = Request.QueryString["pic"];
             String url = Request.QueryString["url"];
+            String change = "";
 
             var img = (from m in _db.Images
-                        where m.actid == actid where m.pic == pic
-                        select m).First();
-
-            img.picstate = 1;
-            _db.ApplyCurrentValues<Images>(img.EntityKey.EntitySetName, img);
-            _db.SaveChanges();
-            return RedirectToAction("Pick", new { id = actid, url = url });
+                       where m.actid == actid
+                       where m.pic == pic
+                       select m).First();
+            try
+            {
+                if (img.picstate == 1)
+                {
+                    img.picstate = 0;
+                    _db.ApplyCurrentValues<Images>(img.EntityKey.EntitySetName, img);
+                    _db.SaveChanges();
+                    change = "<input type='submit' value='Choose it.'/>";
+                }
+                else
+                {
+                    img.picstate = 1;
+                    _db.ApplyCurrentValues<Images>(img.EntityKey.EntitySetName, img);
+                    _db.SaveChanges();
+                    change = "<input type='submit' value='Remove it.' />";
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Error happened while updating." + ex.Message;
+                return RedirectToAction("Pick", new { id = actid, url = url });
+            }
+            return Content(change);
         }
-
+        /*
         public ActionResult Removepics()
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
@@ -463,5 +484,6 @@ namespace Wave.Controllers
             _db.SaveChanges();
             return RedirectToAction("Pick", new { id = actid, url = url });
         }
+        */
     }
 }

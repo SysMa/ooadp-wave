@@ -13,6 +13,8 @@
 
         <script type="text/javascript" src="../../Scripts/jquery-1.3.2.js"></script>
         <script type="text/javascript" src="../../Scripts/jquery.galleriffic.js"></script>
+        <script src="../../Scripts/MicrosoftAjax.js" type="text/javascript"></script>
+        <script src="../../Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script>
         <script type="text/javascript" src="../../Scripts/jquery.opacityrollover.js"></script>
         <!-- We only want the thunbnails to display when javascript is disabled -->
         <script type="text/javascript">
@@ -48,16 +50,25 @@
                             <div class="caption">
                                 <% if (actpics[i].picstate == 0)
                                    {  %>
-                                <div class="download" style="font-size:xx-large">
-                                    <%= Html.ActionLink("Choose it.", "Usepics", "Org", new { actid = ViewData["actid"], pic = actpics[i].pic, url = ViewData["url"] }, null)%>
-                                </div>
-                                <%  }
+                                   <% using (Ajax.BeginForm("Toogle", new { actid = actpics[i].actid, pic
+                                      = actpics[i].pic, url = Url
+                                      }, new AjaxOptions { UpdateTargetId = "show"+ i }))
+                                      { %>
+                                    <div class="download" style="font-size:xx-large" id="show<%=i %>">
+                                        <input type="submit" value="Choose it."/>
+                                    </div>
+                                    <% }
+                                   }
                                    else
                                    { %>
-                                <div class="download" style="font-size:xx-large">
-                                    <%= Html.ActionLink("Remove it.", "Removepics", "Org", new { actid = ViewData["actid"], pic = actpics[i].pic, url = ViewData["url"] }, null)%>
-                                </div>
-                                <%  } %>
+                                   <% using (Ajax.BeginForm("Toogle", new { actid = actpics[i].actid, pic
+                                       = actpics[i].pic, url = Url }, new AjaxOptions { UpdateTargetId = "show"+i }))
+                                    { %>
+                                    <div class="download" style="font-size:xx-large" id="show<%=i %>">
+                                        <input type="submit" value="Remove it." />
+                                    </div>
+                                    <% }
+                                   }%>
                             </div>
                         </li>
                         <%} %>
