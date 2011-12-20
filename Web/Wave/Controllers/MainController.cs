@@ -418,10 +418,13 @@ namespace Wave.Controllers
                 username = (string)Session["waveAccount"];
             }
 
-            if ((int)Session["waveType"] == 1 || (int)Session["waveType"] == 0 || (int)Session["waveType"] == 2)
+            if (Session["waveType"] != null)
             {
-                Session.Clear();
-                return RedirectToAction("Main", "Main");
+                if ((int)Session["waveType"] == 1 || (int)Session["waveType"] == 0 || (int)Session["waveType"] == 2)
+                {
+                    Session.Clear();
+                    return RedirectToAction("Main", "Main");
+                }
             }
 
             try
