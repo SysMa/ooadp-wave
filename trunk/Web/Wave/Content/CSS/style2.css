@@ -250,6 +250,8 @@ hr {
 #content {
 	float: right;
 	width: 620px;
+	border: 1px solid #292929;
+	padding-left:10px;
 }
 
 /* Post */
@@ -337,6 +339,7 @@ hr {
 	float: left;
 	width: 280px;
 	font-family: Arial, Helvetica, sans-serif;
+	padding-left:10px;
 }
 
 #sidebar ul {
@@ -377,9 +380,8 @@ hr {
 
 #sidebar h2 {
 	height: 30px;
-	margin: 0 0 30px 0px;
+	margin: 0 0 10px 0px;
 	padding: 6px 20px 2px 0px;
-	border-bottom: 1px solid #292929;
 	text-transform: capitalize;
 	font-size: 24px;
 	font-weight: normal;
@@ -476,7 +478,7 @@ hr {
 
 #two-columns {
 	width: 960px;
-	height: 336px;
+	height: 385px;
 	margin: 0px auto;
 }
 
@@ -489,7 +491,7 @@ hr {
 #two-columns .col2 {
 	float: right;
 	width: 230px;
-	height: 286px;
+	height: 335px;
 	padding: 50px 30px 0px 30px;
 	background: #68AE15;
 	line-height: 135%;

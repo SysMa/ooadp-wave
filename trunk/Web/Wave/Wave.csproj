@@ -45,15 +45,17 @@
     <WarningLevel>4</WarningLevel>
     <PublishDatabaseSettings>
       <Objects>
-        <ObjectGroup Name="WaveWebEntities-Deployment" Order="1">
-          <Destination Path="" />
+        <ObjectGroup Name="WaveWebEntities-Deployment" Order="1" xmlns="">
+          <Destination Path="Data Source=.\SQLEXPRESS%3bInitial Catalog=wave%3bIntegrated Security=True" />
           <Object Type="dbFullSql" Enabled="False">
-            <PreSource Path="Data Source=.\SQLEXPRESS%3bAttachDbFilename=|DataDirectory|\WaveWeb.mdf%3bIntegrated Security=True%3bApplication Name=EntityFramework%3bUser Instance=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" />
+            <PreSource Path="Data Source=.\SQLEXPRESS%3bInitial Catalog=wave%3bIntegrated Security=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" />
             <Source Path="obj\Release\AutoScripts\WaveWebEntities-Deployment_SchemaOnly.sql" Transacted="True" />
           </Object>
         </ObjectGroup>
       </Objects>
     </PublishDatabaseSettings>
+    <ExcludeApp_Data>true</ExcludeApp_Data>
+    <PublishDatabases>true</PublishDatabases>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ManagedFusion, Version=1.0.3425.35492, Culture=neutral, processorArchitecture=MSIL">
@@ -138,6 +140,7 @@
     <Content Include="Content\CSS\style2.css" />
     <Content Include="Content\CSS\uploadify.css" />
     <Content Include="Content\Images\button.png" />
+    <Content Include="Content\Images\button2.png" />
     <Content Include="Content\Images\cancel.png" />
     <Content Include="Content\Images\main\buttons.png" />
     <Content Include="Content\Images\main\splitter.png" />
