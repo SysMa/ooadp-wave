@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>Style1</title>
+	<title><%: Model.actname %></title>
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
 	<script type="text/javascript" src="../../Scripts/jquery-1.7.1.min.js"></script>
@@ -80,7 +80,7 @@
        String url = ViewData["returnUrl"] as String; %>
     <div id="header">
         <div id="logo">
-            <h1 class="title" style="margin-top:10px"><%: Model.actname %></h1>
+            <h1 class="title" style="margin-top:10px; font-size:36px"><%: Model.actname %></h1>
         </div>
     </div>
     <!-- end #header -->
@@ -93,7 +93,7 @@
 			<div id="foobar">
 				<div class="navigation"> <a href="#" class="first">[ &lt;&lt; ]</a> &nbsp; <a href="#" class="previous">[ &lt; ]</a> &nbsp; <a href="#" class="next">[ &gt; ]</a> &nbsp; <a href="#" class="last">[ &gt;&gt; ]</a> </div>
 				<div class="viewer">
-                    <div class="reel">          
+                    <div class="reel" style="color:Black">          
                         <%  String[] actpics = ViewData["actpics"] as String[];
                             int[] picstates = ViewData["picstates"] as int[];
                             for (int i = 0; i < actpics.Length; i++)

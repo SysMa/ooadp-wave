@@ -160,6 +160,7 @@
     <Content Include="Content\Images\Style1\img09.jpg" />
     <Content Include="Content\Images\Style1\img10.jpg" />
     <Content Include="Content\Images\Style1\img11.jpg" />
+    <Content Include="Content\Images\style2.png" />
     <Content Include="Content\Images\ui-bg_glass_100_f6f6f6_1x400.png" />
     <Content Include="Content\Images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
     <Content Include="Content\Images\ui-icons_ef8c08_256x240.png" />
@@ -223,7 +224,9 @@
     <Content Include="Views\User\ChangeInfo.aspx" />
     <Content Include="Views\User\ChangePwd.aspx" />
     <Content Include="Views\User\ViewMyActivity.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

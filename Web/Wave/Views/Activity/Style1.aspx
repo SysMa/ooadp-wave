@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title><%: Model.actname %></title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <script type="text/javascript" src="../../Scripts/jquery-1.7.1.min.js"></script>
