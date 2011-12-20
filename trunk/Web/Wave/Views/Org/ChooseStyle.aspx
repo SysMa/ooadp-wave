@@ -48,8 +48,8 @@
 							</div>
 						</li>
 						<li id="1">
-							<a class="thumb" name="style2" href="../../Content/Images/style1.png" title="Style2">
-								<img src="../../Content/Images/style1.png" alt="Title #0" style="width:125px; height:125px" />
+							<a class="thumb" name="style2" href="../../Content/Images/style2.png" title="Style2">
+								<img src="../../Content/Images/style2.png" alt="Title #0" style="width:125px; height:125px" />
 							</a>
 							<div class="caption">
 								<div class="download" style="font-size:xx-large">
