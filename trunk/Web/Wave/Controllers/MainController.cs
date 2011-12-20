@@ -10,17 +10,22 @@ namespace Wave.Controllers
     {
         private WaveWebEntities _db = new WaveWebEntities();
 
-        //
-        // GET: /Default1/
-
         public ActionResult Main()
         {
-            var activities = (from m in _db.Activity
-                              where m.actstate == 1
-                              select m);
-            ViewData["actList"] = activities.ToArray();
-            ViewData["orgList"] = _db.Org.ToArray();
-            return View();
+            try
+            {
+                var activities = (from m in _db.Activity
+                                  where m.actstate == 1
+                                  select m);
+                ViewData["actList"] = activities.ToArray();
+                ViewData["orgList"] = _db.Org.ToArray();
+                return View();
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
+                return View();
+            }
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -187,16 +192,10 @@ namespace Wave.Controllers
             }
         }
 
-        //
-        // GET: /SuperAdmin/Create
-
         public ActionResult Register()
         {
             return View();
         }
-
-        //
-        // POST: /SuperAdmin/Create
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Register(Users userToCreate)
@@ -267,9 +266,6 @@ namespace Wave.Controllers
                 return View();
             }
         }
-
-        //
-        // GET: /Main/OrgDetails/5
 
         public ActionResult OrgDetails(string id)
         {
@@ -409,7 +405,6 @@ namespace Wave.Controllers
             return RedirectToAction("Main");
         }
 
-        [HttpPost]
         public ActionResult Search(string searchKey)
         {
             int type = -1;
@@ -423,18 +418,33 @@ namespace Wave.Controllers
                 username = (string)Session["waveAccount"];
             }
 
-            var acts = (from m in _db.Activity.Where(a => a.actstate == 1)
-                        where m.actname.Contains(searchKey)
-                        select m);
+            if ((int)Session["waveType"] == 1 || (int)Session["waveType"] == 0 || (int)Session["waveType"] == 2)
+            {
+                Session.Clear();
+                return RedirectToAction("Main", "Main");
+            }
 
-            var orgs = (from m in _db.Org.Where(o => o.ostate == 0)
-                        where m.orgname.Contains(searchKey)
-                        select m);
+            try
+            {
+                var acts = (from m in _db.Activity.Where(a => a.actstate == 1)
+                            where m.actname.Contains(searchKey)
+                            select m);
 
-            ViewData["actList"] = acts.ToArray();
-            ViewData["orgList"] = orgs.ToArray();
-            ViewData["searchKey"] = searchKey;
-            return View();
+                var orgs = (from m in _db.Org.Where(o => o.ostate == 0)
+                            where m.orgname.Contains(searchKey)
+                            select m);
+
+                ViewData["actList"] = acts.ToArray();
+                ViewData["orgList"] = orgs.ToArray();
+                ViewData["searchKey"] = searchKey;
+
+                return View("Main");
+            }
+            catch (Exception exception)
+            {
+                TempData["ErrorMessage"] = "Database has failed because: " + exception.Message;
+                return RedirectToAction("Main");
+            }
         }
     }
 }
