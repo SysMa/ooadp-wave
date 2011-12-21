@@ -98,6 +98,7 @@
 			</table>
 			<%: Html.HiddenFor(model => model.orgname)%>
 			<%: Html.HiddenFor(model => model.opasswd)%>
+            <%: Html.HiddenFor(model => model.ostate)%>
 		  
 		</fieldset>
 
