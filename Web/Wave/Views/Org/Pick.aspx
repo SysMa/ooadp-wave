@@ -20,6 +20,13 @@
         <script type="text/javascript">
             document.write('<style>.noscript { display: none; }</style>');
         </script>
+        <script type="text/javascript">
+            function disappear(id) {
+                var a = document.getElementById("show" + id);
+                document.getElementById("show").removeChild(a);
+                document.getElementById("slideshow").innerHTML = "";
+            }
+        </script>
     </head>
     <body>
         <div id="page">
@@ -47,8 +54,8 @@
                             <a class="thumb" name="pic<%=i %>" href="<%=imgpath %>" title="pic<%=i %>" style="width:125px; height:125px">
                                 <img src="<%=imgpath %>" alt="Title #0" style="width:125px; height:125px" />
                             </a>
-                            <div class="caption"> 
-                            <div class="download" id="show<%=i %>" style="font-size:xx-large"> 
+                            <div class="caption" id="show"> 
+                            <div class="download" id="show<%=i %>" style="font-size:xx-large">
                                 <% if (actpics[i].picstate == 0)
                                    {  %>
                                    <%= Ajax.ActionLink("Choose it.", "Toogle", "Org", new { actid = actpics[i].actid, pic = actpics[i].pic, url = Url, listid = i }, new AjaxOptions { UpdateTargetId = "show"+ i }) %>
@@ -57,6 +64,7 @@
                                    { %>
                                    <%= Ajax.ActionLink("Remove it.", "Toogle", "Org", new { actid = actpics[i].actid, pic = actpics[i].pic, url = Url, listid = i }, new AjaxOptions { UpdateTargetId = "show" + i })%>
                                     <% } %>
+                                   | <%= Ajax.ActionLink("Delete it.", "DeletePic", "Org", new { actid = actpics[i].actid, pic = actpics[i].pic, url = Url, listid = i }, new AjaxOptions { UpdateTargetId = i.ToString(), OnSuccess = "function(){disappear('" + i + "')}" })%>
                             </div>
                             </div>
                         </li>
