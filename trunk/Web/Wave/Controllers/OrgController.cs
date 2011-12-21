@@ -446,26 +446,27 @@ namespace Wave.Controllers
                     img.picstate = 0;
                     _db.ApplyCurrentValues<Images>(img.EntityKey.EntitySetName, img);
                     _db.SaveChanges();
-                    change = "<a onclick=\"Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, updateTargetId: 'show" + listid + "' });\" href=\"/Org/Toogle?actid=" + actid + "&pic=" + pic + "&url=System.Web.Mvc.UrlHelper&listid=" + listid + "\">Choose it.</a>";
+                    change = "<a onclick=\"Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, updateTargetId: 'show" + listid + "' });\" href=\"/Org/Toogle?actid=" + actid + "&pic=" + pic + "&url=System.Web.Mvc.UrlHelper&listid=" + listid + "\">Choose it.</a>"
+                        + "| <a onclick=\"Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, updateTargetId: '" + listid + "' });\" href=\"/Org/DeletePic?actid=" + actid + "&pic=" + pic + "&url=System.Web.Mvc.UrlHelper&listid=" + listid + "\">Delete it.</a>"; ;
                 }
                 else
                 {
                     img.picstate = 1;
                     _db.ApplyCurrentValues<Images>(img.EntityKey.EntitySetName, img);
                     _db.SaveChanges();
-                    change = "<a onclick=\"Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, updateTargetId: 'show" + listid + "' });\" href=\"/Org/Toogle?actid=" + actid + "&pic=" + pic + "&url=System.Web.Mvc.UrlHelper&listid=" + listid + "\">Remove it.</a>";
+                    change = "<a onclick=\"Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, updateTargetId: 'show" + listid + "' });\" href=\"/Org/Toogle?actid=" + actid + "&pic=" + pic + "&url=System.Web.Mvc.UrlHelper&listid=" + listid + "\">Remove it.</a>"
+                         + "| <a onclick=\"Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, updateTargetId: '" + listid + "' });\" href=\"/Org/DeletePic?actid=" + actid + "&pic=" + pic + "&url=System.Web.Mvc.UrlHelper&listid=" + listid + "\">Delete it.</a>";
                 }
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "Error happened while updating." + ex.Message;
                 return RedirectToAction("Pick", new { id = actid, url = url });
             }
             return Content(change);
         }
-        
-        /*
-        public ActionResult Removepics()
+
+        [HttpPost]
+        public ActionResult DeletePic()
         {
             if (Session["waveType"] == null || Session["waveAccount"] == null || (int)Session["waveType"] != 2)
             {
@@ -475,17 +476,38 @@ namespace Wave.Controllers
             int actid = int.Parse(Request.QueryString["actid"]);
             String pic = Request.QueryString["pic"];
             String url = Request.QueryString["url"];
+            int listid = int.Parse(Request.QueryString["listid"]);
 
-            var img = (from m in _db.Images
-                       where m.actid == actid
-                       where m.pic == pic
-                       select m).First();
+            try
+            {
+                string org = Session["waveAccount"] as string;
+                var activity = (from m in _db.Activity
+                                where m.actid == actid
+                                select m).First();
+                if (activity.orgname != org)
+                {
+                    Session.Clear();
+                    return RedirectToAction("Main", "Main");
+                }
+                                
+                var img = (from m in _db.Images
+                           where m.actid == actid
+                           where m.pic == pic
+                           select m).First();
 
-            img.picstate = 0;
-            _db.ApplyCurrentValues<Images>(img.EntityKey.EntitySetName, img);
-            _db.SaveChanges();
-            return RedirectToAction("Pick", new { id = actid, url = url });
+                _db.DeleteObject(img);
+                _db.SaveChanges();
+                string path = "~/Content/Images/ActivityImages/Activity_" + actid + "/" + img.pic;
+                if (System.IO.File.Exists(Server.MapPath(path)))
+                {
+                    System.IO.File.Delete(Server.MapPath(path));
+                }
+                return Content("");
+            }
+            catch (Exception ex)
+            {
+                return Redirect(url);
+            }     
         }
-        */
     }
 }
