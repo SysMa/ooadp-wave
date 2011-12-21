@@ -51,6 +51,7 @@
             </table>
             <%: Html.HiddenFor(model => model.adminname)%>
             <%: Html.HiddenFor(model => model.apasswd)%>
+            <%: Html.HiddenFor(model => model.astate)%>
         </fieldset>
 
     <% } %>

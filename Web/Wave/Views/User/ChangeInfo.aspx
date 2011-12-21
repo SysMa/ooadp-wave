@@ -90,6 +90,7 @@
             </table>
             <%: Html.HiddenFor(model => model.username)%>
             <%: Html.HiddenFor(model => model.upasswd)%>
+            <%: Html.HiddenFor(model => model.ustate)%>
           
         </fieldset>
 

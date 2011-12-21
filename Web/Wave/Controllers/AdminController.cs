@@ -382,6 +382,11 @@ namespace Wave.Controllers
             {
                 _db.DeleteObject(userToDelete);
                 _db.SaveChanges();
+                String path = Server.MapPath("~/Content/Images/pics/User_" + userToDelete.username + ".jpg");
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
                 return RedirectToAction("Index");
             }
             catch (Exception exception)
@@ -601,6 +606,11 @@ namespace Wave.Controllers
             {
                 _db.DeleteObject(orgToDelete);
                 _db.SaveChanges();
+                String path = Server.MapPath("~/Content/Images/pics/Org_" + orgToDelete.orgname + ".jpg");
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
                 return RedirectToAction("Orgs");
             }
             catch (Exception exception)
