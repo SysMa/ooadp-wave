@@ -86,7 +86,7 @@
                 }
                 Wave.Models.Activity[] actList = ViewData["actList"] as Wave.Models.Activity[];
                 Wave.Models.Org[] orgList = ViewData["orgList"] as Wave.Models.Org[];
-                for (;; i++)
+                for (; i < 10; i++)
                 {
                     if (i < actList.Length)
                     {
