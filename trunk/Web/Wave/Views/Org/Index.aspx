@@ -33,7 +33,7 @@
        else
        { %>
         <div class="demo">
-            <ul id="list" class="image-grid" style="height: 591px; ">
+            <ul id="list" class="image-grid">
                 <%  int i = 0, j = 0;
                     int type = (int)Session["waveType"];
                     string username = (string)Session["waveAccount"];
