@@ -458,7 +458,7 @@ namespace Wave.Controllers
                          + "| <a onclick=\"Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, updateTargetId: '" + listid + "' });\" href=\"/Org/DeletePic?actid=" + actid + "&pic=" + pic + "&url=System.Web.Mvc.UrlHelper&listid=" + listid + "\">Delete it.</a>";
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 return RedirectToAction("Pick", new { id = actid, url = url });
             }
@@ -504,7 +504,7 @@ namespace Wave.Controllers
                 }
                 return Content("");
             }
-            catch (Exception ex)
+            catch
             {
                 return Redirect(url);
             }     

@@ -126,7 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\WaveWeb.mdf" />
-    <Content Include="App_Data\WaveWeb_log.ldf">
+    <Content Include="App_Data\WaveWeb_log.LDF">
       <DependentUpon>WaveWeb.mdf</DependentUpon>
     </Content>
     <Content Include="Content\CSS\basic.css" />
