@@ -120,14 +120,14 @@
 					navPreviousSelector: '.previous',
 					navNextSelector: '.next',
 					navFirstSelector: '.first',
-					navLastSelector: '.last'
+					navLastSelector: '.last' 
 				});
 						
 			</script>
 		</div>
         <div class="col2">
 			<blockquote>
-                <table style="table-layout:fixed; word-wrap:break-word;">
+                <table style="table-layout:fixed; word-wrap:break-word; width:210px;">
                     <tr><td>&#8220;&nbsp;<%: Model.slogan %>&nbsp;&#8221;</td></tr>
                 </table>
             </blockquote>
